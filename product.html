@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wedding Collection - Rada Photography Studio</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark-bg: #0D0D0D;
+            --off-white: #E0E0E0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--off-white);
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+        body.fade-in { opacity: 1; }
+
+        h1, h2 { font-family: 'Playfair Display', serif; color: #fff; }
+
+        /* HEADER MATCHING INDEX */
+        #header {
+            background-color: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+            color: #a0a0a0;
+            font-weight: 500;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 2px; bottom: -2px; left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--gold);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: #fff; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+        /* REFINED GALLERY IMAGES */
+        .portfolio-img-wrapper {
+            overflow: hidden;
+            border-radius: 8px;
+            background: #1a1a1a;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+        }
+        .portfolio-img {
+            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.6s ease;
+            cursor: pointer;
+            object-fit: cover;
+            width: 100%;
+            height: 400px; /* Editorial taller height */
+            filter: brightness(0.7) grayscale(20%);
+        }
+        .portfolio-img-wrapper:hover .portfolio-img {
+            transform: scale(1.1);
+            filter: brightness(1) grayscale(0%);
+        }
+        .portfolio-img-wrapper:hover {
+            border-color: var(--gold);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+        }
+
+        .back-link {
+            color: var(--gold);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .back-link:hover { color: #fff; transform: translateX(-5px); }
+    </style>
+</head>
+<body>
+    <header id="header" class="fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="dp.png" onerror="this.src='https://placehold.co/100x100/D4AF37/0D0D0D?text=Logo'" alt="Logo" class="h-10 mr-3 rounded-full border border-gold">
+                <span class="text-2xl font-bold tracking-wider text-gold uppercase">Rada Photography</span>
+            </a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="portfolio.html" class="nav-link active">Portfolio</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-40 pb-24">
+        <div class="container mx-auto px-6">
+            <div class="mb-16" data-aos="fade-right">
+                <a href="portfolio.html" class="back-link mb-6">
+                    <span>&larr;</span> Back to Portfolio
+                </a>
+                <h3 class="text-gold uppercase tracking-[0.4em] text-xs mb-3 font-semibold">Gallery Collection</h3>
+                <h1 class="text-5xl md:text-7xl font-bold leading-tight">Wedding <br><span class="text-gold">Stories</span></h1>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="portfolio-img-wrapper" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1515934751635-481eff048362?q=80&w=1887&auto=format&fit=crop" alt="Wedding 1" class="portfolio-img">
+                </div>
+                <div class="portfolio-img-wrapper" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1500051638674-ff996a0ec29e?q=80&w=1887&auto=format&fit=crop" alt="Wedding 2" class="portfolio-img">
+                </div>
+                <div class="portfolio-img-wrapper" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1511285560921-50b39be84643?q=80&w=1887&auto=format&fit=crop" alt="Wedding 3" class="portfolio-img">
+                </div>
+                <div class="portfolio-img-wrapper" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1887&auto=format&fit=crop" alt="Wedding 4" class="portfolio-img">
+                </div>
+                <div class="portfolio-img-wrapper" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1887&auto=format&fit=crop" alt="Wedding 5" class="portfolio-img">
+                </div>
+                <div class="portfolio-img-wrapper" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1887&auto=format&fit=crop" alt="Wedding 6" class="portfolio-img">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-12 bg-[#050505] text-center text-gray-500 text-sm border-t border-gold border-opacity-10">
+        <div class="container mx-auto px-6">
+            <p>&copy; 2024 Rada Photography Studio. All Rights Reserved.</p>
+            <p class="mt-2 text-gold">Email: foxfreelancing21@gmail.com | Phone: 8754328542</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('fade-in');
+            AOS.init({ 
+                duration: 1000, 
+                once: true, 
+                easing: 'ease-out-expo' 
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Photography Services – Rada Photography Studio</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark-bg: #0D0D0D;
+            --off-white: #E0E0E0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--off-white);
+            margin: 0;
+            overflow-x: hidden;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+        body.fade-in { opacity: 1; }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: #FFFFFF;
+        }
+
+        /* HEADER MATCHING INDEX */
+        #header {
+            background-color: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+            color: #a0a0a0;
+            font-weight: 500;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 2px; bottom: -2px; left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--gold);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: #fff; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+        /* LUXURY SERVICE CARDS */
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 1rem;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        .service-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* GOLD BUTTON STYLE */
+        .btn-gold {
+            background-color: var(--gold);
+            color: var(--dark-bg);
+            font-weight: 600;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
+        .btn-gold:hover {
+            background-color: #fff;
+            color: var(--dark-bg);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header" class="fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="dp.png" onerror="this.src='https://placehold.co/100x100/D4AF37/0D0D0D?text=Logo'" alt="Logo" class="h-10 mr-3 rounded-full border border-gold">
+                <span class="text-2xl font-bold tracking-wider text-gold uppercase">Rada Photography</span>
+            </a>
+            <nav class="hidden md:flex space-x-10">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="services.html" class="nav-link active">Services</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-gold focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-black border-b border-gold border-opacity-20">
+            <a href="index.html" class="block text-center py-4 text-gold">Home</a>
+            <a href="about.html" class="block text-center py-4 text-gold">About</a>
+            <a href="portfolio.html" class="block text-center py-4 text-gold">Portfolio</a>
+            <a href="services.html" class="block text-center py-4 text-gold">Services</a>
+            <a href="contact.html" class="block text-center py-4 text-gold">Contact</a>
+        </div>
+    </header>
+
+    <main class="pt-40 pb-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20" data-aos="fade-down">
+                <h3 class="text-gold uppercase tracking-[0.4em] text-sm mb-3">Our Expertise</h3>
+                <h1 class="text-5xl md:text-7xl font-bold">Premium Services</h1>
+                <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Capturing timeless moments with technical precision and artistic vision.</p>
+            </div>
+            
+            <div id="serviceGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                </div>
+        </div>
+    </main>
+
+    <footer class="py-12 bg-[#050505] text-center text-gray-500 text-sm border-t border-gold border-opacity-10">
+        <div class="container mx-auto px-6">
+            <p>&copy; 2024 Rada Photography Studio. All Rights Reserved.</p>
+            <p class="mt-2 text-gold">Email: foxfreelancing21@gmail.com | Phone: 8754328542</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('fade-in');
+
+            AOS.init({
+                duration: 1000,
+                once: true,
+                easing: 'ease-out-expo',
+            });
+
+            const services = [
+                { title: "Wedding Stories", desc: "Full day coverage capturing every intimate emotion and grand celebration.", btn: "Book Wedding" },
+                { title: "Portraiture", desc: "Fine art portraits that reveal your unique personality and character.", btn: "Schedule Session" },
+                { title: "Event Coverage", desc: "Cinematic documentation for corporate galas and private celebrations.", btn: "Cover Event" },
+                { title: "Commercial", desc: "High-end product and brand imagery designed for marketing success.", btn: "Discuss Project" },
+                { title: "Fashion Editorial", desc: "Avant-garde photography for designers, labels, and professional models.", btn: "Plan Shoot" },
+                { title: "Custom Albums", desc: "Hand-crafted premium photo albums to preserve your legacy forever.", btn: "Get Quote" }
+            ];
+
+            const grid = document.getElementById('serviceGrid');
+            if (grid) {
+                services.forEach((svc, i) => {
+                    const card = document.createElement('div');
+                    card.className = 'service-card text-center';
+                    card.setAttribute('data-aos', 'fade-up');
+                    card.setAttribute('data-aos-delay', `${i * 100}`);
+                    card.innerHTML = `
+                        <h3 class="text-2xl font-bold mb-4 text-white">${svc.title}</h3>
+                        <p class="text-gray-400 mb-8 leading-relaxed">${svc.desc}</p>
+                        <a href="contact.html" class="btn-gold">${svc.btn}</a>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+
+            const mobileMenuBtn = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuBtn.onclick = () => mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

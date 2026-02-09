@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twin X | Premium Creative Space</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --royal-blue: #002366;
+            --gold: #C5A059;
+            --soft-gold: #E5C78B;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--royal-blue);
+            color: white;
+            overflow-x: hidden;
+        }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .text-gold { color: var(--gold); }
+        .bg-gold { background-color: var(--gold); }
+        .border-gold { border-color: var(--gold); }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--royal-blue); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+
+        .hero-gradient {
+            background: linear-gradient(rgba(0, 31, 85, 0.8), rgba(0, 31, 85, 0.8)), 
+                        url('dp/bg-twinxx.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background: rgba(0, 31, 85, 0.8);
+        }
+
+        /* Smooth Scroll behavior */
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed w-full z-50 nav-blur border-b border-gold/20">
+        <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="twinx.html" class="group flex items-center space-x-4">
+                <img src="dp/twinx.jpeg" 
+                     alt="Twin X Logo" 
+                     class="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="text-xl md:text-2xl font-cinzel font-bold tracking-widest text-gold transition-colors duration-300 group-hover:text-white">TWIN X</div>
+            </a>
+
+            <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest">
+                <a href="twinx.html" class="relative py-1 transition-colors duration-300 hover:text-gold group">
+                    Home
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="space.html" class="relative py-1 transition-colors duration-300 hover:text-gold group">
+                    The Space
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="rates.html" class="relative py-1 transition-colors duration-300 hover:text-gold group">
+                    Rates
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="contact.html" class="relative py-1 transition-colors duration-300 hover:text-gold group">
+                    Contact
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </div>
+            
+            <a href="https://wa.me/7845091708" 
+               class="bg-gold text-blue-900 px-6 py-2 rounded-full text-xs font-bold transition-all duration-300 hover:bg-white hover:text-blue-900 hover:shadow-[0_0_15px_rgba(255,255,255,0.3)] active:scale-95">
+               BOOK NOW
+            </a>
+        </div>
+    </nav>
+
+    <section class="h-screen flex items-center justify-center hero-gradient text-center px-4">
+        <div class="max-w-4xl">
+            <h2 id="hero-sub" class="text-gold tracking-[0.5em] uppercase text-sm mb-4 opacity-0">Premium Rental Studio</h2>
+            <h1 id="hero-title" class="text-5xl md:text-8xl font-cinzel mb-8 opacity-0">Capture Your <br><span class="text-gold italic">Vision</span> Here.</h1>
+            <p id="hero-para" class="text-gray-300 max-w-xl mx-auto mb-10 opacity-0">
+                A modern, fully-equipped creative studio space designed for photographers, filmmakers, and brands.
+            </p>
+            <div id="hero-btns" class="opacity-0">
+                <a href="#about" 
+                   class="inline-block border border-gold text-gold px-8 py-3 transition-all duration-500 hover:bg-gold hover:text-blue-900 hover:shadow-lg font-semibold tracking-widest text-sm uppercase">
+                   EXPLORE SPACE
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 bg-white text-blue-900">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div class="relative">
+                <div class="border-4 border-gold absolute -top-4 -left-4 w-full h-full z-0"></div>
+                <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&q=80" alt="Studio Interior" class="relative z-10 w-full h-[500px] object-cover shadow-2xl">
+            </div>
+            <div>
+                <h3 class="font-cinzel text-4xl mb-6">Designed for <br><span class="text-gold">Creators.</span></h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Twin X Creative Space offers a luxury-inspired setup at affordable prices. Whether you are shooting fashion, portraits, or commercial content, our zone features professional strobe lighting and versatile backdrops.
+                </p>
+                <ul class="space-y-3 mb-10">
+                    <li class="flex items-center"><span class="w-2 h-2 bg-gold mr-3"></span> 10+ Premium Backdrops</li>
+                    <li class="flex items-center"><span class="w-2 h-2 bg-gold mr-3"></span> High-end Strobe & Continuous Lights</li>
+                    <li class="flex items-center"><span class="w-2 h-2 bg-gold mr-3"></span> Private Changing & Makeup Area</li>
+                </ul>
+                <a href="space.html" 
+                   class="inline-block text-blue-900 font-bold border-b-2 border-gold pb-1 transition-all duration-300 hover:text-gold hover:border-blue-900 uppercase text-sm tracking-wider">
+                   VIEW ALL AMENITIES
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-blue-950 py-12 border-t border-gold/10">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <div class="mb-8 md:mb-0">
+                <h4 class="font-cinzel text-gold text-xl mb-4">TWIN X</h4>
+                <p class="text-sm text-gray-400">7845091708 | twiinx.creativespace</p>
+            </div>
+            <div class="flex space-x-6 mb-8 md:mb-0">
+                <a href="https://www.google.com/maps/place/Twiin+X+Creative+Space/@11.0113809,76.9546237,427m/data=!3m1!1e3!4m6!3m5!1s0x3ba8594074713995:0x4df971e681633326!8m2!3d11.0110965!4d76.9548807!16s%2Fg%2F11yq_xxsnn?entry=ttu&g_ep=EgoyMDI2MDEyOC4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D" target="_blank" class="transition-colors duration-300 hover:text-gold">Find Us</a>
+                <a href="https://instagram.com/twiinx.creativespace" target="_blank" class="transition-colors duration-300 hover:text-gold">Instagram</a>
+                <a href="https://wa.me/7845091708" target="_blank" class="transition-colors duration-300 hover:text-gold">WhatsApp</a>
+            </div>
+            <p class="text-[10px] text-gray-500 uppercase tracking-widest">© 2026 Twin X Studio. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const tl = gsap.timeline();
+            
+            tl.to("#hero-sub", { opacity: 1, y: -20, duration: 1, delay: 0.5 })
+              .to("#hero-title", { opacity: 1, y: -20, duration: 1 }, "-=0.7")
+              .to("#hero-para", { opacity: 1, y: -20, duration: 1 }, "-=0.7")
+              .to("#hero-btns", { opacity: 1, y: -20, duration: 1 }, "-=0.7");
+        });
+    </script>
+</body>
+</html>

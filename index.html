@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajay Rada – Photographer & Visual Storyteller</title>
+    <meta name="description" content="Ajay Rada is a professional photographer specializing in wedding, portrait, baby, and product photography. Capturing timeless moments with creativity and passion." />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+    <style>
+        /* --- CORE STYLES & GOLDEN/BLACK THEME --- */
+        :root {
+            --gold: #D4AF37;
+            --dark-bg: #0D0D0D;
+            --off-white: #E0E0E0;
+            --whatsapp-green: #25D366;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--off-white);
+            margin: 0;
+            overflow-x: hidden;
+        }
+        
+        /* Hide scrollbar but allow scrolling */
+        body::-webkit-scrollbar { display: none; }
+        body { -ms-overflow-style: none; scrollbar-width: none; }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: #FFFFFF;
+        }
+
+        .text-gold { color: var(--gold); }
+
+        /* --- DANCING LETTER EFFECT --- */
+        .dancing-letter {
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease;
+            cursor: default;
+        }
+
+        .dancing-letter:hover {
+            transform: translateY(-15px) rotate(10deg) scale(1.3);
+            color: var(--gold);
+            text-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* --- PRELOADER --- */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--dark-bg);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #loader-bar {
+            width: 1px;
+            height: 0;
+            background-color: var(--gold);
+        }
+
+        /* --- HEADER --- */
+        #header { transition: background-color 0.3s ease; }
+        #header.solid {
+            background-color: rgba(13, 13, 13, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+            color: #a0a0a0;
+            padding: 4px 0;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--gold);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: #FFFFFF; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+        /* --- HORIZONTAL SCROLL SECTION --- */
+        #horizontal-container {
+            width: 300vw; 
+            height: 100vh;
+            display: flex;
+            flex-wrap: nowrap;
+        }
+        .panel {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .background-text {
+            position: absolute;
+            font-size: 20vw;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            color: rgba(255, 255, 255, 0.05);
+            white-space: nowrap;
+            z-index: 1;
+        }
+        .panel-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        .image-collage {
+            position: relative;
+            width: 60vw;
+            height: 70vh;
+        }
+        .collage-img {
+            position: absolute;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            object-fit: cover;
+        }
+        
+        /* --- ABOUT & STATS SECTION --- */
+        .about-image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            transform: rotate(-3deg);
+        }
+        .about-image-grid img {
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+        .about-image-grid img:hover {
+            transform: scale(1.05);
+        }
+        .btn-outline-gold {
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            padding: 0.75rem 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border-radius: 50px;
+        }
+        .btn-outline-gold::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--gold);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+        .btn-outline-gold:hover {
+            color: var(--dark-bg);
+        }
+        .btn-outline-gold:hover::before {
+            width: 100%;
+        }
+        .btn-solid-gold {
+            background-color: var(--gold);
+            color: var(--dark-bg);
+            padding: 0.75rem 2rem;
+            border: 2px solid var(--gold);
+            transition: all 0.3s ease;
+            border-radius: 50px;
+        }
+        .btn-solid-gold:hover {
+            background-color: #c5a230;
+            border-color: #c5a230;
+            color: #fff;
+        }
+
+        /* --- TESTIMONIALS SCROLLER --- */
+        .testimonial-scroller {
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+        }
+        .scroller-inner {
+            display: flex;
+            width: fit-content;
+            animation: scroll 40s linear infinite;
+        }
+        .testimonial-scroller:hover .scroller-inner {
+            animation-play-state: paused;
+        }
+        .review-card {
+            width: clamp(280px, 80vw, 350px);
+            margin: 0 1rem;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+        .review-card p {
+            font-style: italic;
+            color: var(--off-white);
+        }
+        .review-card .client-name {
+            font-weight: 600;
+            color: var(--gold);
+            margin-top: 1rem;
+        }
+        .review-stars {
+            color: var(--gold);
+            margin-top: 0.5rem;
+        }
+
+        /* --- WHATSAPP FLOATING BUTTON --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp-green);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            z-index: 1000;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #128C7E;
+        }
+
+        /* --- KEYFRAME ANIMATIONS --- */
+        @keyframes scroll {
+            to { transform: translateX(calc(-50%)); }
+        }
+        
+        /* --- RESPONSIVENESS FOR MOBILE --- */
+        @media (max-width: 767px) {
+            .background-text {
+                font-size: 28vw;
+            }
+            .image-collage {
+                width: 90vw;
+                height: 60vh;
+            }
+            .about-image-grid {
+                transform: rotate(0deg);
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            .about-image-grid img {
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+                border-radius: 8px;
+                border: 1px solid rgba(212, 175, 55, 0.1);
+                transition: all 0.5s ease;
+            }
+            .review-card {
+                width: 80vw;
+                max-width: 320px;
+            }
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        /* Typography tracking for luxury feel */
+        .tracking-\[0\.6em\] {
+            letter-spacing: 0.6em;
+        }
+
+        @media (max-width: 1024px) {
+            #about-us .relative {
+                height: 500px;
+                margin-bottom: 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="preloader">
+        <div id="loader-bar"></div>
+    </div>
+
+    <header id="header" class="fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-4 sm:px-7 py-5 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="dp/rada logo.jpeg" 
+                     onerror="this.src='https://placehold.co/100x100/D4AF37/0D0D0D?text=Logo'" 
+                     alt="Rada Photography Logo" 
+                     class="h-10 sm:h-12 mr-3 sm:mr-4 rounded-full object-cover w-10 sm:w-12">
+                <span class="text-2xl sm:text-3xl font-bold tracking-wider text-gold">
+                    RADA PHOTOGRAPHY
+                </span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-6 lg:space-x-10">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="twinx.html" class="nav-link active">Twinx</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none" aria-label="Toggle menu">
+                <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95 border-b border-gold border-opacity-20">
+             <a href="index.html" class="block text-center py-4 text-lg text-gold hover:bg-white hover:bg-opacity-5 transition">Home</a>
+             <a href="about.html" class="block text-center py-4 text-lg text-gold hover:bg-white hover:bg-opacity-5 transition">About</a>
+             <a href="portfolio.html" class="block text-center py-4 text-lg text-gold hover:bg-white hover:bg-opacity-5 transition">Portfolio</a>
+             <a href="services.html" class="block text-center py-4 text-lg text-gold hover:bg-white hover:bg-opacity-5 transition">Services</a>
+             <a href="contact.html" class="block text-center py-4 text-lg text-gold hover:bg-white hover:bg-opacity-5 transition">Contact</a>
+        </div>
+    </header>
+
+    <a href="https://wa.me/7845091708" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.412 0 12.048c0 2.123.554 4.197 1.605 6.04L0 24l6.117-1.605a11.772 11.772 0 005.925 1.599h.005c6.635 0 12.046-5.412 12.05-12.048a11.82 11.82 0 00-3.525-8.528z"/>
+        </svg>
+    </a>
+
+    <main id="main-content" style="visibility: hidden; opacity: 0;">
+        <section id="home" class="h-screen flex items-center justify-center text-center px-4 overflow-hidden">
+            <div class="max-w-6xl mx-auto">
+                <h1 class="dance-target text-5xl sm:text-6xl md:text-8xl font-bold text-white leading-tight">
+                    <span class="block mb-2">Timeless Moments,</span><span class="block text-gold">Artfully Captured.</span>
+                </h1>
+                <p class="text-base sm:text-lg text-gray-300 mt-8 max-w-2xl mx-auto opacity-80">
+                    I am a visual storyteller, freezing genuine emotions into beautiful, lasting memories.
+                </p>
+                
+                <div class="mt-16 flex flex-col items-center">
+                    <p class="text-gray-400 text-[10px] sm:text-xs tracking-[0.5em] uppercase mb-4">Scroll to Explore</p>
+                    <div class="w-[1px] h-12 bg-gradient-to-b from-gold to-transparent"></div>
+                </div>
+            </div>
+        </section>
+
+        <div id="portfolio">
+            <div id="horizontal-container">
+                <section class="panel bg-[#1a1a1a]">
+                    <h2 class="background-text">WEDDINGS</h2>
+                    <div class="panel-content">
+                        <div class="image-collage">
+                            <img src="weddingphotos/1000.jpg" alt="Wedding 1" class="collage-img w-1/3 h-1/2 top-0 left-0" style="transform: rotate(-5deg);">
+                            <img src="weddingphotos/TJ1.jpg" alt="Wedding 2" class="collage-img w-1/2 h-2/3 top-1/4 left-1/4" style="z-index: 2;">
+                            <img src="weddingphotos/R5.jpg" alt="Wedding 3" class="collage-img w-1/4 h-1/3 bottom-0 right-0" style="transform: rotate(4deg);">
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="panel bg-[#161616]">
+                    <h2 class="background-text">PORTRAITS</h2>
+                     <div class="panel-content">
+                        <div class="image-collage">
+                            <img src="portraitphotos/310.jpg" alt="Portrait 1" class="collage-img w-1/2 h-3/4 top-1/2 left-1/4 -translate-y-1/2" style="z-index: 2;">
+                            <img src="portraitphotos/997.jpg" alt="Portrait 2" class="collage-img w-1/3 h-1/2 top-0 right-0" style="transform: rotate(8deg);">
+                        </div>
+                    </div>
+                </section>
+
+                <section class="panel bg-[#121212]">
+                    <h2 class="background-text">PRODUCTS</h2>
+                    <div class="panel-content">
+                        <div class="image-collage">
+                            <img src="product/rachit-tank-2cFZ_FB08UM-unsplash.jpg" alt="Product 1" class="collage-img w-3/5 h-3/5 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style="z-index: 2;">
+                             <img src="product/rachit-tank-2cFZ_FB08UM-unsplash.jpg" alt="Product 2" class="collage-img w-1/4 h-1/3 top-0 left-0" style="transform: rotate(-10deg);">
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <section id="about-us" class="py-24 sm:py-40 bg-[#0a0a0a] overflow-hidden">
+            <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+                <div class="relative h-[500px] sm:h-[700px] flex items-center justify-center">
+                    <div class="absolute w-64 h-64 border border-gold opacity-10 -top-10 -left-10 hidden sm:block"></div>
+                    <div class="absolute w-3/5 h-4/5 z-10 overflow-hidden rounded-sm shadow-2xl transition-transform duration-700 hover:scale-[1.02]">
+                        <img src="abt us.img/DSC02196.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" alt="Studio Shot">
+                    </div>
+                    <div class="absolute w-2/5 h-1/2 -bottom-10 -left-5 z-20 overflow-hidden rounded-sm shadow-2xl border-4 border-[#0a0a0a]">
+                        <img src="abt us.img/DSC02221.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" alt="Behind the scenes">
+                    </div>
+                    <div class="absolute w-1/3 h-2/5 -top-10 -right-5 z-20 overflow-hidden rounded-sm shadow-2xl border-4 border-[#0a0a0a]">
+                        <img src="abt us.img/849.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" alt="Detail">
+                    </div>
+                    <div class="absolute right-0 bottom-20 z-30 bg-gold text-black px-6 py-2 font-bold tracking-widest text-xs uppercase -rotate-90 origin-right">
+                        Est. 2024
+                    </div>
+                </div>
+
+                <div class="text-left">
+                    <span class="text-xs uppercase tracking-[0.6em] text-gold mb-6 font-bold opacity-80">The Philosophy</span>
+                    <h4 class="dance-target text-5xl sm:text-5xl md:text-5xl font-bold text-white leading-[1.1] mb-10">
+                        <span class="block">Capturing Life's Fleeting Moments.</span>
+                    </h4>
+                    
+                    <div class="space-y-6 text-gray-400 text-lg leading-relaxed max-w-xl">
+                        <p class="first-letter:text-5xl first-letter:text-gold first-letter:font-serif first-letter:mr-3 first-letter:float-left">
+                            Rada Photography is more than just a studio; it's a passion for storytelling through the lens. We believe every click of the shutter is a chance to preserve a moment in time, capturing genuine emotions and authentic connections.
+                        </p>
+                        <p>
+                            Our creative approach ensures that we capture the essence of every subject, whether it's a grand wedding or a simple portrait. We don't just take pictures; we craft visual legacies.
+                        </p>
+                    </div>
+
+                    <div class="mt-12 group">
+                        <a href="about.html" class="btn-outline-gold relative inline-flex items-center overflow-hidden px-12 py-4 rounded-full border-2 border-gold text-gold font-bold transition-all duration-500 hover:text-black">
+                            <span class="relative z-10">DISCOVER OUR STORY</span>
+                            <div class="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="stats" class="py-16 sm:py-20 bg-black bg-opacity-20">
+            <div class="container mx-auto px-6 flex flex-col md:flex-row justify-around text-center">
+                <div class="stat-item mb-10 md:mb-0">
+                    <h3 class="text-5xl sm:text-6xl font-bold text-gold"><span class="counter" data-target="100">0</span>%</h3>
+                    <p class="text-base sm:text-lg text-gray-300 mt-2">Customer Satisfaction</p>
+                </div>
+                <div class="stat-item mb-10 md:mb-0">
+                    <h3 class="text-5xl sm:text-6xl font-bold text-gold"><span class="counter" data-target="250">0</span>+</h3>
+                    <p class="text-base sm:text-lg text-gray-300 mt-2">Sessions Completed</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="text-5xl sm:text-6xl font-bold text-gold"><span class="counter" data-target="120">0</span>+</h3>
+                    <p class="text-base sm:text-lg text-gray-300 mt-2">Wedding Albums</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="py-16 sm:py-24 text-center">
+            <div class="container mx-auto px-4 sm:px-6">
+                <h3 class="text-lg uppercase tracking-widest text-gold">Testimonials</h3>
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold mt-2">Client Reviews</h2>
+                <div class="testimonial-scroller mt-16">
+                    <div class="scroller-inner">
+                        <div class="review-card">
+                            <p>"Absolutely breathtaking photos! Rada Photography captured our wedding day perfectly."</p>
+                            <div class="review-stars">★★★★★</div>
+                            <h4 class="client-name">- The Patels</h4>
+                        </div>
+                        <div class="review-card">
+                            <p>"The most professional and creative photographer. The product shots were sharp and vibrant."</p>
+                            <div class="review-stars">★★★★★</div>
+                            <h4 class="client-name">- Aura Cosmetics</h4>
+                        </div>
+                        <div class="review-card">
+                            <p>"Managed to capture the joy and chaos of our family beautifully. Highly recommended!"</p>
+                            <div class="review-stars">★★★★★</div>
+                            <h4 class="client-name">- Sharma Family</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta" class="py-16 sm:py-24 bg-black text-center border-t border-gold border-opacity-10">
+            <div class="container mx-auto px-4 sm:px-6">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold">Start Your Story</h2>
+                <p class="mt-4 text-base sm:text-lg text-gray-400 max-w-2xl mx-auto">
+                    Contact us for custom packages tailored to your vision and budget.
+                </p>
+                <div class="mt-10 flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
+                    <a href="https://wa.me/7845091708" class="btn-solid-gold font-semibold text-lg w-full md:w-auto text-center">WhatsApp Us Now</a>
+                    <a href="contact.html" class="btn-outline-gold font-semibold text-lg w-full md:w-auto text-center">Contact Form</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="py-12 bg-[#050505] text-center text-gray-500 text-sm">
+        <div class="container mx-auto px-6">
+            <p>&copy; 2024 Rada Photography Studio. All Rights Reserved.</p>
+            <p class="mt-2">Email: foxfreelancing21@gmail.com | Phone: 7845091708</p>
+        </div>
+    </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Updated to target Class instead of duplicate IDs
+            const targets = document.querySelectorAll('.dance-target');
+            const wrapLetters = (node) => {
+                if (node.nodeType === 3) {
+                    const letters = node.textContent.split('');
+                    const fragment = document.createDocumentFragment();
+                    letters.forEach(letter => {
+                        const span = document.createElement('span');
+                        span.className = 'dancing-letter';
+                        span.textContent = letter === ' ' ? '\u00A0' : letter;
+                        fragment.appendChild(span);
+                    });
+                    node.parentNode.replaceChild(fragment, node);
+                } else if (node.nodeType === 1) {
+                    Array.from(node.childNodes).forEach(wrapLetters);
+                }
+            };
+            targets.forEach(t => wrapLetters(t));
+
+            const mainContent = document.getElementById('main-content');
+            const preloader = document.getElementById('preloader');
+            const loaderBar = document.getElementById('loader-bar');
+            
+            const tlLoader = gsap.timeline({ onComplete: initPage });
+            
+            tlLoader
+                .to(loaderBar, { height: '100vh', duration: 1, ease: 'power2.inOut' })
+                .to(loaderBar, { height: '0vh', duration: 1, ease: 'power2.inOut', delay: 0.2 })
+                .to(preloader, { opacity: 0, duration: 0.5, onComplete: () => preloader.style.display = 'none' })
+                .to(mainContent, { visibility: 'visible', opacity: 1, duration: 0.5 }, "-=0.5");
+
+            function initPage() {
+                initScrollTriggers();
+                setupEventListeners();
+            }
+
+            function initScrollTriggers() {
+                gsap.registerPlugin(ScrollTrigger);
+
+                const container = document.querySelector("#horizontal-container");
+                if (!container) return; 
+                const panels = gsap.utils.toArray(".panel");
+
+                let horizontalScroll = gsap.to(panels, {
+                    xPercent: -100 * (panels.length - 1),
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: container,
+                        pin: true,
+                        scrub: 1.5,
+                        snap: 1 / (panels.length - 1),
+                        end: () => "+=" + (container.offsetWidth - window.innerWidth)
+                    }
+                });
+
+                panels.forEach((panel, i) => {
+                    const bgText = panel.querySelector(".background-text");
+                    const collageImgs = panel.querySelectorAll(".collage-img");
+
+                    if(bgText) {
+                        gsap.from(bgText, {
+                            x: i % 2 === 0 ? "-20%" : "20%",
+                            scrollTrigger: {
+                                trigger: panel,
+                                containerAnimation: horizontalScroll,
+                                start: "left right",
+                                end: "right left",
+                                scrub: 1.5
+                            }
+                        });
+                    }
+                    
+                    if(collageImgs.length) {
+                        collageImgs.forEach((img, j) => {
+                             gsap.from(img, {
+                                 y: j % 2 === 0 ? -80 : 80,
+                                 opacity: 0,
+                                 scrollTrigger: {
+                                     trigger: panel,
+                                     containerAnimation: horizontalScroll,
+                                     start: "left 80%",
+                                     end: "center center",
+                                     scrub: 2.5
+                                 }
+                             });
+                         });
+                    }
+                });
+                
+                gsap.from("#about-us > div", {
+                    scrollTrigger: {
+                        trigger: "#about-us",
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 0,
+                    y: 50,
+                    duration: 1
+                });
+                
+                const counters = document.querySelectorAll('.counter');
+                const statSection = document.getElementById('stats');
+                
+                ScrollTrigger.create({
+                    trigger: statSection,
+                    start: "top 80%",
+                    onEnter: () => {
+                         counters.forEach(counter => {
+                            if (counter.classList.contains('animated')) return;
+                            counter.classList.add('animated');
+
+                            const targetVal = +counter.getAttribute('data-target');
+                            gsap.to(counter, {
+                                innerText: targetVal,
+                                duration: 2,
+                                ease: "power1.inOut",
+                                snap: { innerText: 1 },
+                                onUpdate: function() {
+                                    counter.innerText = Math.ceil(this.targets()[0].innerText);
+                                }
+                            });
+                         });
+                    },
+                });
+
+                gsap.from("#testimonials > div", {
+                    scrollTrigger: {
+                        trigger: "#testimonials",
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 0,
+                    y: 50,
+                    duration: 1
+                });
+            }
+
+            function setupEventListeners() {
+                const header = document.getElementById('header');
+                window.addEventListener('scroll', () => {
+                    header.classList.toggle('solid', window.scrollY > 50);
+                });
+
+                const mobileMenuBtn = document.getElementById('mobile-menu-button');
+                const mobileMenu = document.getElementById('mobile-menu');
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
