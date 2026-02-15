@@ -320,7 +320,7 @@
     <header id="header" class="fixed top-0 left-0 right-0 z-50">
         <div class="container mx-auto px-4 sm:px-7 py-5 flex justify-between items-center">
             <a href="index.html" class="flex items-center">
-                <img src="dp/rada logo.jpeg" 
+                <img src="dp/radalogo.jpeg" 
                      onerror="this.src='https://placehold.co/100x100/D4AF37/0D0D0D?text=Logo'" 
                      alt="Rada Photography Logo" 
                      class="h-10 sm:h-12 mr-3 sm:mr-4 rounded-full object-cover w-10 sm:w-12">
@@ -380,9 +380,9 @@
                     <h2 class="background-text">WEDDINGS</h2>
                     <div class="panel-content">
                         <div class="image-collage">
-                            <img src="weddingphotos/1000.jpg" alt="Wedding 1" class="collage-img w-1/3 h-1/2 top-0 left-0" style="transform: rotate(-5deg);">
-                            <img src="weddingphotos/TJ1.jpg" alt="Wedding 2" class="collage-img w-1/2 h-2/3 top-1/4 left-1/4" style="z-index: 2;">
-                            <img src="weddingphotos/R5.jpg" alt="Wedding 3" class="collage-img w-1/4 h-1/3 bottom-0 right-0" style="transform: rotate(4deg);">
+                            <img src="Photos/Icons8/marraige/WhatsApp Image 2026-02-15 at 11.42.07 AM.jpeg" alt="Wedding 1" class="collage-img w-1/3 h-1/2 top-0 left-0" style="transform: rotate(-5deg);">
+                            <img src="Photos/Icons8/marraige/WhatsApp Image 2026-02-15 at 11.42.07 AM.jpeg" alt="Wedding 2" class="collage-img w-1/2 h-2/3 top-1/4 left-1/4" style="z-index: 2;">
+                            <img src="Photos/Icons8/marraige/WhatsApp Image 2026-02-15 at 11.42.09 AM.jpeg" alt="Wedding 3" class="collage-img w-1/4 h-1/3 bottom-0 right-0" style="transform: rotate(4deg);">
                         </div>
                     </div>
                 </section>
@@ -391,8 +391,8 @@
                     <h2 class="background-text">PORTRAITS</h2>
                      <div class="panel-content">
                         <div class="image-collage">
-                            <img src="portraitphotos/310.jpg" alt="Portrait 1" class="collage-img w-1/2 h-3/4 top-1/2 left-1/4 -translate-y-1/2" style="z-index: 2;">
-                            <img src="portraitphotos/997.jpg" alt="Portrait 2" class="collage-img w-1/3 h-1/2 top-0 right-0" style="transform: rotate(8deg);">
+                            <img src="Photos/Icons8/portrait/WhatsApp Image 2026-02-15 at 11.42.02 AM.jpeg" alt="Portrait 1" class="collage-img w-1/2 h-3/4 top-1/2 left-1/4 -translate-y-1/2" style="z-index: 2;">
+                            <img src="Photos/Icons8/portrait/WhatsApp Image 2026-02-15 at 11.42.10 AM.jpeg" alt="Portrait 2" class="collage-img w-1/3 h-1/2 top-0 right-0" style="transform: rotate(8deg);">
                         </div>
                     </div>
                 </section>
@@ -414,13 +414,13 @@
                 <div class="relative h-[500px] sm:h-[700px] flex items-center justify-center">
                     <div class="absolute w-64 h-64 border border-gold opacity-10 -top-10 -left-10 hidden sm:block"></div>
                     <div class="absolute w-3/5 h-4/5 z-10 overflow-hidden rounded-sm shadow-2xl transition-transform duration-700 hover:scale-[1.02]">
-                        <img src="abt us.img/DSC02196.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" alt="Studio Shot">
+                        <img src="Photos/Icons8/portrait/WhatsApp Image 2026-02-15 at 11.42.29 AM.jpeg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" alt="Studio Shot">
                     </div>
                     <div class="absolute w-2/5 h-1/2 -bottom-10 -left-5 z-20 overflow-hidden rounded-sm shadow-2xl border-4 border-[#0a0a0a]">
-                        <img src="abt us.img/DSC02221.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" alt="Behind the scenes">
+                        <img src="Photos/Icons8/marraige/WhatsApp Image 2026-02-15 at 11.42.31 AM.jpeg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" alt="Behind the scenes">
                     </div>
                     <div class="absolute w-1/3 h-2/5 -top-10 -right-5 z-20 overflow-hidden rounded-sm shadow-2xl border-4 border-[#0a0a0a]">
-                        <img src="abt us.img/849.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" alt="Detail">
+                        <img src="Photos/Icons8/partyy/WhatsApp Image 2026-02-15 at 11.42.39 AM.jpeg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" alt="Detail">
                     </div>
                     <div class="absolute right-0 bottom-20 z-30 bg-gold text-black px-6 py-2 font-bold tracking-widest text-xs uppercase -rotate-90 origin-right">
                         Est. 2024
@@ -520,157 +520,162 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Updated to target Class instead of duplicate IDs
-            const targets = document.querySelectorAll('.dance-target');
-            const wrapLetters = (node) => {
-                if (node.nodeType === 3) {
-                    const letters = node.textContent.split('');
-                    const fragment = document.createDocumentFragment();
-                    letters.forEach(letter => {
-                        const span = document.createElement('span');
-                        span.className = 'dancing-letter';
-                        span.textContent = letter === ' ' ? '\u00A0' : letter;
-                        fragment.appendChild(span);
-                    });
-                    node.parentNode.replaceChild(fragment, node);
-                } else if (node.nodeType === 1) {
-                    Array.from(node.childNodes).forEach(wrapLetters);
-                }
-            };
-            targets.forEach(t => wrapLetters(t));
-
-            const mainContent = document.getElementById('main-content');
-            const preloader = document.getElementById('preloader');
-            const loaderBar = document.getElementById('loader-bar');
-            
-            const tlLoader = gsap.timeline({ onComplete: initPage });
-            
-            tlLoader
-                .to(loaderBar, { height: '100vh', duration: 1, ease: 'power2.inOut' })
-                .to(loaderBar, { height: '0vh', duration: 1, ease: 'power2.inOut', delay: 0.2 })
-                .to(preloader, { opacity: 0, duration: 0.5, onComplete: () => preloader.style.display = 'none' })
-                .to(mainContent, { visibility: 'visible', opacity: 1, duration: 0.5 }, "-=0.5");
-
-            function initPage() {
-                initScrollTriggers();
-                setupEventListeners();
-            }
-
-            function initScrollTriggers() {
-                gsap.registerPlugin(ScrollTrigger);
-
-                const container = document.querySelector("#horizontal-container");
-                if (!container) return; 
-                const panels = gsap.utils.toArray(".panel");
-
-                let horizontalScroll = gsap.to(panels, {
-                    xPercent: -100 * (panels.length - 1),
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: container,
-                        pin: true,
-                        scrub: 1.5,
-                        snap: 1 / (panels.length - 1),
-                        end: () => "+=" + (container.offsetWidth - window.innerWidth)
-                    }
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- DANCING LETTERS LOGIC ---
+        const targets = document.querySelectorAll('.dance-target');
+        const wrapLetters = (node) => {
+            if (node.nodeType === 3) {
+                const letters = node.textContent.split('');
+                const fragment = document.createDocumentFragment();
+                letters.forEach(letter => {
+                    const span = document.createElement('span');
+                    span.className = 'dancing-letter';
+                    span.textContent = letter === ' ' ? '\u00A0' : letter;
+                    fragment.appendChild(span);
                 });
+                node.parentNode.replaceChild(fragment, node);
+            } else if (node.nodeType === 1) {
+                Array.from(node.childNodes).forEach(wrapLetters);
+            }
+        };
+        targets.forEach(t => wrapLetters(t));
 
-                panels.forEach((panel, i) => {
-                    const bgText = panel.querySelector(".background-text");
-                    const collageImgs = panel.querySelectorAll(".collage-img");
+        // --- OPTIMIZED FAST PRELOADER ---
+        const mainContent = document.getElementById('main-content');
+        const preloader = document.getElementById('preloader');
+        const loaderBar = document.getElementById('loader-bar');
+        
+        const tlLoader = gsap.timeline({ onComplete: initPage });
+        
+        tlLoader
+            // Faster bar expansion (0.4s instead of 1s)
+            .to(loaderBar, { height: '100vh', duration: 0.4, ease: 'expo.out' })
+            // Immediate collapse (0.3s instead of 1s)
+            .to(loaderBar, { height: '0vh', duration: 0.3, ease: 'expo.in' })
+            // Snappy fade out of the dark overlay
+            .to(preloader, { opacity: 0, duration: 0.3, onComplete: () => preloader.style.display = 'none' })
+            // Main content pops in instantly
+            .to(mainContent, { visibility: 'visible', opacity: 1, duration: 0.3 }, "-=0.3");
 
-                    if(bgText) {
-                        gsap.from(bgText, {
-                            x: i % 2 === 0 ? "-20%" : "20%",
-                            scrollTrigger: {
-                                trigger: panel,
-                                containerAnimation: horizontalScroll,
-                                start: "left right",
-                                end: "right left",
-                                scrub: 1.5
+        function initPage() {
+            initScrollTriggers();
+            setupEventListeners();
+        }
+
+        function initScrollTriggers() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            const container = document.querySelector("#horizontal-container");
+            if (!container) return; 
+            const panels = gsap.utils.toArray(".panel");
+
+            let horizontalScroll = gsap.to(panels, {
+                xPercent: -100 * (panels.length - 1),
+                ease: "none",
+                scrollTrigger: {
+                    trigger: container,
+                    pin: true,
+                    scrub: 1.5,
+                    snap: 1 / (panels.length - 1),
+                    end: () => "+=" + (container.offsetWidth - window.innerWidth)
+                }
+            });
+
+            panels.forEach((panel, i) => {
+                const bgText = panel.querySelector(".background-text");
+                const collageImgs = panel.querySelectorAll(".collage-img");
+
+                if(bgText) {
+                    gsap.from(bgText, {
+                        x: i % 2 === 0 ? "-20%" : "20%",
+                        scrollTrigger: {
+                            trigger: panel,
+                            containerAnimation: horizontalScroll,
+                            start: "left right",
+                            end: "right left",
+                            scrub: 1.5
+                        }
+                    });
+                }
+                
+                if(collageImgs.length) {
+                    collageImgs.forEach((img, j) => {
+                         gsap.from(img, {
+                             y: j % 2 === 0 ? -80 : 80,
+                             opacity: 0,
+                             scrollTrigger: {
+                                 trigger: panel,
+                                 containerAnimation: horizontalScroll,
+                                 start: "left 80%",
+                                 end: "center center",
+                                 scrub: 2.5
+                             }
+                         });
+                     });
+                }
+            });
+            
+            gsap.from("#about-us > div", {
+                scrollTrigger: {
+                    trigger: "#about-us",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1
+            });
+            
+            const counters = document.querySelectorAll('.counter');
+            const statSection = document.getElementById('stats');
+            
+            ScrollTrigger.create({
+                trigger: statSection,
+                start: "top 80%",
+                onEnter: () => {
+                     counters.forEach(counter => {
+                        if (counter.classList.contains('animated')) return;
+                        counter.classList.add('animated');
+
+                        const targetVal = +counter.getAttribute('data-target');
+                        gsap.to(counter, {
+                            innerText: targetVal,
+                            duration: 2,
+                            ease: "power1.inOut",
+                            snap: { innerText: 1 },
+                            onUpdate: function() {
+                                counter.innerText = Math.ceil(this.targets()[0].innerText);
                             }
                         });
-                    }
-                    
-                    if(collageImgs.length) {
-                        collageImgs.forEach((img, j) => {
-                             gsap.from(img, {
-                                 y: j % 2 === 0 ? -80 : 80,
-                                 opacity: 0,
-                                 scrollTrigger: {
-                                     trigger: panel,
-                                     containerAnimation: horizontalScroll,
-                                     start: "left 80%",
-                                     end: "center center",
-                                     scrub: 2.5
-                                 }
-                             });
-                         });
-                    }
-                });
-                
-                gsap.from("#about-us > div", {
-                    scrollTrigger: {
-                        trigger: "#about-us",
-                        start: "top 80%",
-                        toggleActions: "play none none reverse"
-                    },
-                    opacity: 0,
-                    y: 50,
-                    duration: 1
-                });
-                
-                const counters = document.querySelectorAll('.counter');
-                const statSection = document.getElementById('stats');
-                
-                ScrollTrigger.create({
-                    trigger: statSection,
+                     });
+                },
+            });
+
+            gsap.from("#testimonials > div", {
+                scrollTrigger: {
+                    trigger: "#testimonials",
                     start: "top 80%",
-                    onEnter: () => {
-                         counters.forEach(counter => {
-                            if (counter.classList.contains('animated')) return;
-                            counter.classList.add('animated');
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1
+            });
+        }
 
-                            const targetVal = +counter.getAttribute('data-target');
-                            gsap.to(counter, {
-                                innerText: targetVal,
-                                duration: 2,
-                                ease: "power1.inOut",
-                                snap: { innerText: 1 },
-                                onUpdate: function() {
-                                    counter.innerText = Math.ceil(this.targets()[0].innerText);
-                                }
-                            });
-                         });
-                    },
-                });
+        function setupEventListeners() {
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('solid', window.scrollY > 50);
+            });
 
-                gsap.from("#testimonials > div", {
-                    scrollTrigger: {
-                        trigger: "#testimonials",
-                        start: "top 80%",
-                        toggleActions: "play none none reverse"
-                    },
-                    opacity: 0,
-                    y: 50,
-                    duration: 1
-                });
-            }
-
-            function setupEventListeners() {
-                const header = document.getElementById('header');
-                window.addEventListener('scroll', () => {
-                    header.classList.toggle('solid', window.scrollY > 50);
-                });
-
-                const mobileMenuBtn = document.getElementById('mobile-menu-button');
-                const mobileMenu = document.getElementById('mobile-menu');
-                mobileMenuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-            }
-        });
-    </script>
+            const mobileMenuBtn = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    });
+</script>
 </body>
 </html>
