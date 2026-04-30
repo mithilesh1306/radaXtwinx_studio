@@ -187,9 +187,9 @@
     mobileMenu.innerHTML = `
         <a href="index.html" class="nav-link">Home</a>
         <a href="about.html" class="nav-link">About</a>
-        <a href="portfolio.html" class="nav-link active">Portfolio</a>
+        <a href="portfolio.html" class="nav-link">Portfolio</a>
         <a href="services.html" class="nav-link">Services</a>
-        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
     `;
     document.body.appendChild(mobileMenu);
 
@@ -203,6 +203,12 @@
             mobileMenu.style.transform = "translateX(100%)";
             menuOpen = false;
         }
+    });
+
+    // ✅ FIX: enable page visibility + AOS
+    window.addEventListener('load', () => {
+        document.body.classList.add('fade-in');
+        AOS.init();
     });
 </script>
 </body>
