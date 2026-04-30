@@ -237,13 +237,33 @@
            ══════════════════════════════════ */
         @media (max-width: 767px) {
 
-            /* ── HERO: center text ── */
+            /* ── HERO: center + correct font size so words don't break mid-word ── */
             #home {
                 padding-top: 100px;
                 padding-bottom: 60px;
                 height: auto;
                 min-height: 100svh;
                 text-align: center;
+            }
+
+            /* Hero H1 — scale down so "Timeless Moments," fits on 2 clean lines */
+            #home h1.dance-target {
+                font-size: 2.6rem !important;
+                line-height: 1.15 !important;
+                word-break: keep-all !important;
+                overflow-wrap: normal !important;
+                text-align: center !important;
+            }
+
+            /* dancing-letter spans inside hero — keep them inline but allow natural wrap */
+            #home h1.dance-target .dancing-letter {
+                display: inline !important;
+            }
+
+            /* Each text line block inside hero h1 */
+            #home h1.dance-target span.block {
+                display: block !important;
+                white-space: normal !important;
             }
 
             /* ── PORTFOLIO PANEL CONTAINER ── */
@@ -311,17 +331,26 @@
                 text-align: center !important;
             }
 
-            /* "Capturing Life's Fleeting Moments" heading */
+            /* "Capturing Life's Fleeting Moments" heading —
+               scale down + force dancing-letter spans to stay inline so
+               the heading wraps naturally and stays centered */
             #about-us .dance-target {
-                font-size: 1.85rem !important;
-                line-height: 1.2 !important;
+                font-size: 1.75rem !important;
+                line-height: 1.25 !important;
                 margin-bottom: 1.2rem !important;
                 text-align: center !important;
+                display: block !important;
+                width: 100% !important;
+            }
+
+            #about-us .dance-target .dancing-letter {
+                display: inline !important;
             }
 
             /* Body paragraphs */
             #about-us .space-y-6 p {
                 text-align: center !important;
+                font-size: 1rem !important;
             }
 
             /* ── DISCOVER OUR STORY BUTTON ── */
@@ -345,7 +374,7 @@
                 border-radius: 50px !important;
             }
 
-            /* ── CLIENT REVIEWS: auto-scroll (already works, just tightened) ── */
+            /* ── CLIENT REVIEWS: auto-scroll ── */
             .scroller-inner {
                 display: flex !important;
                 gap: 1.25rem;
