@@ -232,92 +232,102 @@
         .review-stars { color: var(--gold); font-size: 1.1rem; margin-bottom: 0.5rem; }
         .client-name { color: var(--gold); font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; }
 
-        /* ══════════════════════════════════
-           MOBILE OVERRIDES
-        ══════════════════════════════════ */
-        @media (max-width: 767px) {
-            /* Home hero */
-            #home {
-                padding-top: 100px;
-                padding-bottom: 60px;
-                height: auto;
-                min-height: 100svh;
-            }
+       /* ══════════════════════════════════
+   MOBILE OVERRIDES (Optimized)
+   ══════════════════════════════════ */
+@media (max-width: 767px) {
+    /* Center Hero Text */
+    #home {
+        padding-top: 100px;
+        padding-bottom: 60px;
+        height: auto;
+        min-height: 100svh;
+        text-align: center;
+    }
 
-            /* DISABLE GSAP horizontal scroll on mobile — use vertical stacked panels */
-            #horizontal-container {
-                width: 100%;
-                height: auto;
-                flex-direction: column;
-            }
-            .panel {
-                width: 100%;
-                height: auto;
-                min-height: 70vw;
-                padding: 60px 20px;
-            }
+    #horizontal-container {
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+    }
 
-            /* Make collage a simple stacked grid on mobile */
-            .image-collage {
-                width: 100%;
-                height: auto;
-                display: flex;
-                flex-direction: column;
-                gap: 12px;
-                position: relative;
-            }
-            .collage-img {
-                position: relative !important;
-                width: 100% !important;
-                height: 220px !important;
-                transform: none !important;
-                inset: auto !important;
-                border-radius: 10px;
-            }
+    .panel {
+        width: 100%;
+        height: auto;
+        padding: 40px 20px;
+    }
 
-            .background-text {
-                font-size: 28vw;
-                top: 20px;
-                left: 50%;
-                transform: translateX(-50%);
-            }
+    /* Fix Image Collage Spacing */
+    .image-collage {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px; /* Controlled gap between images */
+        position: relative;
+        margin-bottom: 2rem;
+    }
 
-            /* About section */
-            #about-us .relative {
-                height: auto !important;
-                display: flex;
-                flex-direction: column;
-                gap: 16px;
-            }
-            #about-us .absolute {
-                position: relative !important;
-                width: 100% !important;
-                height: 260px !important;
-                inset: auto !important;
-                transform: none !important;
-                border: none !important;
-            }
+    .collage-img {
+        position: relative !important;
+        width: 100% !important;
+        height: 250px !important;
+        transform: none !important;
+        inset: auto !important;
+        border-radius: 10px;
+    }
 
-            /* WhatsApp button */
-            .whatsapp-float { width: 50px; height: 50px; bottom: 20px; right: 16px; }
+    /* Center 'About Us' Text and Fix Gaps */
+    #about-us {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
 
-            /* Testimonials on mobile: single scrollable row */
-            .scroller-inner { animation: none; overflow-x: auto; padding-bottom: 10px; }
-            .review-card { min-width: 280px; }
-        }
+    #about-us .container {
+        display: flex;
+        flex-direction: column;
+        gap: 24px; /* Fixes gap between images and text */
+    }
 
-        /* ── MOBILE CARD ANIMATIONS (CSS-only fallback) ── */
-        @media (max-width: 767px) {
-            .mobile-fade {
-                opacity: 0;
-                transform: translateY(30px);
-                transition: opacity 0.6s ease, transform 0.6s ease;
-            }
-            .mobile-fade.visible {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    #about-us .text-left {
+        text-align: center; /* Aligns "Capturing Life's Fleeting Moments" */
+    }
+
+    #about-us .dance-target {
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Structured Button */
+    .btn-outline-gold {
+        display: inline-block;
+        width: auto;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    /* Client Reviews Auto-Scroll (Performance Friendly) */
+    .scroller-inner {
+        display: flex;
+        gap: 1.5rem;
+        animation: scroll 25s linear infinite; /* Seamless loop */
+        width: max-content;
+    }
+
+    .scroller-inner:hover {
+        animation-play-state: paused;
+    }
+
+    @keyframes scroll {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+    }
+
+    .review-card {
+        min-width: 280px;
+        white-space: normal;
+    }
+}
     </style>
 </head>
 
