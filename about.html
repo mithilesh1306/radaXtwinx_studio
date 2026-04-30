@@ -160,6 +160,32 @@
             ease: "power3.out",
             delay: 0.5 
         });
+
+    const mobileMenuBtn = document.getElementById('mobile-menu-button');
+
+    // Create mobile menu dynamically
+    const mobileMenu = document.createElement('div');
+    mobileMenu.className = "fixed top-0 left-0 w-full h-full bg-[#0D0D0D] flex flex-col items-center justify-center space-y-6 text-xl transform translate-x-full transition-transform duration-300 md:hidden";
+    mobileMenu.innerHTML = `
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="portfolio.html" class="nav-link active">Portfolio</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+    `;
+    document.body.appendChild(mobileMenu);
+
+    let menuOpen = false;
+
+    mobileMenuBtn.addEventListener('click', () => {
+        if (!menuOpen) {
+            mobileMenu.style.transform = "translateX(0)";
+            menuOpen = true;
+        } else {
+            mobileMenu.style.transform = "translateX(100%)";
+            menuOpen = false;
+        }
+    });
     </script>
 </body>
 </html>
