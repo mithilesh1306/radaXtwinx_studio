@@ -3,22 +3,21 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Wedding Gallery - Rada Photography Studio</title>
-    
+    <title>Wedding Photography Gallery – Rada Photography Studio, Coimbatore</title>
+    <meta name="description" content="Browse Rada Photography's wedding photo gallery. Capturing timeless wedding moments across Coimbatore and Tamil Nadu with artistic vision." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://radaphotography.in/wedding.html" />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
     <style>
-        :root {
-            --gold: #D4AF37;
-            --dark-bg: #0D0D0D;
-            --off-white: #E0E0E0;
-        }
+        :root { --gold: #D4AF37; --dark-bg: #0D0D0D; --off-white: #E0E0E0; }
+        *, *::before, *::after { box-sizing: border-box; }
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -29,13 +28,13 @@
             transition: opacity 0.8s ease;
         }
         body.fade-in { opacity: 1; }
-
         h1, h2 { font-family: 'Playfair Display', serif; color: #fff; }
 
-        /* HEADER MATCHING INDEX */
+        /* HEADER */
         #header {
             background-color: rgba(13, 13, 13, 0.95);
             backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
         .nav-link {
             position: relative;
@@ -54,114 +53,249 @@
         .nav-link:hover, .nav-link.active { color: #fff; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
 
-        /* GALLERY IMAGES */
+        /* Mobile menu */
+        #mobile-menu { background: rgba(0,0,0,0.97); border-bottom: 1px solid rgba(212,175,55,0.15); }
+
+        /* GALLERY */
         .portfolio-img-wrapper {
             overflow: hidden;
             border-radius: 8px;
             background: #1a1a1a;
             border: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative;
         }
         .portfolio-img {
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.6s ease;
+            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.6s ease;
             cursor: pointer;
             object-fit: cover;
             width: 100%;
-            height: 400px; /* Taller for a luxury feel */
-            filter: brightness(0.8);
+            height: 300px;
+            filter: brightness(0.7) grayscale(20%);
+            display: block;
         }
+        @media (min-width: 640px) { .portfolio-img { height: 380px; } }
         .portfolio-img-wrapper:hover .portfolio-img {
             transform: scale(1.08);
-            filter: brightness(1);
+            filter: brightness(1) grayscale(0%);
         }
         .portfolio-img-wrapper:hover {
             border-color: var(--gold);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.7);
         }
 
+        /* LIGHTBOX */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        #lightbox.active { display: flex; }
+        #lightbox img { max-width: 92vw; max-height: 90vh; object-fit: contain; border-radius: 4px; }
+        #lightbox-close {
+            position: absolute;
+            top: 20px; right: 24px;
+            color: var(--gold);
+            font-size: 2.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1;
+            transition: color 0.2s, transform 0.3s;
+        }
+        #lightbox-close:hover { color: #fff; transform: rotate(90deg); }
+
+        /* BACK LINK */
         .back-link {
             color: var(--gold);
             font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.8rem;
+            letter-spacing: 2px;
+            font-size: 0.75rem;
             transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.5rem;
         }
         .back-link:hover { color: #fff; transform: translateX(-5px); }
+
+        /* MOBILE-only fix: ensure AOS works */
+        @media (max-width: 767px) {
+            [data-aos] { opacity: 1 !important; transform: none !important; }
+        }
     </style>
 </head>
 <body>
     <header id="header" class="fixed top-0 left-0 right-0 z-50">
-        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
-            <a href="index.html" class="flex items-center">
-                <img src="dp.png" onerror="this.src='https://placehold.co/100x100/D4AF37/0D0D0D?text=Logo'" alt="Logo" class="h-10 mr-3 rounded-full border border-gold">
-                <span class="text-2xl font-bold tracking-wider text-gold uppercase">Rada Photography</span>
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center" aria-label="Rada Photography Home">
+                <img src="dp.png" onerror="this.src='https://placehold.co/100x100/D4AF37/0D0D0D?text=R'" alt="Rada Photography Studio logo" class="h-10 mr-3 rounded-full border border-gold w-10 object-cover" width="40" height="40">
+                <span class="text-xl font-bold tracking-wider text-gold uppercase">Rada Photography</span>
             </a>
-            <nav class="hidden md:flex space-x-8">
+            <nav class="hidden md:flex space-x-8" aria-label="Main navigation">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="about.html" class="nav-link">About</a>
                 <a href="portfolio.html" class="nav-link active">Portfolio</a>
                 <a href="services.html" class="nav-link">Services</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </nav>
+            <button id="mobile-menu-button" class="md:hidden text-gold focus:outline-none" aria-label="Toggle menu" aria-expanded="false">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden" role="navigation" aria-label="Mobile navigation">
+            <a href="index.html" class="block text-center py-4 text-base text-gold hover:bg-white hover:bg-opacity-5 transition">Home</a>
+            <a href="about.html" class="block text-center py-4 text-base text-gold hover:bg-white hover:bg-opacity-5 transition">About</a>
+            <a href="portfolio.html" class="block text-center py-4 text-base text-gold hover:bg-white hover:bg-opacity-5 transition">Portfolio</a>
+            <a href="services.html" class="block text-center py-4 text-base text-gold hover:bg-white hover:bg-opacity-5 transition">Services</a>
+            <a href="contact.html" class="block text-center py-4 text-base text-gold hover:bg-white hover:bg-opacity-5 transition">Contact</a>
         </div>
     </header>
 
-    <main class="pt-40 pb-20">
+    <!-- LIGHTBOX -->
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+        <button id="lightbox-close" aria-label="Close image viewer">&times;</button>
+        <img id="lightbox-img" src="" alt="Full size photo" />
+    </div>
+
+    <main class="pt-36 pb-24">
         <div class="container mx-auto px-6">
             <div class="mb-12">
-                <a href="portfolio.html" class="back-link inline-flex items-center gap-2 mb-4">
-                    <span>&larr;</span> Back to Portfolio
+                <a href="portfolio.html" class="back-link">
+                    <span aria-hidden="true">&larr;</span> Back to Portfolio
                 </a>
-                <h3 class="text-gold uppercase tracking-[0.3em] text-sm mb-2">Collection</h3>
-                <h1 class="text-5xl md:text-7xl font-bold">Wedding Stories</h1>
+                <h3 class="text-gold uppercase tracking-[0.4em] text-xs mb-3 font-semibold">Portfolio Collection</h3>
+                <h1 class="text-5xl md:text-7xl font-bold leading-tight">Wedding <br><span style="color:var(--gold)">Stories</span></h1>
+                <p class="text-gray-400 mt-4 text-base max-w-xl">Authentic wedding photography across Coimbatore and Tamil Nadu — every frame a memory.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="portfolio-img-wrapper" data-aos="fade-up">
-                    <img src="weddingphotos/1000.jpg" alt="Wedding" class="portfolio-img">
-                </div>
-                <div class="portfolio-img-wrapper" data-aos="fade-up" data-aos-delay="100">
-                    <img src="weddingphotos/377.jpg" alt="Wedding" class="portfolio-img">
-                </div>
-                <div class="portfolio-img-wrapper" data-aos="fade-up" data-aos-delay="200">
-                    <img src="weddingphotos/464.jpg" alt="Wedding" class="portfolio-img">
-                </div>
-                <div class="portfolio-img-wrapper" data-aos="fade-up">
-                    <img src="weddingphotos/553.jpg" alt="Wedding" class="portfolio-img">
-                </div>
-                <div class="portfolio-img-wrapper" data-aos="fade-up" data-aos-delay="100">
-                    <img src="weddingphotos/558.jpg" alt="Wedding" class="portfolio-img">
-                </div>
-                <div class="portfolio-img-wrapper" data-aos="fade-up" data-aos-delay="200">
-                    <img src="weddingphotos/DSC05140.jpg" alt="Wedding" class="portfolio-img">
-                </div>
-                <div class="portfolio-img-wrapper" data-aos="fade-up" data-aos-delay="200">
-                    <img src="weddingphotos/na18.jpg" alt="Wedding" class="portfolio-img">
-                </div>
-                <div class="portfolio-img-wrapper" data-aos="fade-up" data-aos-delay="200">
-                    <img src="weddingphotos/R5.jpg" alt="Wedding" class="portfolio-img">
-                </div>
-                <div class="portfolio-img-wrapper" data-aos="fade-up" data-aos-delay="200">
-                    <img src="weddingphotos/TJ1.jpg" alt="Wedding" class="portfolio-img">
-                </div>
-                <div class="portfolio-img-wrapper" data-aos="fade-up" data-aos-delay="200">
-                    <img src="weddingphotos/Untitled-1 FINAL.jpg" alt="Wedding" class="portfolio-img">
-                </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid">
+                <!-- Populated by JS for easy maintenance -->
             </div>
         </div>
     </main>
 
     <footer class="py-12 bg-[#050505] text-center text-gray-500 text-sm border-t border-gold border-opacity-10">
         <div class="container mx-auto px-6">
-            <p>&copy; 2024 Rada Photography Studio. All Rights Reserved.</p>
-            <p class="mt-2 text-gold">Email: foxfreelancing21@gmail.com | Phone: 8754328542</p>
+            <p>&copy; 2025 Rada Photography Studio. All Rights Reserved.</p>
+            <p class="mt-2"><a href="mailto:foxfreelancing21@gmail.com" class="text-gold hover:text-white transition">foxfreelancing21@gmail.com</a> | <a href="tel:+918754328542" class="text-gold hover:text-white transition">+91 87543 28542</a></p>
         </div>
     </footer>
 
     <script>
+        // ── GALLERY IMAGES ──
+        // Replace these src values with your actual wedding photos
+        const images = [
+            { src: 'weddingphotos/1000.jpg',              alt: 'Wedding ceremony in Coimbatore by Rada Photography' },
+            { src: 'weddingphotos/377.jpg',               alt: 'Bride portrait at Coimbatore wedding' },
+            { src: 'weddingphotos/464.jpg',               alt: 'Wedding candid moment Tamil Nadu' },
+            { src: 'weddingphotos/553.jpg',               alt: 'Couple portrait by Rada Photography Coimbatore' },
+            { src: 'weddingphotos/558.jpg',               alt: 'Wedding reception photography Coimbatore' },
+            { src: 'weddingphotos/DSC05140.jpg',          alt: 'Traditional Tamil wedding photography' },
+            { src: 'weddingphotos/na18.jpg',              alt: 'Bridal photography Coimbatore' },
+            { src: 'weddingphotos/R5.jpg',                alt: 'Wedding couple portrait Tamil Nadu' },
+            { src: 'weddingphotos/TJ1.jpg',               alt: 'Wedding photography by Rada Photography Studio' },
+            { src: 'weddingphotos/Untitled-1 FINAL.jpg',  alt: 'Fine art wedding photography Coimbatore' },
+        ];
+
+        const grid = document.getElementById('gallery-grid');
+        const delays = [0, 100, 200, 0, 100, 200, 0, 100, 200, 0];
+
+        images.forEach((img, i) => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'portfolio-img-wrapper';
+            wrapper.setAttribute('data-aos', 'fade-up');
+            wrapper.setAttribute('data-aos-delay', delays[i % 3]);
+
+            const el = document.createElement('img');
+            el.src = img.src;
+            el.alt = img.alt;
+            el.className = 'portfolio-img';
+            el.loading = 'lazy';
+            el.width = 800;
+            el.height = 600;
+            el.style.cursor = 'zoom-in';
+            el.addEventListener('click', () => openLightbox(img.src, img.alt));
+
+            wrapper.appendChild(el);
+            grid.appendChild(wrapper);
+        });
+
+        // ── LIGHTBOX ──
+        const lightbox     = document.getElementById('lightbox');
+        const lightboxImg  = document.getElementById('lightbox-img');
+        const lightboxClose = document.getElementById('lightbox-close');
+
+        function openLightbox(src, alt) {
+            lightboxImg.src = src;
+            lightboxImg.alt = alt;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        lightbox.addEventListener('click', e => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // ── INIT ──
         document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.add('fade-in');
-            AOS.init({ duration: 1000, once: true, easing: 'ease-out-expo' });
+
+            // AOS only on desktop to avoid mobile conflicts
+            if (window.innerWidth >= 768) {
+                AOS.init({ duration: 900, once: true, easing: 'ease-out-expo' });
+            } else {
+                // Mobile: simple IntersectionObserver
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                document.querySelectorAll('.portfolio-img-wrapper').forEach(el => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(24px)';
+                    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    observer.observe(el);
+                });
+            }
+
+            // Mobile menu
+            const btn  = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            btn.addEventListener('click', () => {
+                const open = !menu.classList.contains('hidden');
+                menu.classList.toggle('hidden');
+                btn.setAttribute('aria-expanded', String(!open));
+            });
+            menu.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                    btn.setAttribute('aria-expanded', 'false');
+                });
+            });
         });
     </script>
 </body>

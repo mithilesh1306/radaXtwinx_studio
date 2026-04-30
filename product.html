@@ -3,162 +3,140 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Wedding Collection - Rada Photography Studio</title>
-    
+    <title>Product & Commercial Photography Gallery – Rada Photography Studio, Coimbatore</title>
+    <meta name="description" content="Browse Rada Photography's commercial product photo gallery. High-end product and brand photography for businesses across Coimbatore and Tamil Nadu." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://radaphotography.in/product.html" />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
     <style>
-        :root {
-            --gold: #D4AF37;
-            --dark-bg: #0D0D0D;
-            --off-white: #E0E0E0;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--off-white);
-            margin: 0;
-            opacity: 0;
-            transition: opacity 0.8s ease;
-        }
+        :root { --gold: #D4AF37; --dark-bg: #0D0D0D; --off-white: #E0E0E0; }
+        *, *::before, *::after { box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--dark-bg); color: var(--off-white); margin: 0; opacity: 0; transition: opacity 0.8s ease; }
         body.fade-in { opacity: 1; }
-
         h1, h2 { font-family: 'Playfair Display', serif; color: #fff; }
-
-        /* HEADER MATCHING INDEX */
-        #header {
-            background-color: rgba(13, 13, 13, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-        }
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-            color: #a0a0a0;
-            font-weight: 500;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0; height: 2px; bottom: -2px; left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--gold);
-            transition: width 0.3s ease;
-        }
+        #header { background-color: rgba(13,13,13,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(212,175,55,0.1); }
+        .nav-link { position: relative; transition: color 0.3s; color: #a0a0a0; font-weight: 500; }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 50%; transform: translateX(-50%); background: var(--gold); transition: width 0.3s; }
         .nav-link:hover, .nav-link.active { color: #fff; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-
-        /* REFINED GALLERY IMAGES */
-        .portfolio-img-wrapper {
-            overflow: hidden;
-            border-radius: 8px;
-            background: #1a1a1a;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            position: relative;
-        }
-        .portfolio-img {
-            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.6s ease;
-            cursor: pointer;
-            object-fit: cover;
-            width: 100%;
-            height: 400px; /* Editorial taller height */
-            filter: brightness(0.7) grayscale(20%);
-        }
-        .portfolio-img-wrapper:hover .portfolio-img {
-            transform: scale(1.1);
-            filter: brightness(1) grayscale(0%);
-        }
-        .portfolio-img-wrapper:hover {
-            border-color: var(--gold);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.7);
-        }
-
-        .back-link {
-            color: var(--gold);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.75rem;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
+        #mobile-menu { background: rgba(0,0,0,0.97); border-bottom: 1px solid rgba(212,175,55,0.15); }
+        .portfolio-img-wrapper { overflow: hidden; border-radius: 8px; background: #1a1a1a; border: 1px solid rgba(212,175,55,0.1); position: relative; }
+        .portfolio-img { transition: transform 0.8s cubic-bezier(0.165,0.84,0.44,1), filter 0.6s ease; cursor: zoom-in; object-fit: cover; width: 100%; height: 300px; filter: brightness(0.7) grayscale(20%); display: block; }
+        @media (min-width: 640px) { .portfolio-img { height: 380px; } }
+        .portfolio-img-wrapper:hover .portfolio-img { transform: scale(1.08); filter: brightness(1) grayscale(0%); }
+        .portfolio-img-wrapper:hover { border-color: var(--gold); box-shadow: 0 15px 40px rgba(0,0,0,0.7); }
+        #lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
+        #lightbox.active { display: flex; }
+        #lightbox img { max-width: 92vw; max-height: 90vh; object-fit: contain; border-radius: 4px; }
+        #lightbox-close { position: absolute; top: 20px; right: 24px; color: var(--gold); font-size: 2.5rem; cursor: pointer; background: none; border: none; line-height: 1; transition: color 0.2s, transform 0.3s; }
+        #lightbox-close:hover { color: #fff; transform: rotate(90deg); }
+        .back-link { color: var(--gold); font-weight: 500; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; }
         .back-link:hover { color: #fff; transform: translateX(-5px); }
     </style>
 </head>
 <body>
     <header id="header" class="fixed top-0 left-0 right-0 z-50">
-        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
-            <a href="index.html" class="flex items-center">
-                <img src="dp.png" onerror="this.src='https://placehold.co/100x100/D4AF37/0D0D0D?text=Logo'" alt="Logo" class="h-10 mr-3 rounded-full border border-gold">
-                <span class="text-2xl font-bold tracking-wider text-gold uppercase">Rada Photography</span>
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center" aria-label="Rada Photography Home">
+                <img src="dp.png" onerror="this.src='https://placehold.co/100x100/D4AF37/0D0D0D?text=R'" alt="Rada Photography Studio logo" class="h-10 mr-3 rounded-full border border-gold w-10 object-cover" width="40" height="40">
+                <span class="text-xl font-bold tracking-wider text-gold uppercase">Rada Photography</span>
             </a>
-            <nav class="hidden md:flex space-x-8">
+            <nav class="hidden md:flex space-x-8" aria-label="Main navigation">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="about.html" class="nav-link">About</a>
                 <a href="portfolio.html" class="nav-link active">Portfolio</a>
                 <a href="services.html" class="nav-link">Services</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </nav>
+            <button id="mobile-menu-button" class="md:hidden text-gold focus:outline-none" aria-label="Toggle menu" aria-expanded="false">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden" role="navigation">
+            <a href="index.html" class="block text-center py-4 text-base text-gold hover:bg-white hover:bg-opacity-5 transition">Home</a>
+            <a href="about.html" class="block text-center py-4 text-base text-gold hover:bg-white hover:bg-opacity-5 transition">About</a>
+            <a href="portfolio.html" class="block text-center py-4 text-base text-gold hover:bg-white hover:bg-opacity-5 transition">Portfolio</a>
+            <a href="services.html" class="block text-center py-4 text-base text-gold hover:bg-white hover:bg-opacity-5 transition">Services</a>
+            <a href="contact.html" class="block text-center py-4 text-base text-gold hover:bg-white hover:bg-opacity-5 transition">Contact</a>
         </div>
     </header>
 
-    <main class="pt-40 pb-24">
-        <div class="container mx-auto px-6">
-            <div class="mb-16" data-aos="fade-right">
-                <a href="portfolio.html" class="back-link mb-6">
-                    <span>&larr;</span> Back to Portfolio
-                </a>
-                <h3 class="text-gold uppercase tracking-[0.4em] text-xs mb-3 font-semibold">Gallery Collection</h3>
-                <h1 class="text-5xl md:text-7xl font-bold leading-tight">Wedding <br><span class="text-gold">Stories</span></h1>
-            </div>
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+        <button id="lightbox-close" aria-label="Close image viewer">&times;</button>
+        <img id="lightbox-img" src="" alt="" />
+    </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="portfolio-img-wrapper" data-aos="fade-up">
-                    <img src="https://images.unsplash.com/photo-1515934751635-481eff048362?q=80&w=1887&auto=format&fit=crop" alt="Wedding 1" class="portfolio-img">
-                </div>
-                <div class="portfolio-img-wrapper" data-aos="fade-up" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1500051638674-ff996a0ec29e?q=80&w=1887&auto=format&fit=crop" alt="Wedding 2" class="portfolio-img">
-                </div>
-                <div class="portfolio-img-wrapper" data-aos="fade-up" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1511285560921-50b39be84643?q=80&w=1887&auto=format&fit=crop" alt="Wedding 3" class="portfolio-img">
-                </div>
-                <div class="portfolio-img-wrapper" data-aos="fade-up">
-                    <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1887&auto=format&fit=crop" alt="Wedding 4" class="portfolio-img">
-                </div>
-                <div class="portfolio-img-wrapper" data-aos="fade-up" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1887&auto=format&fit=crop" alt="Wedding 5" class="portfolio-img">
-                </div>
-                <div class="portfolio-img-wrapper" data-aos="fade-up" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1887&auto=format&fit=crop" alt="Wedding 6" class="portfolio-img">
-                </div>
+    <main class="pt-36 pb-24">
+        <div class="container mx-auto px-6">
+            <div class="mb-12">
+                <a href="portfolio.html" class="back-link"><span aria-hidden="true">&larr;</span> Back to Portfolio</a>
+                <h3 class="text-gold uppercase tracking-[0.4em] text-xs mb-3 font-semibold">Portfolio Collection</h3>
+                <h1 class="text-5xl md:text-7xl font-bold leading-tight">Product <br><span style="color:var(--gold)">Commercial</span></h1>
+                <p class="text-gray-400 mt-4 text-base max-w-xl">Sharp, brand-ready product photography for businesses in Coimbatore — built to sell and built to impress.</p>
             </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid"></div>
         </div>
     </main>
 
     <footer class="py-12 bg-[#050505] text-center text-gray-500 text-sm border-t border-gold border-opacity-10">
         <div class="container mx-auto px-6">
-            <p>&copy; 2024 Rada Photography Studio. All Rights Reserved.</p>
-            <p class="mt-2 text-gold">Email: foxfreelancing21@gmail.com | Phone: 8754328542</p>
+            <p>&copy; 2025 Rada Photography Studio. All Rights Reserved.</p>
+            <p class="mt-2"><a href="mailto:foxfreelancing21@gmail.com" class="text-gold hover:text-white transition">foxfreelancing21@gmail.com</a> | <a href="tel:+918754328542" class="text-gold hover:text-white transition">+91 87543 28542</a></p>
         </div>
     </footer>
 
     <script>
+        const images = [{ src: "product/jpeg-optimizer_10.jpg", alt: "Commercial product photography Coimbatore" },
+{ src: "product/jpeg-optimizer_2.jpg", alt: "Brand product photography Tamil Nadu by Rada Photography" },
+{ src: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800", alt: "Product shoot photography Coimbatore" },
+{ src: "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=800", alt: "Commercial photography for brands Coimbatore" },
+{ src: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=800", alt: "Product photography studio Tamil Nadu" },
+{ src: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=800", alt: "E-commerce product photography Coimbatore" }];
+        const grid   = document.getElementById('gallery-grid');
+        const delays = [0, 100, 200];
+        images.forEach((img, i) => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'portfolio-img-wrapper';
+            wrapper.setAttribute('data-aos', 'fade-up');
+            wrapper.setAttribute('data-aos-delay', delays[i % 3]);
+            const el = document.createElement('img');
+            el.src = img.src; el.alt = img.alt; el.className = 'portfolio-img'; el.loading = 'lazy'; el.width = 800; el.height = 600;
+            el.addEventListener('click', () => openLightbox(img.src, img.alt));
+            wrapper.appendChild(el); grid.appendChild(wrapper);
+        });
+
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+        function openLightbox(src, alt) { lightboxImg.src = src; lightboxImg.alt = alt; lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
+
         document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.add('fade-in');
-            AOS.init({ 
-                duration: 1000, 
-                once: true, 
-                easing: 'ease-out-expo' 
-            });
+            if (window.innerWidth >= 768) {
+                AOS.init({ duration: 900, once: true, easing: 'ease-out-expo' });
+            } else {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } });
+                }, { threshold: 0.1 });
+                document.querySelectorAll('.portfolio-img-wrapper').forEach(el => {
+                    el.style.opacity = '0'; el.style.transform = 'translateY(24px)'; el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    observer.observe(el);
+                });
+            }
+            const btn = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            btn.addEventListener('click', () => { const open = !menu.classList.contains('hidden'); menu.classList.toggle('hidden'); btn.setAttribute('aria-expanded', String(!open)); });
+            menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menu.classList.add('hidden'); btn.setAttribute('aria-expanded', 'false'); }));
         });
     </script>
 </body>
