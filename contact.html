@@ -394,7 +394,7 @@
 
                 <!-- RIGHT: inquiry form -->
                 <div class="contact-right bg-white bg-opacity-5 p-8 md:p-10 rounded-2xl border border-white border-opacity-5" data-aos="fade-left">
-                    <form action="#" class="space-y-6" novalidate>
+                    <form id="inquiry-form" action="#" class="space-y-6" novalidate>
                         <div class="form-name-email grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <input type="text" name="name" placeholder="Full Name" required class="form-input rounded-lg py-4 px-5">
                             <input type="email" name="email" placeholder="Email Address" required class="form-input rounded-lg py-4 px-5">
@@ -436,7 +436,49 @@
         closeBtn.addEventListener('click', closeMenu);
         overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
-        // ── AOS + FADE IN ──
+        // ── WHATSAPP FORM SUBMIT ──
+        document.getElementById('inquiry-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name    = this.querySelector('[name="name"]').value.trim();
+            const email   = this.querySelector('[name="email"]').value.trim();
+            const subject = this.querySelector('[name="subject"]').value.trim();
+            const message = this.querySelector('[name="message"]').value.trim();
+
+            // Validate — all fields required
+            if (!name || !email || !subject || !message) {
+                // Highlight empty fields
+                [['name',name],['email',email],['subject',subject],['message',message]]
+                    .forEach(([n, v]) => {
+                        const el = this.querySelector('[name="' + n + '"]');
+                        el.style.borderColor = v ? 'rgba(212,175,55,0.2)' : '#e74c3c';
+                    });
+                return;
+            }
+
+            // Reset border colours
+            this.querySelectorAll('.form-input').forEach(el => {
+                el.style.borderColor = 'rgba(212,175,55,0.2)';
+            });
+
+            // Build the WhatsApp message
+            const text =
+                'Hello Rada Photography! I have an inquiry:%0A%0A' +
+                '*Name:* ' + encodeURIComponent(name)    + '%0A' +
+                '*Email:* ' + encodeURIComponent(email)   + '%0A' +
+                '*Subject:* ' + encodeURIComponent(subject) + '%0A' +
+                '*Message:* ' + encodeURIComponent(message);
+
+            // Open WhatsApp — same number as the rest of the site
+            window.open('https://wa.me/917845091708?text=' + text, '_blank');
+        });
+
+        // Reset individual field border on input
+        document.querySelectorAll('#inquiry-form .form-input').forEach(el => {
+            el.addEventListener('input', function() {
+                this.style.borderColor = 'rgba(212,175,55,0.2)';
+            });
+        });
         window.addEventListener('load', () => {
             document.body.classList.add('fade-in');
             AOS.init({ duration: 900, once: true, easing: 'ease-out-expo' });
