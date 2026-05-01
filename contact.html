@@ -206,27 +206,58 @@
 
         /* ── MOBILE FIXES ── */
         @media (max-width: 767px) {
-            main { padding-top: 6rem !important; padding-bottom: 3rem; }
 
-            /* Hero heading */
-            .page-hero h1 { font-size: clamp(2.6rem, 11vw, 3.5rem); }
-            .page-hero p   { font-size: 0.9rem; padding: 0 4px; }
+            /* Header: keep logo on one line */
+            #header .text-2xl {
+                font-size: 1.05rem !important;
+                letter-spacing: 0.05em !important;
+                line-height: 1;
+            }
+            #header img {
+                width: 34px !important;
+                height: 34px !important;
+                margin-right: 0.5rem !important;
+            }
 
-            /* Two-column form row → single column */
-            .form-name-email { grid-template-columns: 1fr !important; }
+            /* Main: reduce top padding */
+            main { padding-top: 5rem !important; padding-bottom: 3rem !important; }
 
-            /* Contact details left col */
-            .contact-left { order: 2; }
-            .contact-right { order: 1; }
+            /* Hero: tighter spacing */
+            .page-hero { margin-bottom: 2rem !important; }
+            .page-hero h1 { font-size: clamp(2.2rem, 10vw, 3rem) !important; }
+            .page-hero p  { font-size: 0.88rem; padding: 0 4px; margin-top: 0.75rem !important; }
 
-            /* Map height on mobile */
-            .map-wrapper iframe { height: 240px; }
+            /* Grid: single column — contact details FIRST, form second */
+            .contact-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+            .contact-left  { order: 1; }   /* details + map first */
+            .contact-right { order: 2; }   /* form below */
+
+            /* Contact detail rows */
+            .contact-icon-circle { width: 40px; height: 40px; }
+            .contact-icon-row a,
+            .contact-icon-row span { font-size: 0.88rem; }
 
             /* WhatsApp button */
-            .wa-btn-wrap a { display: block; width: 100%; text-align: center; }
+            .wa-btn-wrap a {
+                display: block;
+                width: 100%;
+                text-align: center;
+                font-size: 0.8rem;
+            }
 
-            /* Section spacing */
-            .contact-grid { gap: 2.5rem !important; }
+            /* Map */
+            .map-wrapper iframe { height: 220px; }
+            .map-label { flex-wrap: wrap; gap: 6px; }
+            .map-label span { font-size: 0.72rem; }
+            .map-label a    { margin-left: 0; font-size: 0.7rem; }
+
+            /* Form card */
+            .contact-right { padding: 1.5rem !important; }
+            .form-name-email { grid-template-columns: 1fr !important; }
+            .form-input { font-size: 0.88rem; }
         }
     </style>
 </head>
@@ -241,7 +272,7 @@
                      alt="Rada Photography Studio logo"
                      class="h-10 mr-3 rounded-full border border-gold object-cover w-10"
                      width="40" height="40">
-                <span class="text-2xl font-bold tracking-wider text-gold uppercase">Rada Photography</span>
+                <span class="text-base sm:text-2xl font-bold tracking-wider text-gold uppercase whitespace-nowrap">Rada Photography</span>
             </a>
             <nav class="hidden md:flex space-x-10" aria-label="Main navigation">
                 <a href="index.html" class="nav-link">Home</a>
@@ -269,12 +300,11 @@
     </div>
 
     <!-- ══ MAIN ══ -->
-    <main class="pt-40 pb-20">
+    <main class="pt-24 md:pt-40 pb-20">
         <div class="container mx-auto px-6">
 
             <!-- Page hero -->
-            <div class="page-hero text-center mb-16" data-aos="fade-down">
-                <h> </h>
+            <div class="page-hero text-center mb-8 md:mb-16" data-aos="fade-down">
                 <h3 class="text-gold uppercase tracking-[0.4em] text-sm mb-3">Get In Touch</h3>
                 <h1 class="text-5xl md:text-7xl font-bold">Start Your Story</h1>
                 <p class="text-gray-400 mt-6 max-w-xl mx-auto">Whether it's a grand wedding or a personal portrait, let's capture the moments that matter most to you.</p>
