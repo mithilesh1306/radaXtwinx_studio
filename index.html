@@ -173,7 +173,7 @@
             background-position: center center;
             background-repeat: no-repeat;
             z-index: 0;
-            opacity: 0.28;
+            opacity: 0.18;
         }
         .panel-wedding .panel-bg  { background-image: url('weddingphotos/temp131.jpg'); }
         .panel-portrait .panel-bg { background-image: url('portraitphotos/8481.jpg'); }
@@ -182,14 +182,12 @@
         /* ── PANEL CONTENT — absolutely centered over panel ── */
         .panel-content {
             position: absolute;
-            top: 50%;
+            top: calc(50% + 35px);
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 2;
-            width: 68vw;
-            max-width: 900px;
-            height: 74vh;
-            max-height: 600px;
+            width: 72%;
+            height: 68%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -224,13 +222,13 @@
 
         /* Product: left tall | right 2 stacked | bottom wide */
         .grid-product {
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: minmax(0,1fr) minmax(0,1fr) minmax(0,0.55fr);
+            grid-template-columns: 1fr 1.2fr 1fr;
+            grid-template-rows: minmax(0,1fr) minmax(0,1fr);
         }
         .grid-product .gi-1 { grid-column:1; grid-row:1/3; }
         .grid-product .gi-2 { grid-column:2; grid-row:1/2; }
         .grid-product .gi-3 { grid-column:2; grid-row:2/3; }
-        .grid-product .gi-4 { grid-column:1/3; grid-row:3/4; }
+        .grid-product .gi-4 { grid-column:3; grid-row:1/4; }
 
         .photo-grid img {
             width: 100%;
@@ -434,37 +432,44 @@
             /* Center the entire text column */
             #about-us .text-left {
                 text-align: center !important;
+                padding: 0 8px !important;
             }
 
-            /* "Capturing Life's Fleeting Moments" heading —
-               scale down + force dancing-letter spans to stay inline so
-               the heading wraps naturally and stays centered */
+            /* Tag line */
+            #about-us .text-left > span {
+                display: block !important;
+                text-align: center !important;
+            }
+
+            /* Heading */
             #about-us .dance-target {
                 font-size: 1.75rem !important;
                 line-height: 1.25 !important;
-                margin-bottom: 1.2rem !important;
+                margin-bottom: 1rem !important;
                 text-align: center !important;
                 display: block !important;
                 width: 100% !important;
             }
-
             #about-us .dance-target .dancing-letter {
                 display: inline !important;
             }
 
             /* Body paragraphs */
+            #about-us .space-y-5 p,
             #about-us .space-y-6 p {
                 text-align: center !important;
-                font-size: 1rem !important;
+                font-size: 0.97rem !important;
+                line-height: 1.7 !important;
             }
 
             /* ── DISCOVER OUR STORY BUTTON ── */
+            #about-us .mt-4.group,
             #about-us .mt-12.group {
                 display: flex !important;
                 justify-content: center !important;
-                margin-top: 2rem !important;
+                margin-top: 1.5rem !important;
             }
-
+            #about-us .mt-4.group a,
             #about-us .mt-12.group a {
                 display: inline-flex !important;
                 align-items: center !important;
@@ -472,7 +477,7 @@
                 width: auto !important;
                 min-width: 220px !important;
                 padding: 0.75rem 2rem !important;
-                font-size: 0.78rem !important;
+                font-size: 0.85rem !important;
                 letter-spacing: 0.08em !important;
                 position: relative !important;
                 overflow: hidden !important;
@@ -578,7 +583,7 @@
                         <div class="photo-grid grid-wedding">
                             <img src="weddingphotos/553 (1).jpg" class="gi-1" loading="lazy" alt="Wedding couple by Rada Photography Coimbatore">
                             <img src="weddingphotos/1000 (1).jpg" class="gi-2" loading="lazy" alt="Wedding candid by Rada Photography">
-                            <img src="weddingphotos/377 (2).jpg" class="gi-3" loading="lazy" alt="Bride and groom by Rada Photography">
+                            <img src="weddingphotos/464 (2).jpg" class="gi-3" loading="lazy" alt="Bride and groom by Rada Photography">
                         </div>
                     </div>
                     <a href="wedding.html" class="hidden-desktop mt-6 text-gold uppercase tracking-widest text-xs border border-gold px-6 py-3 rounded-full" style="display:none;">View Wedding Gallery →</a>
@@ -589,10 +594,10 @@
                     <h2 class="background-text" aria-hidden="true">PORTRAITS</h2>
                     <div class="panel-content">
                         <div class="photo-grid grid-portrait">
-                            <img src="portraitphotos/8331.jpg" class="gi-1" loading="lazy" alt="Fine art portrait by Rada Photography Studio">
+                            <img src="portraitphotos/6481.jpg" class="gi-1" loading="lazy" alt="Fine art portrait by Rada Photography Studio">
                             <img src="portraitphotos/8481.jpg" class="gi-2" loading="lazy" alt="Professional portrait Coimbatore">
-                            <img src="portraitphotos/DSC0942.jpeg" class="gi-3" loading="lazy" alt="Studio portrait by Rada Photography">
-                            <img src="portraitphotos/temp4.jpg" class="gi-4" loading="lazy" alt="Portrait photography Coimbatore">
+                            <img src="portraitphotos/DSC02221 (1).jpg" class="gi-3" loading="lazy" alt="Studio portrait by Rada Photography">
+                            <img src="portraitphotos/2831.jpg" class="gi-4" loading="lazy" alt="Portrait photography Coimbatore">
                         </div>
                     </div>
                 </section>
@@ -609,6 +614,7 @@
                         </div>
                     </div>
                 </section>
+
             </div>
         </div>
 
@@ -617,7 +623,9 @@
             <div class="container mx-auto px-6">
                 <div class="grid lg:grid-cols-2 gap-20 items-center">
                     <div class="relative h-[500px] sm:h-[700px] flex items-center justify-center mobile-fade">
-                        <div class="absolute w-64 h-64 border border-gold opacity-10 -top-10 -left-10 hidden sm:block" aria-hidden="true"></div>
+                        <div class="absolute w-64 h-64 border border-gold opacity-10 -top-10 -left-10 hidden sm:block" aria-hidden="true">
+                            <img src="abt us.img/DSC02196 (1).jpg" loading="lazy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" alt="Ajay Rada, professional photographer in Coimbatore" width="600" height="800">
+                        </div>
                         <div class="absolute w-3/5 h-4/5 z-10 overflow-hidden rounded-sm shadow-2xl transition-transform duration-700 hover:scale-[1.02]">
                             <img src="abt us.img/DSC02196 (1).jpg" loading="lazy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" alt="Ajay Rada, professional photographer in Coimbatore" width="600" height="800">
                         </div>
@@ -631,13 +639,13 @@
                     </div>
 
                     <div class="text-left mobile-fade">
-                        <!-- <span class="text-xs uppercase tracking-[0.6em] text-gold mb-6 font-bold opacity-80 block">The Philosophy</span>
-                        <h2 class="dance-target text-4xl sm:text-5xl font-bold text-white leading-[1.1] mb-10">Capturing Life's Fleeting Moments.</h2>
-                        <div class="space-y-6 text-gray-400 text-lg leading-relaxed max-w-xl">
-                            <p>Rada Photography is more than just a studio —it's a passion for storytelling through the lens.Based in Coimbatore,Tamil Nadu,we believe every click of the shutter is a chance to preserve a moment in time,capturing genuine emotions and authentic connections.  
-
-                            </p> -->
-                        <div class="mt-12 group">
+                        <span class="text-xs uppercase tracking-[0.6em] text-gold mb-6 font-bold opacity-80 block">The Philosophy</span>
+                        <h2 class="dance-target text-4xl sm:text-5xl font-bold text-white leading-[1.1] mb-8">Capturing Life's Fleeting Moments.</h2>
+                        <div class="space-y-5 text-gray-400 text-base sm:text-lg leading-relaxed max-w-xl mb-10">
+                            <p>Rada Photography is more than just a studio — it's a passion for storytelling through the lens. Based in Coimbatore, Tamil Nadu, we believe every click of the shutter is a chance to preserve a moment in time, capturing genuine emotions and authentic connections.</p>
+                            <p>Our creative approach ensures we capture the essence of every subject, whether it's a grand wedding in Coimbatore or an intimate portrait session. We don't just take pictures; we craft visual legacies.</p>
+                        </div>
+                        <div class="mt-4 group">
                             <a href="about.html" class="btn-outline-gold relative inline-flex items-center overflow-hidden px-12 py-4 rounded-full border-2 border-gold text-gold font-bold transition-all duration-500 hover:text-black">
                                 <span class="relative z-10">DISCOVER OUR STORY</span>
                                 <div class="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500" aria-hidden="true"></div>
