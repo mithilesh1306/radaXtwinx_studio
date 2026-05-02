@@ -40,7 +40,6 @@
             overflow-x: hidden;
         }
 
-        /* ── CUSTOM CURSOR (desktop only) ── */
         @media (pointer: fine) {
             body { cursor: none; }
             .cursor {
@@ -68,7 +67,6 @@
 
         .font-serif { font-family: 'Cormorant Garamond', serif; }
 
-        /* ── GRAIN OVERLAY ── */
         body::before {
             content: '';
             position: fixed;
@@ -111,7 +109,6 @@
         }
         .nav-link-tx:hover { color: var(--gold-pale) !important; letter-spacing: 0.35em; }
 
-        /* Mobile menu */
         #tx-mobile-menu {
             background: rgba(6, 13, 34, 0.99);
             border-top: 1px solid rgba(184,134,11,0.2);
@@ -128,7 +125,6 @@
         }
         #tx-mobile-menu a:hover { background: rgba(184,134,11,0.08); }
 
-        /* Back to Rada link */
         .back-to-rada {
             display: inline-flex;
             align-items: center;
@@ -151,61 +147,68 @@
             align-items: center;
             justify-content: center;
             padding: 6rem 1.5rem 3rem;
-            background:
-                linear-gradient(rgba(6,13,34,0.35), rgba(6,13,34,0.35)),
-                url('dp/bg-twinxx.jpeg') center center / cover no-repeat;
+            background: url('dp/bg-twinxx.jpeg') center center / cover no-repeat;
             position: relative;
             overflow: hidden;
         }
+
+        /* Dark overlay — adjust rgba alpha to control brightness */
         .hero-section::before {
             content: '';
             position: absolute;
-            width: 600px; height: 600px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(184,134,11,0.07) 0%, transparent 70%);
-            top: -100px; left: -150px;
-            animation: orbFloat 12s ease-in-out infinite alternate;
+            inset: 0;
+            background: rgba(6, 13, 34, 0.30);  /* 0.30 = brighter image */
+            z-index: 1;
             pointer-events: none;
         }
+
         .hero-section::after {
             content: '';
             position: absolute;
             width: 500px; height: 500px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(28,50,130,0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(28,50,130,0.10) 0%, transparent 70%);
             bottom: -80px; right: -100px;
             animation: orbFloat 15s ease-in-out infinite alternate-reverse;
             pointer-events: none;
+            z-index: 1;
         }
+
         @keyframes orbFloat {
             0%   { transform: translate(0, 0) scale(1); }
             100% { transform: translate(40px, 30px) scale(1.1); }
         }
         .hero-lines {
             position: absolute; inset: 0;
-            background: repeating-linear-gradient(108deg, transparent, transparent 90px, rgba(184,134,11,0.03) 90px, rgba(184,134,11,0.03) 91px);
+            background: repeating-linear-gradient(108deg, transparent, transparent 90px, rgba(184,134,11,0.01) 90px, rgba(184,134,11,0.01) 91px);
             pointer-events: none;
+            z-index: 2;
         }
         .hero-corner {
             position: absolute;
             width: 60px; height: 60px;
             opacity: 0.4;
+            z-index: 2;
         }
         .hero-corner.tl { top: 90px; left: 40px; border-top: 1px solid var(--gold-warm); border-left: 1px solid var(--gold-warm); }
         .hero-corner.tr { top: 90px; right: 40px; border-top: 1px solid var(--gold-warm); border-right: 1px solid var(--gold-warm); }
         .hero-corner.bl { bottom: 40px; left: 40px; border-bottom: 1px solid var(--gold-warm); border-left: 1px solid var(--gold-warm); }
         .hero-corner.br { bottom: 40px; right: 40px; border-bottom: 1px solid var(--gold-warm); border-right: 1px solid var(--gold-warm); }
-        .hero-content { position: relative; z-index: 2; text-align: center; max-width: 56rem; }
+
+        .hero-content { position: relative; z-index: 3; text-align: center; max-width: 56rem; }
+
+        /* ── HERO TAG — made bigger ── */
         .hero-tag {
             display: inline-block;
             color: var(--gold-bright);
-            font-size: 9px;
-            letter-spacing: 0.55em;
+            font-size: 13px;           /* was 9px, now bigger */
+            letter-spacing: 0.45em;
             text-transform: uppercase;
             margin-bottom: 1.8rem;
-            font-weight: 400;
+            font-weight: 500;
         }
-        .hero-tag::before, .hero-tag::after { content: '◆'; font-size: 6px; margin: 0 12px; opacity: 0.7; vertical-align: middle; }
+        .hero-tag::before, .hero-tag::after { content: '◆'; font-size: 8px; margin: 0 12px; opacity: 0.7; vertical-align: middle; }
+
         .hero-h1 {
             font-family: 'Cormorant Garamond', serif;
             font-size: clamp(3rem, 9vw, 7.5rem);
@@ -223,7 +226,7 @@
             display: block;
         }
         .hero-p {
-            color: rgba(240,234,214,0.55);
+            color: rgba(240,234,214,0.70);
             max-width: 32rem;
             margin: 0 auto 2.5rem;
             font-weight: 300;
@@ -342,7 +345,6 @@
         #equipment h2 { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 2.5rem; color: var(--white) !important; margin-bottom: 0.75rem; }
         #equipment .equip-quote { color: rgba(240,234,214,0.40) !important; font-size: 0.8rem; font-style: italic; letter-spacing: 0.06em; margin-bottom: 3.5rem; }
 
-        /* ── GEAR MODAL image containers ── */
         #gearModal .grid .img-container { width: 100%; padding-top: 70.3%; position: relative; height: 0; }
         #gearModal .grid .img-container img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
         #gearModal .grid .img-container.gobo { padding-top: 34.9%; grid-column: span 2; }
@@ -424,7 +426,6 @@
         footer .footer-tag { font-size: 8px; letter-spacing: 0.35em; text-transform: uppercase; color: rgba(255,255,255,0.22); margin-bottom: 1rem; }
         footer .footer-phone { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold-bright) !important; letter-spacing: 0.06em; }
 
-        /* ── MOBILE ADJUSTMENTS ── */
         @media (max-width: 767px) {
             .rate-card-featured { transform: scale(1); margin: 0.5rem 0; }
             .hero-corner { display: none; }
@@ -435,14 +436,12 @@
 </head>
 <body>
 
-    <!-- Custom cursor (desktop only) -->
     <div class="cursor" id="cursor" aria-hidden="true"></div>
     <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 
     <!-- ══ NAV ══ -->
     <nav aria-label="Twiin X navigation">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- LEFT: Back to Rada + Brand -->
             <div class="flex items-center gap-6">
                 <a href="index.html" class="back-to-rada" aria-label="Back to Rada Photography">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
@@ -451,15 +450,11 @@
                 <span class="text-[rgba(184,134,11,0.3)] hidden sm:inline">|</span>
                 <span class="nav-brand">TWIIN <span style="color:var(--gold-bright)">X</span></span>
             </div>
-
-            <!-- CENTER: desktop nav links -->
             <div class="hidden md:flex space-x-10">
                 <a href="#studios" class="nav-link-tx">Studios</a>
                 <a href="#equipment" class="nav-link-tx">Equipment</a>
                 <a href="#rates" class="nav-link-tx">Rates</a>
             </div>
-
-            <!-- RIGHT: Book + mobile hamburger -->
             <div class="flex items-center gap-4">
                 <a href="https://wa.me/917845091708" target="_blank" rel="noopener noreferrer" class="btn-gold px-6 py-2 text-[10px] tracking-widest font-bold hidden sm:inline-block">
                     BOOK SLOT
@@ -471,8 +466,6 @@
                 </button>
             </div>
         </div>
-
-        <!-- Mobile menu -->
         <div id="tx-mobile-menu" class="hidden md:hidden">
             <a href="index.html">← Back to Rada Photography</a>
             <a href="#studios">Studios</a>
@@ -506,7 +499,6 @@
         <div class="max-w-7xl mx-auto">
             <div class="gold-divider-center"><span>Our Studios</span></div>
             <div class="grid md:grid-cols-2 gap-20">
-
                 <div class="studio-card" onclick="openModal('studio1Modal')" role="button" tabindex="0" aria-haspopup="dialog" aria-label="View Studio I: Signature One">
                     <div class="studio-num" aria-hidden="true">01</div>
                     <div class="img-container aspect-video mb-6">
@@ -518,7 +510,6 @@
                         <span class="studio-bar" aria-hidden="true"></span>
                     </div>
                 </div>
-
                 <div class="studio-card" onclick="openModal('studio2Modal')" role="button" tabindex="0" aria-haspopup="dialog" aria-label="View Studio II: Multiple Story">
                     <div class="studio-num" aria-hidden="true">02</div>
                     <div class="img-container aspect-video mb-6">
@@ -530,7 +521,6 @@
                         <span class="studio-bar" aria-hidden="true"></span>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -654,7 +644,6 @@
     </footer>
 
     <script>
-        // ── MODAL ──
         function openModal(id) {
             document.getElementById(id).classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -663,25 +652,16 @@
             document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
             document.body.style.overflow = '';
         }
-        // Close on backdrop click
         document.querySelectorAll('.modal').forEach(modal => {
             modal.addEventListener('click', e => { if (e.target === modal) closeModals(); });
         });
-        // Close on Escape key
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModals(); });
-
-        // Keyboard accessible studio cards
         document.querySelectorAll('.studio-card[role="button"]').forEach(card => {
             card.addEventListener('keydown', e => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    card.click();
-                }
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
             });
         });
-
-        // ── CUSTOM CURSOR (desktop only) ──
-        const cursor     = document.getElementById('cursor');
+        const cursor = document.getElementById('cursor');
         const cursorRing = document.getElementById('cursorRing');
         if (window.matchMedia('(pointer: fine)').matches && cursor) {
             let mx = 0, my = 0, rx = 0, ry = 0;
@@ -702,10 +682,8 @@
                 el.addEventListener('mouseleave', () => { cursorRing.style.width = '36px'; cursorRing.style.height = '36px'; cursorRing.style.borderColor = 'rgba(196,154,24,0.6)'; });
             });
         }
-
-        // ── MOBILE MENU ──
-        const txMenuBtn  = document.getElementById('tx-menu-btn');
-        const txMobMenu  = document.getElementById('tx-mobile-menu');
+        const txMenuBtn = document.getElementById('tx-menu-btn');
+        const txMobMenu = document.getElementById('tx-mobile-menu');
         txMenuBtn.addEventListener('click', () => {
             const isOpen = !txMobMenu.classList.contains('hidden');
             txMobMenu.classList.toggle('hidden');
