@@ -19,10 +19,10 @@
     <meta name="twitter:title" content="Rada Photography – Coimbatore" />
     <meta name="twitter:description" content="Wedding, portrait & product photographer in Coimbatore, Tamil Nadu." />
 
-    <!-- Fonts -->
+    <!-- Fonts: Cormorant Garamond (ultra-luxury display) + Jost (clean body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
     <!-- AOS for mobile animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
@@ -31,7 +31,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
-    <!-- Tailwind (flag: replace with compiled CSS before production launch) -->
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- LocalBusiness Schema -->
@@ -70,17 +70,27 @@
     </script>
 
     <style>
+        /* ══════════════════════════════════
+           CSS VARIABLES
+           ══════════════════════════════════ */
         :root {
-            --gold: #D4AF37;
-            --dark-bg: #0D0D0D;
-            --off-white: #E0E0E0;
-            --whatsapp-green: #25D366;
+            /* Two-tone gold gradient — rich warm gold → deep antique gold */
+            --gold-light:    #F0D060;
+            --gold-mid:      #D4AF37;
+            --gold-dark:     #9A7B1A;
+            --gold-gradient: linear-gradient(135deg, #F0D060 0%, #D4AF37 45%, #9A7B1A 100%);
+            --gold-gradient-h: linear-gradient(90deg, #F0D060 0%, #D4AF37 50%, #9A7B1A 100%);
+
+            --dark-bg:       #0D0D0D;
+            --dark-2:        #0a0a0a;
+            --off-white:     #E0E0E0;
+            --whatsapp-green:#25D366;
         }
 
         *, *::before, *::after { box-sizing: border-box; }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Jost', sans-serif;
             background-color: var(--dark-bg);
             color: var(--off-white);
             margin: 0;
@@ -89,17 +99,35 @@
         body::-webkit-scrollbar { display: none; }
         body { -ms-overflow-style: none; scrollbar-width: none; }
 
-        h1, h2, h3 { font-family: 'Playfair Display', serif; color: #FFFFFF; }
-        .text-gold { color: var(--gold); }
+        /* ── TYPOGRAPHY ── */
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            color: #FFFFFF;
+        }
+
+        /* ── GRADIENT GOLD TEXT ── */
+        .text-gold {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Gradient for small elements (labels, stars, etc) that need flat gold color */
+        .gold-flat { color: var(--gold-mid); }
 
         /* ── DANCING LETTERS ── */
         .dancing-letter {
             display: inline-block;
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease;
         }
+        /* On hover: gradient text effect via filter instead of color (works on spans) */
         .dancing-letter:hover {
             transform: translateY(-15px) rotate(10deg) scale(1.3);
-            color: var(--gold);
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         /* ── PRELOADER ── */
@@ -112,20 +140,39 @@
             align-items: center;
             justify-content: center;
         }
-        #loader-bar { width: 2px; height: 0; background: var(--gold); }
+        #loader-bar {
+            width: 2px;
+            height: 0;
+            background: var(--gold-gradient);
+        }
 
         /* ── HEADER ── */
         #header { transition: background-color 0.3s ease; }
         #header.solid {
-            background: rgba(13,13,13,0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212,175,55,0.15);
+            background: rgba(13,13,13,0.97);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(212,175,55,0.2);
         }
+
+        /* LOGO text gradient */
+        .logo-text {
+            background: var(--gold-gradient-h);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+        }
+
         .nav-link {
             position: relative;
             font-weight: 500;
+            font-family: 'Jost', sans-serif;
             color: #a0a0a0;
             transition: color 0.3s;
+            letter-spacing: 0.05em;
+            font-size: 0.9rem;
         }
         .nav-link:hover, .nav-link.active { color: #fff; }
         .nav-link::after {
@@ -133,8 +180,8 @@
             position: absolute;
             bottom: -4px; left: 50%;
             transform: translateX(-50%);
-            width: 0; height: 2px;
-            background: var(--gold);
+            width: 0; height: 1px;
+            background: var(--gold-gradient-h);
             transition: width 0.3s;
         }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
@@ -155,7 +202,8 @@
         .background-text {
             position: absolute;
             font-size: 20vw;
-            color: rgba(255,255,255,0.05);
+            font-family: 'Cormorant Garamond', serif;
+            color: rgba(255,255,255,0.04);
             font-weight: 700;
             white-space: nowrap;
             pointer-events: none;
@@ -165,7 +213,7 @@
             z-index: 0;
         }
 
-        /* ── PANEL BACKGROUND IMAGES ── */
+        /* ── PANEL BG IMAGES ── */
         .panel-bg {
             position: absolute;
             inset: 0;
@@ -179,7 +227,7 @@
         .panel-portrait .panel-bg { background-image: url('portraitphotos/8481.jpg'); }
         .panel-product .panel-bg  { background-image: url('product/61.jpg'); }
 
-        /* ── PANEL CONTENT — absolutely centered over panel ── */
+        /* ── PANEL CONTENT ── */
         .panel-content {
             position: absolute;
             top: calc(50% + 35px);
@@ -200,8 +248,6 @@
             width: 100%;
             height: 100%;
         }
-
-        /* Wedding: left tall | right 2 stacked */
         .grid-wedding {
             grid-template-columns: 1.1fr 0.9fr;
             grid-template-rows: minmax(0,1fr) minmax(0,1fr);
@@ -210,7 +256,6 @@
         .grid-wedding .gi-2 { grid-column:2; grid-row:1/2; }
         .grid-wedding .gi-3 { grid-column:2; grid-row:2/3; }
 
-        /* Portrait: left tall | centre 2 stacked | right tall */
         .grid-portrait {
             grid-template-columns: 1fr 1.2fr 1fr;
             grid-template-rows: minmax(0,1fr) minmax(0,1fr);
@@ -220,7 +265,6 @@
         .grid-portrait .gi-3 { grid-column:2; grid-row:2/3; }
         .grid-portrait .gi-4 { grid-column:3; grid-row:1/3; }
 
-        /* Product: left tall | right 2 stacked | bottom wide */
         .grid-product {
             grid-template-columns: 1fr 1.2fr 1fr;
             grid-template-rows: minmax(0,1fr) minmax(0,1fr);
@@ -246,9 +290,9 @@
             position: relative;
         }
 
-        /* ── HERO BACKGROUND ── */
+        /* ── HERO ── */
         #home {
-            background-image: url('dp/bg.jpg');
+            background-image: url('weddingphotos/558 (1).jpg');
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
@@ -257,24 +301,71 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.55);
+            background: rgba(0,0,0,0.55);
             z-index: 0;
         }
         #home > div { position: relative; z-index: 1; }
+
+        /* ── BUTTONS ── */
+        /* Outline gold — gradient border, dark fill, on hover: gold fill + dark text */
         .btn-outline-gold {
-            border: 2px solid var(--gold);
-            color: var(--gold);
-            padding: 0.75rem 2rem;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.85rem 2.5rem;
             border-radius: 50px;
-            transition: all 0.3s;
-        }
-        .btn-outline-gold:hover { background: var(--gold); color: var(--dark-bg); }
-        .btn-solid-gold {
-            background: var(--gold);
-            color: var(--dark-bg);
-            padding: 0.75rem 2rem;
-            border-radius: 50px;
+            font-family: 'Jost', sans-serif;
             font-weight: 600;
+            font-size: 0.82rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            overflow: hidden;
+            /* gradient border via background trick */
+            background: linear-gradient(var(--dark-bg), var(--dark-bg)) padding-box,
+                        var(--gold-gradient) border-box;
+            border: 2px solid transparent;
+            color: var(--gold-mid);
+            transition: color 0.35s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-outline-gold::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gold-gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.35s ease;
+            border-radius: 50px;
+            z-index: 0;
+        }
+        .btn-outline-gold:hover { color: #0D0D0D; }
+        .btn-outline-gold:hover::before { transform: scaleX(1); }
+        .btn-outline-gold > span { position: relative; z-index: 1; }
+
+        /* Solid gold button */
+        .btn-solid-gold {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.85rem 2.5rem;
+            border-radius: 50px;
+            background: var(--gold-gradient);
+            color: #0D0D0D;
+            font-family: 'Jost', sans-serif;
+            font-weight: 700;
+            font-size: 0.82rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: opacity 0.3s, transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+        }
+        .btn-solid-gold:hover {
+            opacity: 0.9;
+            transform: scale(1.03);
+            box-shadow: 0 8px 30px rgba(212,175,55,0.35);
         }
 
         /* ── WHATSAPP FLOAT ── */
@@ -293,12 +384,45 @@
         }
         .whatsapp-float:hover { transform: scale(1.1); }
 
+        /* ── ABOUT SECTION ── */
+        #about-us .philosophy-tag {
+            font-family: 'Jost', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.6em;
+            text-transform: uppercase;
+            background: var(--gold-gradient-h);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Est badge gradient */
+        .est-badge {
+            background: var(--gold-gradient);
+            color: #0D0D0D;
+        }
+
+        /* ── STATS ── */
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
         /* ── TESTIMONIALS ── */
         .testimonial-scroller { overflow: hidden; }
         .scroller-inner {
             display: flex;
             gap: 2rem;
-            animation: scroll 20s linear infinite;
+            animation: scroll 22s linear infinite;
         }
         .scroller-inner:hover { animation-play-state: paused; }
         @keyframes scroll {
@@ -307,23 +431,46 @@
         }
         .review-card {
             min-width: 320px;
-            background: rgba(255,255,255,0.03);
+            background: rgba(255,255,255,0.025);
             border: 1px solid rgba(212,175,55,0.15);
             border-radius: 12px;
             padding: 2rem;
             text-align: left;
             flex-shrink: 0;
+            transition: border-color 0.3s;
         }
-        .review-card p { color: #ccc; font-size: 0.95rem; line-height: 1.7; margin-bottom: 1rem; }
-        .review-stars { color: var(--gold); font-size: 1.1rem; margin-bottom: 0.5rem; }
-        .client-name { color: var(--gold); font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; }
+        .review-card:hover { border-color: rgba(212,175,55,0.4); }
+        .review-card p {
+            color: #bbb;
+            font-size: 0.95rem;
+            line-height: 1.75;
+            margin-bottom: 1rem;
+            font-family: 'Jost', sans-serif;
+        }
+        .review-stars {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            background: var(--gold-gradient-h);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .client-name {
+            font-family: 'Jost', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            background: var(--gold-gradient-h);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
         /* ══════════════════════════════════
-           MOBILE OVERRIDES — FIXED
+           MOBILE OVERRIDES
            ══════════════════════════════════ */
         @media (max-width: 767px) {
-
-            /* ── HERO: center + correct font size so words don't break mid-word ── */
             #home {
                 padding-top: 100px;
                 padding-bottom: 60px;
@@ -331,28 +478,16 @@
                 min-height: 100svh;
                 text-align: center;
             }
-
-            /* Hero H1 — scale down so "Timeless Moments," fits on 2 clean lines */
             #home h1.dance-target {
-                font-size: 2.6rem !important;
-                line-height: 1.15 !important;
+                font-size: 2.8rem !important;
+                line-height: 1.1 !important;
                 word-break: keep-all !important;
                 overflow-wrap: normal !important;
                 text-align: center !important;
             }
+            #home h1.dance-target .dancing-letter { display: inline !important; }
+            #home h1.dance-target span.block { display: block !important; white-space: normal !important; }
 
-            /* dancing-letter spans inside hero — keep them inline but allow natural wrap */
-            #home h1.dance-target .dancing-letter {
-                display: inline !important;
-            }
-
-            /* Each text line block inside hero h1 */
-            #home h1.dance-target span.block {
-                display: block !important;
-                white-space: normal !important;
-            }
-
-            /* ── PORTFOLIO PANEL CONTAINER ── */
             #horizontal-container {
                 width: 100%;
                 height: auto;
@@ -368,29 +503,18 @@
                 justify-content: center;
                 padding: 90px 16px 48px;
             }
-            .panel-bg {
-                position: absolute !important;
-                inset: 0 !important;
-            }
-            /* Reset absolute centering — become normal flow on mobile */
+            .panel-bg { position: absolute !important; inset: 0 !important; }
             .panel-content {
                 position: relative !important;
-                top: auto !important;
-                left: auto !important;
+                top: auto !important; left: auto !important;
                 transform: none !important;
-                width: 100% !important;
-                height: auto !important;
-                max-width: 100% !important;
-                max-height: none !important;
-                padding: 0 !important;
-                display: block !important;
+                width: 100% !important; height: auto !important;
+                max-width: 100% !important; max-height: none !important;
+                padding: 0 !important; display: block !important;
             }
-            /* Mobile grid: 2-col layout */
             .photo-grid {
-                width: 100% !important;
-                height: auto !important;
-                max-height: none !important;
-                gap: 8px !important;
+                width: 100% !important; height: auto !important;
+                max-height: none !important; gap: 8px !important;
             }
             .grid-wedding,
             .grid-portrait,
@@ -398,7 +522,6 @@
                 grid-template-columns: 1fr 1fr !important;
                 grid-template-rows: 200px 160px !important;
             }
-            /* First image spans full width */
             .photo-grid .gi-1 {
                 grid-column: 1 / 3 !important;
                 grid-row: 1 / 2 !important;
@@ -409,98 +532,46 @@
             .photo-grid .gi-4 { display: none !important; }
             .photo-grid img { height: 100% !important; border-radius: 8px !important; }
 
-            /* ── ABOUT SECTION ── */
-            #about-us {
-                padding-top: 40px;
-                padding-bottom: 40px;
-            }
-
-            /* Force the lg:grid-cols-2 grid to stack vertically */
+            #about-us { padding-top: 40px; padding-bottom: 40px; }
             #about-us .container > div.grid {
                 display: flex !important;
                 flex-direction: column !important;
                 gap: 28px !important;
             }
-
-            /* Image block height on mobile */
             #about-us .relative.h-\[500px\],
             #about-us .relative.h-\[700px\] {
-                height: 300px !important;
-                width: 100% !important;
+                height: 300px !important; width: 100% !important;
             }
-
-            /* Center the entire text column */
-            #about-us .text-left {
-                text-align: center !important;
-                padding: 0 8px !important;
-            }
-
-            /* Tag line */
-            #about-us .text-left > span {
-                display: block !important;
-                text-align: center !important;
-            }
-
-            /* Heading */
+            #about-us .text-left { text-align: center !important; padding: 0 8px !important; }
+            #about-us .text-left > span { display: block !important; text-align: center !important; }
             #about-us .dance-target {
-                font-size: 1.75rem !important;
-                line-height: 1.25 !important;
+                font-size: 2rem !important;
+                line-height: 1.2 !important;
                 margin-bottom: 1rem !important;
                 text-align: center !important;
                 display: block !important;
                 width: 100% !important;
             }
-            #about-us .dance-target .dancing-letter {
-                display: inline !important;
-            }
-
-            /* Body paragraphs */
+            #about-us .dance-target .dancing-letter { display: inline !important; }
             #about-us .space-y-5 p,
             #about-us .space-y-6 p {
                 text-align: center !important;
                 font-size: 0.97rem !important;
-                line-height: 1.7 !important;
+                line-height: 1.75 !important;
             }
-
-            /* ── DISCOVER OUR STORY BUTTON ── */
-            #about-us .mt-4.group,
-            #about-us .mt-12.group {
+            #about-us .btn-wrap {
                 display: flex !important;
                 justify-content: center !important;
-                margin-top: 1.5rem !important;
-            }
-            #about-us .mt-4.group a,
-            #about-us .mt-12.group a {
-                display: inline-flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                width: auto !important;
-                min-width: 220px !important;
-                padding: 0.75rem 2rem !important;
-                font-size: 0.85rem !important;
-                letter-spacing: 0.08em !important;
-                position: relative !important;
-                overflow: hidden !important;
-                border-radius: 50px !important;
+                margin-top: 2rem !important;
             }
 
-            /* ── CLIENT REVIEWS: auto-scroll ── */
             .scroller-inner {
                 display: flex !important;
                 gap: 1.25rem;
                 animation: scroll 22s linear infinite;
                 width: max-content;
             }
-
-            .scroller-inner:hover {
-                animation-play-state: paused;
-            }
-
-            .review-card {
-                min-width: 270px;
-                max-width: 270px;
-                white-space: normal;
-            }
+            .review-card { min-width: 270px; max-width: 270px; }
         }
     </style>
 </head>
@@ -510,16 +581,16 @@
         <div id="loader-bar"></div>
     </div>
 
-    <!-- HEADER -->
+    <!-- ══ HEADER ══ -->
     <header id="header" class="fixed top-0 left-0 right-0 z-50">
         <div class="container mx-auto px-4 sm:px-7 py-5 flex justify-between items-center">
             <a href="index.html" class="flex items-center" aria-label="Rada Photography Home">
-                <img src="dp/rada logo.jpeg"
+                <img src="dp/dp2.PNG"
                      onerror="this.src='https://placehold.co/100x100/D4AF37/0D0D0D?text=R'"
                      alt="Rada Photography Studio Logo"
                      class="h-10 sm:h-12 mr-3 sm:mr-4 rounded-full object-cover w-10 sm:w-12"
                      width="48" height="48">
-                <span class="text-xl sm:text-3xl font-bold tracking-wider text-gold">RADA PHOTOGRAPHY</span>
+                <span class="logo-text text-xl sm:text-3xl">RADA PHOTOGRAPHY</span>
             </a>
             <nav class="hidden md:flex items-center space-x-6 lg:space-x-10" aria-label="Main navigation">
                 <a href="index.html" class="nav-link active">Home</a>
@@ -530,19 +601,19 @@
                 <a href="contact.html" class="nav-link">Contact</a>
             </nav>
             <button id="mobile-menu-button" class="md:hidden focus:outline-none" aria-label="Toggle mobile menu" aria-expanded="false">
-                <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <svg class="w-6 h-6" style="color:var(--gold-mid);" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
             </button>
         </div>
         <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-97 border-b border-gold border-opacity-20" role="navigation" aria-label="Mobile navigation">
-            <a href="index.html" class="block text-center py-4 text-lg text-gold hover:bg-white hover:bg-opacity-5 transition">Home</a>
-            <a href="twinx.html" class="block text-center py-4 text-lg text-gold hover:bg-white hover:bg-opacity-5 transition">Twinx</a>
-            <a href="about.html" class="block text-center py-4 text-lg text-gold hover:bg-white hover:bg-opacity-5 transition">About</a>
-            <a href="portfolio.html" class="block text-center py-4 text-lg text-gold hover:bg-white hover:bg-opacity-5 transition">Portfolio</a>
-            <a href="services.html" class="block text-center py-4 text-lg text-gold hover:bg-white hover:bg-opacity-5 transition">Services</a>
-            <a href="contact.html" class="block text-center py-4 text-lg text-gold hover:bg-white hover:bg-opacity-5 transition">Contact</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-97 border-b border-opacity-20" style="border-color:var(--gold-mid);" role="navigation" aria-label="Mobile navigation">
+            <a href="index.html" class="block text-center py-4 text-lg hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold-mid);">Home</a>
+            <a href="twinx.html" class="block text-center py-4 text-lg hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold-mid);">Twinx</a>
+            <a href="about.html" class="block text-center py-4 text-lg hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold-mid);">About</a>
+            <a href="portfolio.html" class="block text-center py-4 text-lg hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold-mid);">Portfolio</a>
+            <a href="services.html" class="block text-center py-4 text-lg hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold-mid);">Services</a>
+            <a href="contact.html" class="block text-center py-4 text-lg hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold-mid);">Contact</a>
         </div>
     </header>
 
@@ -553,22 +624,22 @@
         </svg>
     </a>
 
-    <!-- MAIN CONTENT -->
+    <!-- ══ MAIN ══ -->
     <main id="main-content" style="visibility:hidden;opacity:0;">
 
         <!-- HERO -->
         <section id="home" class="h-screen flex items-center justify-center text-center px-4 overflow-hidden" style="position:relative;">
             <div class="max-w-6xl mx-auto">
-                <h1 class="dance-target text-5xl sm:text-6xl md:text-8xl font-bold text-white leading-tight">
-                    <span class="block mb-2">Timeless Moments,</span>
-                    <span class="block text-gold">Artfully Captured.</span>
+                <h1 class="dance-target text-5xl sm:text-6xl md:text-8xl font-bold text-white" style="line-height:1;">
+                    <span class="block" style="line-height:1;">Timeless Moments</span>
+                    <span class="block text-gold" style="line-height:1; margin-top:-0.1em;">Artfully Captured.</span>
                 </h1>
-                <p class="text-base sm:text-lg text-gray-300 mt-8 max-w-2xl mx-auto opacity-80">
+                <p class="text-base sm:text-lg text-gray-300 mt-8 max-w-2xl mx-auto opacity-80" style="font-family:'Jost',sans-serif; font-weight:300; letter-spacing:0.03em;">
                     Coimbatore's premier visual storyteller — freezing genuine emotions into beautiful, lasting memories.
                 </p>
                 <div class="mt-16 flex flex-col items-center">
-                    <p class="text-gray-400 text-[10px] sm:text-xs tracking-[0.5em] uppercase mb-4">Scroll to Explore</p>
-                    <div class="w-[1px] h-12 bg-gradient-to-b from-gold to-transparent" style="background: linear-gradient(to bottom, var(--gold), transparent);"></div>
+                    <p class="text-gray-400 text-[10px] sm:text-xs tracking-[0.5em] uppercase mb-4" style="font-family:'Jost',sans-serif;">Scroll to Explore</p>
+                    <div class="w-[1px] h-12" style="background: linear-gradient(to bottom, var(--gold-mid), transparent);"></div>
                 </div>
             </div>
         </section>
@@ -578,25 +649,25 @@
             <div id="horizontal-container">
                 <section class="panel panel-wedding" aria-label="Wedding Photography">
                     <div class="panel-bg" aria-hidden="true"></div>
-                    <h2 class="background-text" aria-hidden="true">WEDDINGS</h2>
+                    <h2 class="background-text" aria-hidden="true"></h2>
                     <div class="panel-content">
                         <div class="photo-grid grid-wedding">
                             <img src="weddingphotos/553 (1).jpg" class="gi-1" loading="lazy" alt="Wedding couple by Rada Photography Coimbatore">
-                            <img src="weddingphotos/1000 (1).jpg" class="gi-2" loading="lazy" alt="Wedding candid by Rada Photography">
+                            <img src="weddingphotos/4402.jpg" class="gi-2" loading="lazy" alt="Wedding candid by Rada Photography">
                             <img src="weddingphotos/464 (2).jpg" class="gi-3" loading="lazy" alt="Bride and groom by Rada Photography">
                         </div>
                     </div>
-                    <a href="wedding.html" class="hidden-desktop mt-6 text-gold uppercase tracking-widest text-xs border border-gold px-6 py-3 rounded-full" style="display:none;">View Wedding Gallery →</a>
+                    <a href="wedding.html" class="hidden-desktop mt-6 uppercase tracking-widest text-xs px-6 py-3 rounded-full" style="display:none; border:1px solid var(--gold-mid); color:var(--gold-mid);">View Wedding Gallery →</a>
                 </section>
 
                 <section class="panel panel-portrait" aria-label="Portrait Photography">
                     <div class="panel-bg" aria-hidden="true"></div>
-                    <h2 class="background-text" aria-hidden="true">PORTRAITS</h2>
+                    <h2 class="background-text" aria-hidden="true"></h2>
                     <div class="panel-content">
                         <div class="photo-grid grid-portrait">
                             <img src="portraitphotos/6481.jpg" class="gi-1" loading="lazy" alt="Fine art portrait by Rada Photography Studio">
                             <img src="portraitphotos/8481.jpg" class="gi-2" loading="lazy" alt="Professional portrait Coimbatore">
-                            <img src="portraitphotos/DSC02221 (1).jpg" class="gi-3" loading="lazy" alt="Studio portrait by Rada Photography">
+                            <img src="weddingphotos/DSC05140 (1).jpg" class="gi-3" loading="lazy" alt="Studio portrait by Rada Photography">
                             <img src="portraitphotos/2831.jpg" class="gi-4" loading="lazy" alt="Portrait photography Coimbatore">
                         </div>
                     </div>
@@ -604,118 +675,125 @@
 
                 <section class="panel panel-product" aria-label="Product Photography">
                     <div class="panel-bg" aria-hidden="true"></div>
-                    <h2 class="background-text" aria-hidden="true">PRODUCTS</h2>
+                    <h2 class="background-text" aria-hidden="true"></h2>
                     <div class="panel-content">
                         <div class="photo-grid grid-product">
                             <img src="product/81.jpg" class="gi-1" loading="lazy" alt="Commercial product photography Coimbatore">
                             <img src="product/71.jpg" class="gi-2" loading="lazy" alt="Brand product photography by Rada Photography">
                             <img src="product/52.jpg" class="gi-3" loading="lazy" alt="Product studio shot by Rada Photography">
-                            <img src="product/101.jpg" class="gi-4" loading="lazy" alt="Product photography Coimbatore Tamil Nadu">
+                            <img src="product/91.jpg" class="gi-4" loading="lazy" alt="Product photography Coimbatore Tamil Nadu">
                         </div>
                     </div>
                 </section>
-
             </div>
         </div>
 
-        <!-- ABOUT -->
-        <section id="about-us" class="py-24 sm:py-40 bg-[#0a0a0a] overflow-hidden">
+        <!-- ══ ABOUT ══ -->
+        <section id="about-us" class="py-24 sm:py-40 overflow-hidden" style="background:#0a0a0a;">
             <div class="container mx-auto px-6">
                 <div class="grid lg:grid-cols-2 gap-20 items-center">
+
+                    <!-- Images -->
                     <div class="relative h-[500px] sm:h-[700px] flex items-center justify-center mobile-fade">
-                        <div class="absolute w-64 h-64 border border-gold opacity-10 -top-10 -left-10 hidden sm:block" aria-hidden="true">
+                        <div class="absolute w-64 h-64 opacity-10 -top-10 -left-10 hidden sm:block" style="border:1px solid var(--gold-mid);" aria-hidden="true">
                             <img src="abt us.img/DSC02196 (1).jpg" loading="lazy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" alt="Ajay Rada, professional photographer in Coimbatore" width="600" height="800">
                         </div>
                         <div class="absolute w-3/5 h-4/5 z-10 overflow-hidden rounded-sm shadow-2xl transition-transform duration-700 hover:scale-[1.02]">
                             <img src="abt us.img/DSC02196 (1).jpg" loading="lazy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" alt="Ajay Rada, professional photographer in Coimbatore" width="600" height="800">
                         </div>
-                        <div class="absolute w-2/5 h-1/2 -bottom-10 -left-5 z-20 overflow-hidden rounded-sm shadow-2xl border-4 border-[#0a0a0a]">
+                        <div class="absolute w-2/5 h-1/2 -bottom-10 -left-5 z-20 overflow-hidden rounded-sm shadow-2xl" style="border:4px solid #0a0a0a;">
                             <img src="abt us.img/DSC02221 (1).jpg" loading="lazy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" alt="Behind the scenes at Rada Photography Studio Coimbatore" width="400" height="500">
                         </div>
-                        <div class="absolute w-1/3 h-2/5 -top-10 -right-5 z-20 overflow-hidden rounded-sm shadow-2xl border-4 border-[#0a0a0a]">
+                        <div class="absolute w-1/3 h-2/5 -top-10 -right-5 z-20 overflow-hidden rounded-sm shadow-2xl" style="border:4px solid #0a0a0a;">
                             <img src="abt us.img/849 (2).jpg" loading="lazy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" alt="Photography detail shot by Rada Photography" width="300" height="400">
                         </div>
-                        <div class="absolute right-0 bottom-20 z-30 bg-gold text-black px-6 py-2 font-bold tracking-widest text-xs uppercase -rotate-90 origin-right" aria-label="Established 2024">Est. 2024</div>
+                        <div class="est-badge absolute right-0 bottom-20 z-30 px-6 py-2 font-bold tracking-widest text-xs uppercase -rotate-90 origin-right" aria-label="Established 2024" style="font-family:'Jost',sans-serif;">Est. 2024</div>
                     </div>
 
+                    <!-- Text -->
                     <div class="text-left mobile-fade">
-                        <span class="text-xs uppercase tracking-[0.6em] text-gold mb-6 font-bold opacity-80 block">The Philosophy</span>
-                        <h2 class="dance-target text-4xl sm:text-5xl font-bold text-white leading-[1.1] mb-8">Framing Life Stories.</h2>
-                        <div class="space-y-5 text-gray-400 text-base sm:text-lg leading-relaxed max-w-xl mb-10">
+                        <span class="philosophy-tag">The Philosophy</span>
+                        <h2 class="dance-target text-4xl sm:text-5xl font-bold text-white mb-8" style="line-height:1.1;">Framing Life Stories.</h2>
+                        <div class="space-y-5 mb-10" style="color:#999; font-size:1rem; line-height:1.85; max-width:32rem;">
                             <p>Rada Photography is more than just a studio — it's a passion for storytelling through the lens. Based in Coimbatore, Tamil Nadu, we believe every click of the shutter is a chance to preserve a moment in time, capturing genuine emotions and authentic connections.</p>
                             <p>Our creative approach ensures we capture the essence of every subject, whether it's a grand wedding in Coimbatore or an intimate portrait session. We don't just take pictures; we craft visual legacies.</p>
                         </div>
-                        <div class="mt-4 group">
-                            <a href="about.html" class="btn-outline-gold relative inline-flex items-center overflow-hidden px-12 py-4 rounded-full border-2 border-gold text-gold font-bold transition-all duration-500 hover:text-black">
-                                <span class="relative z-10">DISCOVER OUR STORY</span>
-                                <div class="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500" aria-hidden="true"></div>
+                        <!-- BUTTON — below the philosophy text, not inside a group -->
+                        <div class="btn-wrap mt-10">
+                            <a href="about.html" class="btn-outline-gold">
+                                <span>Discover Our Story</span>
                             </a>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
 
-        <!-- STATS -->
-        <section id="stats" class="py-16 sm:py-20 bg-black bg-opacity-20" aria-label="Our achievements">
+        <!-- ══ STATS ══ -->
+        <section id="stats" class="py-16 sm:py-20" style="background:rgba(0,0,0,0.3);" aria-label="Our achievements">
             <div class="container mx-auto px-6 flex flex-col md:flex-row justify-around text-center">
                 <div class="stat-item mb-10 md:mb-0 mobile-fade">
-                    <h3 class="text-5xl sm:text-6xl font-bold text-gold"><span class="counter" data-target="100">0</span>%</h3>
-                    <p class="text-base sm:text-lg text-gray-300 mt-2">Customer Satisfaction</p>
+                    <div class="stat-number"><span class="counter" data-target="100">0</span>%</div>
+                    <p class="text-gray-400 mt-3" style="font-size:0.9rem; letter-spacing:0.06em; font-family:'Jost',sans-serif;">Customer Satisfaction</p>
                 </div>
                 <div class="stat-item mb-10 md:mb-0 mobile-fade">
-                    <h3 class="text-5xl sm:text-6xl font-bold text-gold"><span class="counter" data-target="250">0</span>+</h3>
-                    <p class="text-base sm:text-lg text-gray-300 mt-2">Sessions Completed</p>
+                    <div class="stat-number"><span class="counter" data-target="250">0</span>+</div>
+                    <p class="text-gray-400 mt-3" style="font-size:0.9rem; letter-spacing:0.06em; font-family:'Jost',sans-serif;">Sessions Completed</p>
                 </div>
                 <div class="stat-item mobile-fade">
-                    <h3 class="text-5xl sm:text-6xl font-bold text-gold"><span class="counter" data-target="120">0</span>+</h3>
-                    <p class="text-base sm:text-lg text-gray-300 mt-2">Wedding Albums</p>
+                    <div class="stat-number"><span class="counter" data-target="120">0</span>+</div>
+                    <p class="text-gray-400 mt-3" style="font-size:0.9rem; letter-spacing:0.06em; font-family:'Jost',sans-serif;">Wedding Albums</p>
                 </div>
             </div>
         </section>
 
-        <!-- TESTIMONIALS -->
+        <!-- ══ TESTIMONIALS ══ -->
         <section id="testimonials" class="py-16 sm:py-24 text-center overflow-hidden">
             <div class="container mx-auto px-4 sm:px-6">
-                <h3 class="text-lg uppercase tracking-widest text-gold">Testimonials</h3>
-                <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold mt-2">Client Reviews</h2>
+                <p class="text-xs uppercase tracking-[0.5em] font-semibold mb-3" style="color:var(--gold-mid); font-family:'Jost',sans-serif;">Testimonials</p>
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold">Client Reviews</h2>
                 <div class="testimonial-scroller mt-16">
                     <div class="scroller-inner">
-                        <div class="review-card"><p>"Absolutely breathtaking photos! Rada Photography captured our wedding day perfectly. Best photographer in Coimbatore!"</p><div class="review-stars">★★★★★</div><h4 class="client-name">- The Patels</h4></div>
-                        <div class="review-card"><p>"The most professional and creative photographer in Coimbatore. The product shots were sharp, vibrant and on-brand."</p><div class="review-stars">★★★★★</div><h4 class="client-name">- Aura Cosmetics</h4></div>
-                        <div class="review-card"><p>"Managed to capture the joy and chaos of our family beautifully. Portrait photography at its finest. Highly recommended!"</p><div class="review-stars">★★★★★</div><h4 class="client-name">- Sharma Family</h4></div>
-                        <!-- Duplicates for seamless scroll loop -->
-                        <div class="review-card"><p>"Absolutely breathtaking photos! Rada Photography captured our wedding day perfectly. Best photographer in Coimbatore!"</p><div class="review-stars">★★★★★</div><h4 class="client-name">- The Patels</h4></div>
-                        <div class="review-card"><p>"The most professional and creative photographer in Coimbatore. The product shots were sharp, vibrant and on-brand."</p><div class="review-stars">★★★★★</div><h4 class="client-name">- Aura Cosmetics</h4></div>
-                        <div class="review-card"><p>"Managed to capture the joy and chaos of our family beautifully. Portrait photography at its finest. Highly recommended!"</p><div class="review-stars">★★★★★</div><h4 class="client-name">- Sharma Family</h4></div>
+                        <div class="review-card"><p>"Absolutely breathtaking photos! Rada Photography captured our wedding day perfectly. Best photographer in Coimbatore!"</p><div class="review-stars">★★★★★</div><p class="client-name">— The Patels</p></div>
+                        <div class="review-card"><p>"The most professional and creative photographer in Coimbatore. The product shots were sharp, vibrant and on-brand."</p><div class="review-stars">★★★★★</div><p class="client-name">— Aura Cosmetics</p></div>
+                        <div class="review-card"><p>"Managed to capture the joy and chaos of our family beautifully. Portrait photography at its finest. Highly recommended!"</p><div class="review-stars">★★★★★</div><p class="client-name">— Sharma Family</p></div>
+                        <!-- Duplicates for seamless loop -->
+                        <div class="review-card"><p>"Absolutely breathtaking photos! Rada Photography captured our wedding day perfectly. Best photographer in Coimbatore!"</p><div class="review-stars">★★★★★</div><p class="client-name">— The Patels</p></div>
+                        <div class="review-card"><p>"The most professional and creative photographer in Coimbatore. The product shots were sharp, vibrant and on-brand."</p><div class="review-stars">★★★★★</div><p class="client-name">— Aura Cosmetics</p></div>
+                        <div class="review-card"><p>"Managed to capture the joy and chaos of our family beautifully. Portrait photography at its finest. Highly recommended!"</p><div class="review-stars">★★★★★</div><p class="client-name">— Sharma Family</p></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CTA -->
-        <section id="cta" class="py-16 sm:py-24 bg-black text-center border-t border-gold border-opacity-10">
+        <!-- ══ CTA ══ -->
+        <section id="cta" class="py-16 sm:py-24 bg-black text-center" style="border-top:1px solid rgba(212,175,55,0.12);">
             <div class="container mx-auto px-4 sm:px-6">
                 <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold">Start Your Story</h2>
-                <p class="mt-4 text-base sm:text-lg text-gray-400 max-w-2xl mx-auto">Contact Rada Photography for custom packages tailored to your vision and budget — serving all of Coimbatore and Tamil Nadu.</p>
-                <div class="mt-10 flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
-                    <a href="https://wa.me/917845091708" target="_blank" rel="noopener noreferrer" class="btn-solid-gold font-semibold text-lg w-full md:w-auto text-center px-8">WhatsApp Us Now</a>
-                    <a href="contact.html" class="btn-outline-gold font-semibold text-lg w-full md:w-auto text-center px-8">Contact Form</a>
+                <p class="mt-4 text-gray-400 max-w-2xl mx-auto" style="font-size:1rem; line-height:1.75; font-family:'Jost',sans-serif; font-weight:300;">
+                    Contact Rada Photography for custom packages tailored to your vision and budget — serving all of Coimbatore and Tamil Nadu.
+                </p>
+                <div class="mt-10 flex flex-col md:flex-row justify-center items-center gap-4">
+                    <a href="https://wa.me/917845091708" target="_blank" rel="noopener noreferrer" class="btn-solid-gold w-full md:w-auto px-10">WhatsApp Us Now</a>
+                    <a href="contact.html" class="btn-outline-gold w-full md:w-auto px-10"><span>Contact Form</span></a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="py-12 bg-[#050505] text-center text-gray-500 text-sm border-t border-gold border-opacity-10">
+    <footer class="py-12 text-center text-sm" style="background:#050505; color:#555; border-top:1px solid rgba(212,175,55,0.08);">
         <div class="container mx-auto px-6">
-            <p>&copy; 2025 Rada Photography Studio. All Rights Reserved.</p>
-            <p class="mt-2"><a href="mailto:radaphotographyofficial@gmail.com" class="text-gold hover:text-white transition">radaphotographyofficial@gmail.com</a> | <a href="tel:+917845091708" class="text-gold hover:text-white transition">+91 78450 91708</a></p>
+            <p style="font-family:'Jost',sans-serif;">&copy; 2025 Rada Photography Studio. All Rights Reserved.</p>
+            <p class="mt-2" style="font-family:'Jost',sans-serif;">
+                <a href="mailto:radaphotographyofficial@gmail.com" style="color:var(--gold-mid);" class="hover:text-white transition">radaphotographyofficial@gmail.com</a>
+                &nbsp;|&nbsp;
+                <a href="tel:+917845091708" style="color:var(--gold-mid);" class="hover:text-white transition">+91 78450 91708</a>
+            </p>
         </div>
     </footer>
 
-    <!-- AOS for mobile -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         const isMobile = window.innerWidth < 768;
@@ -746,55 +824,34 @@
 
         const tlLoader = gsap.timeline({ onComplete: initPage });
         tlLoader
-            .to(loaderBar,    { height: '100vh', duration: 0.6, ease: 'power2.inOut' })
-            .to(loaderBar,    { height: '0vh',   duration: 0.5, ease: 'power2.inOut' })
-            .to(preloader,    { opacity: 0, duration: 0.4, onComplete: () => preloader.style.display = 'none' })
-            .to(mainContent,  { visibility: 'visible', opacity: 1, duration: 0.3 }, '-=0.3');
+            .to(loaderBar,   { height: '100vh', duration: 0.6, ease: 'power2.inOut' })
+            .to(loaderBar,   { height: '0vh',   duration: 0.5, ease: 'power2.inOut' })
+            .to(preloader,   { opacity: 0, duration: 0.4, onComplete: () => preloader.style.display = 'none' })
+            .to(mainContent, { visibility: 'visible', opacity: 1, duration: 0.3 }, '-=0.3');
 
         function initPage() {
-            if (isMobile) {
-                initMobile();
-            } else {
-                initDesktop();
-            }
+            isMobile ? initMobile() : initDesktop();
             setupEventListeners();
         }
 
         // ── MOBILE ──
         function initMobile() {
-            // Show mobile CTAs in portfolio panels
-            document.querySelectorAll('.hidden-desktop').forEach(el => {
-                el.style.display = 'inline-block';
-            });
-
-            // IntersectionObserver for .mobile-fade elements
+            document.querySelectorAll('.hidden-desktop').forEach(el => el.style.display = 'inline-block');
             const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
+                entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
             }, { threshold: 0.15 });
-
             document.querySelectorAll('.mobile-fade').forEach(el => observer.observe(el));
 
-            // Counter animation on mobile
             const statSection = document.getElementById('stats');
             const counterObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateCounters();
-                        counterObserver.unobserve(entry.target);
-                    }
-                });
+                entries.forEach(e => { if (e.isIntersecting) { animateCounters(); counterObserver.unobserve(e.target); } });
             }, { threshold: 0.3 });
             if (statSection) counterObserver.observe(statSection);
         }
 
-        // ── DESKTOP: GSAP ScrollTrigger ──
+        // ── DESKTOP ──
         function initDesktop() {
             gsap.registerPlugin(ScrollTrigger);
-
             const container = document.querySelector('#horizontal-container');
             if (!container) return;
             const panels = gsap.utils.toArray('.panel');
@@ -813,20 +870,10 @@
 
             panels.forEach((panel, i) => {
                 const bgText = panel.querySelector('.background-text');
-                const collageImgs = panel.querySelectorAll('.collage-img');
                 if (bgText) {
                     gsap.from(bgText, {
                         x: i % 2 === 0 ? '-20%' : '20%',
                         scrollTrigger: { trigger: panel, containerAnimation: horizontalScroll, start: 'left right', end: 'right left', scrub: 1.5 }
-                    });
-                }
-                if (collageImgs.length) {
-                    collageImgs.forEach((img, j) => {
-                        gsap.from(img, {
-                            y: j % 2 === 0 ? -80 : 80,
-                            opacity: 0,
-                            scrollTrigger: { trigger: panel, containerAnimation: horizontalScroll, start: 'left 80%', end: 'center center', scrub: 2.5 }
-                        });
                     });
                 }
             });
@@ -836,9 +883,8 @@
                 opacity: 0, y: 50, duration: 1
             });
 
-            const statSection = document.getElementById('stats');
             ScrollTrigger.create({
-                trigger: statSection,
+                trigger: document.getElementById('stats'),
                 start: 'top 80%',
                 onEnter: animateCounters
             });
@@ -849,7 +895,7 @@
             });
         }
 
-        // ── SHARED: counter animation ──
+        // ── COUNTERS ──
         function animateCounters() {
             document.querySelectorAll('.counter').forEach(counter => {
                 if (counter.classList.contains('animated')) return;
@@ -879,8 +925,6 @@
                 mobileMenu.classList.toggle('hidden');
                 mobileMenuBtn.setAttribute('aria-expanded', String(!isOpen));
             });
-
-            // Close mobile menu when a link is clicked
             mobileMenu.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
                     mobileMenu.classList.add('hidden');

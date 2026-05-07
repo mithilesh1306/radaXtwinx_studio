@@ -9,16 +9,20 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
     <style>
         :root {
             --gold: #D4AF37;
+            --gold-light: #f0d060;
             --dark-bg: #0D0D0D;
+            --card-bg: #111111;
             --off-white: #E0E0E0;
         }
+
+        * { box-sizing: border-box; }
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -31,16 +35,15 @@
         }
         body.fade-in { opacity: 1; }
 
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            color: #FFFFFF;
-        }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: #FFFFFF; }
 
-        /* HEADER MATCHING INDEX */
+        .text-gold { color: var(--gold); }
+
+        /* ── HEADER ── */
         #header {
-            background-color: rgba(13, 13, 13, 0.95);
+            background-color: rgba(13,13,13,0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            border-bottom: 1px solid rgba(212,175,55,0.1);
         }
         .nav-link {
             position: relative;
@@ -59,63 +62,182 @@
         .nav-link:hover, .nav-link.active { color: #fff; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
 
-        /* LUXURY SERVICE CARDS */
+        /* ── HERO DIVIDER ── */
+        .section-label {
+            letter-spacing: 0.4em;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        /* ── SERVICE CARDS ── */
         .service-card {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 1rem;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            padding: 3rem 2rem;
+            background: var(--card-bg);
+            border-radius: 1.25rem;
+            border: 1px solid rgba(212,175,55,0.12);
+            transition: all 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
             position: relative;
             overflow: hidden;
         }
-        .service-card::before {
+        .service-card::after {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 2px;
-            background: var(--gold);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
+            inset: 0;
+            background: radial-gradient(ellipse at top left, rgba(212,175,55,0.06) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s;
         }
         .service-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-10px);
-            border-color: var(--gold);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            transform: translateY(-12px);
+            border-color: rgba(212,175,55,0.5);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(212,175,55,0.15);
         }
-        .service-card:hover::before {
-            transform: scaleX(1);
+        .service-card:hover::after { opacity: 1; }
+
+        .card-accent {
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            width: 0;
+            transition: width 0.5s ease;
+        }
+        .service-card:hover .card-accent { width: 100%; }
+
+        .service-icon {
+            width: 70px; height: 70px;
+            border-radius: 50%;
+            border: 1px solid rgba(212,175,55,0.3);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.5rem;
+            background: rgba(212,175,55,0.05);
+            transition: all 0.3s ease;
+        }
+        .service-card:hover .service-icon {
+            background: rgba(212,175,55,0.12);
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(212,175,55,0.2);
         }
 
-        /* GOLD BUTTON STYLE */
+        /* ── GOLD BUTTON ── */
         .btn-gold {
-            background-color: var(--gold);
-            color: var(--dark-bg);
-            font-weight: 600;
-            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, var(--gold), #b8941f);
+            color: #0D0D0D;
+            font-weight: 700;
+            padding: 0.9rem 2.2rem;
             border-radius: 50px;
             transition: all 0.3s ease;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(212,175,55,0.25);
         }
         .btn-gold:hover {
-            background-color: #fff;
-            color: var(--dark-bg);
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
             transform: scale(1.05);
+            box-shadow: 0 6px 30px rgba(212,175,55,0.45);
+            color: #0D0D0D;
+        }
+        .btn-gold svg { transition: transform 0.3s ease; }
+        .btn-gold:hover svg { transform: translateX(3px); }
+
+        /* ── FEATURE BULLETS ── */
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            text-align: left;
+        }
+        .feature-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        /* ── PROCESS SECTION ── */
+        .process-step {
+            position: relative;
+        }
+        .process-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 28px;
+            left: calc(50% + 28px);
+            width: calc(100% - 56px);
+            height: 1px;
+            background: linear-gradient(90deg, rgba(212,175,55,0.4), transparent);
+        }
+        .step-circle {
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            border: 1px solid var(--gold);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--gold);
+            background: rgba(212,175,55,0.05);
+        }
+
+        /* ── TESTIMONIAL ── */
+        .testimonial-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(212,175,55,0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            position: relative;
+        }
+        .testimonial-card::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: var(--gold);
+            opacity: 0.15;
+            position: absolute;
+            top: -10px; left: 20px;
+            line-height: 1;
+        }
+
+        /* ── GOLD DIVIDER ── */
+        .gold-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent);
+        }
+
+        /* ── CTA SECTION ── */
+        .cta-bg {
+            background: radial-gradient(ellipse at center, rgba(212,175,55,0.07) 0%, transparent 70%),
+                        linear-gradient(180deg, #0D0D0D 0%, #0a0a0a 100%);
+            border-top: 1px solid rgba(212,175,55,0.1);
+            border-bottom: 1px solid rgba(212,175,55,0.1);
+        }
+
+        /* star rating */
+        .stars { color: var(--gold); letter-spacing: 2px; }
+
+        @media (max-width: 767px) {
+            .process-step::after { display: none; }
         }
     </style>
 </head>
 <body>
 
+    <!-- ── HEADER ── -->
     <header id="header" class="fixed top-0 left-0 right-0 z-50">
         <div class="container mx-auto px-6 py-5 flex justify-between items-center">
             <a href="index.html" class="flex items-center">
-<img src="dp/rada logo.jpeg" 
-     onerror="this.src='https://placehold.co/100x100/D4AF37/0D0D0D?text=Logo'" 
-     alt="Logo" 
-     class="h-10 sm:h-12 mr-3 rounded-full w-10 sm:w-12">                <span class="text-2xl font-bold tracking-wider text-gold uppercase">Rada Photography</span>
+                <img src="dp/rada logo.jpeg"
+                     onerror="this.src='https://placehold.co/100x100/D4AF37/0D0D0D?text=Logo'"
+                     alt="Logo"
+                     class="h-10 sm:h-12 mr-3 rounded-full w-10 sm:w-12">
+                <span class="text-2xl font-bold tracking-wider text-gold uppercase">Rada Photography</span>
             </a>
             <nav class="hidden md:flex space-x-10">
                 <a href="index.html" class="nav-link">Home</a>
@@ -126,7 +248,8 @@
             </nav>
             <button id="mobile-menu-button" class="md:hidden text-gold focus:outline-none">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
             </button>
         </div>
@@ -139,23 +262,255 @@
         </div>
     </header>
 
-    <main class="pt-40 pb-20">
+    <!-- ── MAIN ── -->
+    <main class="pt-40 pb-0">
+
+        <!-- PAGE HERO -->
         <div class="container mx-auto px-6">
             <div class="text-center mb-20" data-aos="fade-down">
-                <h3 class="text-gold uppercase tracking-[0.4em] text-sm mb-3">Our Expertise</h3>
-                <h1 class="text-5xl md:text-7xl font-bold">Premium Services</h1>
-                <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Capturing timeless moments with technical precision and artistic vision.</p>
+                <p class="section-label mb-3">Our Expertise</p>
+                <h1 class="text-5xl md:text-7xl font-bold leading-tight">Premium Services</h1>
+                <div class="w-20 h-px bg-gold mx-auto my-6 opacity-60"></div>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto text-lg leading-relaxed">
+                    Capturing timeless moments with technical precision and artistic vision —
+                    tailored exclusively for your most cherished occasions.
+                </p>
             </div>
-            
-            <div id="serviceGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- ── SERVICE CARDS ── -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+
+                <!-- WEDDING CARD -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-accent"></div>
+                    <div class="p-10 text-center">
+                        <div class="service-icon">
+                            <!-- rings icon -->
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="8" cy="12" r="4"/>
+                                <circle cx="16" cy="12" r="4"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-3">Wedding Stories</h3>
+                        <p class="text-gray-400 mb-8 leading-relaxed">
+                            Your wedding day is a once-in-a-lifetime event. We craft soulful, cinematic narratives
+                            that immortalise every glance, laugh, and tear — from the intimate morning rituals
+                            to the last dance under the stars.
+                        </p>
+
+                        <!-- Feature list -->
+                        <div class="space-y-3 mb-9 text-sm text-gray-300">
+                            <div class="feature-item">
+                                <span class="feature-dot"></span>
+                                <span>Full-day coverage from pre-wedding rituals to reception</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-dot"></span>
+                                <span>Dual-photographer team for every angle</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-dot"></span>
+                                <span>Professionally edited gallery delivered within 3 weeks</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-dot"></span>
+                                <span>Optional luxury print album & video highlight reel</span>
+                            </div>
+                        </div>
+
+                        <a id="wedding-wa" href="#" class="btn-gold">
+                            Get a Quote
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"
+                                 viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
                 </div>
-        </div>
+
+                <!-- COMMERCIAL CARD -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-accent"></div>
+                    <div class="p-10 text-center">
+                        <div class="service-icon">
+                            <!-- briefcase icon -->
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="7" width="20" height="14" rx="2"/>
+                                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+                                <line x1="12" y1="12" x2="12" y2="12.01"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-3">Commercial</h3>
+                        <p class="text-gray-400 mb-8 leading-relaxed">
+                            Powerful visuals are the currency of modern brands. We produce high-end product
+                            photography, corporate headshots, and campaign imagery engineered to
+                            convert attention into trust — and trust into sales.
+                        </p>
+
+                        <!-- Feature list -->
+                        <div class="space-y-3 mb-9 text-sm text-gray-300">
+                            <div class="feature-item">
+                                <span class="feature-dot"></span>
+                                <span>Product, e-commerce & lifestyle photography</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-dot"></span>
+                                <span>Corporate headshots & team photography</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-dot"></span>
+                                <span>Ad campaigns, lookbooks & brand identity shoots</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-dot"></span>
+                                <span>High-resolution images optimised for print & digital</span>
+                            </div>
+                        </div>
+
+                        <a id="commercial-wa" href="#" class="btn-gold">
+                            Get a Quote
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"
+                                 viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div><!-- /grid -->
+        </div><!-- /container -->
+
+        <!-- ══════════════════════════════════════
+             PROCESS SECTION
+        ══════════════════════════════════════ -->
+        <section class="mt-32 pb-24 container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <p class="section-label mb-3">How It Works</p>
+                <h2 class="text-4xl md:text-5xl font-bold">Our Simple Process</h2>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                <div class="process-step text-center" data-aos="fade-up" data-aos-delay="0">
+                    <div class="step-circle">01</div>
+                    <h4 class="font-semibold text-white mb-2">Enquire</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">Send us a WhatsApp with your event details and preferred date.</p>
+                </div>
+                <div class="process-step text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-circle">02</div>
+                    <h4 class="font-semibold text-white mb-2">Consult</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">We discuss your vision, style, and create a tailored package.</p>
+                </div>
+                <div class="process-step text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-circle">03</div>
+                    <h4 class="font-semibold text-white mb-2">Capture</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">Our team arrives fully prepared to document every moment.</p>
+                </div>
+                <div class="process-step text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-circle">04</div>
+                    <h4 class="font-semibold text-white mb-2">Deliver</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">Receive your beautifully edited gallery — ready to cherish forever.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             GOLD DIVIDER
+        ══════════════════════════════════════ -->
+        <div class="gold-divider"></div>
+
+        <!-- ══════════════════════════════════════
+             TESTIMONIALS
+        ══════════════════════════════════════ -->
+        <section class="py-28 container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <p class="section-label mb-3">Kind Words</p>
+                <h2 class="text-4xl md:text-5xl font-bold">What Our Clients Say</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="stars mb-3">★★★★★</div>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-5">
+                        "Rada Photography captured our wedding with such warmth and artistry. Every photo
+                        feels like a painting. We'll treasure these images forever."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-gold opacity-60 flex items-center justify-center text-black font-bold text-sm">P</div>
+                        <div>
+                            <p class="text-white text-sm font-semibold">Priya & Arun</p>
+                            <p class="text-gray-500 text-xs">Wedding – Chennai</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="stars mb-3">★★★★★</div>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-5">
+                        "Our brand campaign shoot exceeded every expectation. The team is professional,
+                        creative, and delivered stunning imagery that transformed our marketing."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-gold opacity-60 flex items-center justify-center text-black font-bold text-sm">K</div>
+                        <div>
+                            <p class="text-white text-sm font-semibold">Karthik R.</p>
+                            <p class="text-gray-500 text-xs">Commercial – Coimbatore</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stars mb-3">★★★★★</div>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-5">
+                        "From the first call to the final delivery, everything was seamless. Rada's eye
+                        for emotion is unmatched. Highly recommended for any occasion."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-gold opacity-60 flex items-center justify-center text-black font-bold text-sm">M</div>
+                        <div>
+                            <p class="text-white text-sm font-semibold">Meena S.</p>
+                            <p class="text-gray-500 text-xs">Wedding – Madurai</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             CTA BANNER
+        ══════════════════════════════════════ -->
+        <section class="cta-bg py-24 px-6" data-aos="fade-up">
+            <div class="max-w-3xl mx-auto text-center">
+                <p class="section-label mb-4">Ready to Begin?</p>
+                <h2 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                    Let's Tell Your<br/>
+                    <span class="italic font-normal" style="color: var(--gold);">Story Together</span>
+                </h2>
+                <p class="text-gray-400 mb-10 text-lg leading-relaxed max-w-xl mx-auto">
+                    Whether it's your wedding day or your brand's next chapter —
+                    we're here to make every frame extraordinary.
+                    Reach out and let's create something unforgettable.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a id="cta-wedding-wa" href="#" class="btn-gold justify-center">
+                        Book Wedding
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"
+                             viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a id="cta-commercial-wa" href="#"
+                       class="justify-center inline-flex items-center gap-2 px-8 py-4 rounded-full border border-gold text-gold font-semibold uppercase tracking-widest text-sm transition-all hover:bg-gold hover:text-white"
+                       style="letter-spacing:1.5px">
+                        Book Commercial
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"
+                             viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
+    <!-- ── FOOTER ── -->
     <footer class="py-12 bg-[#050505] text-center text-gray-500 text-sm border-t border-gold border-opacity-10">
         <div class="container mx-auto px-6">
-            <p>&copy; 2025 Rada Photography Studio. All Rights Reserved.</p>
-            <p class="mt-2 text-gold">Email: radaphotographyofficial@gmail.com | Phone: 7845091708</p>
+            <p class="text-white font-semibold text-xl mb-2" style="font-family:'Playfair Display',serif;">Rada Photography Studio</p>
+            <p class="mb-1">&copy; 2025 Rada Photography Studio. All Rights Reserved.</p>
+            <p class="text-gold mt-2">Email: radaphotographyofficial@gmail.com &nbsp;|&nbsp; Phone: 7845091708</p>
         </div>
     </footer>
 
@@ -164,40 +519,42 @@
         document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.add('fade-in');
 
-            AOS.init({
-                duration: 1000,
-                once: true,
-                easing: 'ease-out-expo',
-            });
+            AOS.init({ duration: 1000, once: true, easing: 'ease-out-expo' });
 
-            const services = [
-                { title: "Wedding Stories", desc: "Full day coverage capturing every intimate emotion and grand celebration.", btn: "Book Wedding" },
-                { title: "Portraiture", desc: "Fine art portraits that reveal your unique personality and character.", btn: "Schedule Session" },
-                { title: "Event Coverage", desc: "Cinematic documentation for corporate galas and private celebrations.", btn: "Cover Event" },
-                { title: "Commercial", desc: "High-end product and brand imagery designed for marketing success.", btn: "Discuss Project" },
-                { title: "Fashion Editorial", desc: "Avant-garde photography for designers, labels, and professional models.", btn: "Plan Shoot" },
-                { title: "Custom Albums", desc: "Hand-crafted premium photo albums to preserve your legacy forever.", btn: "Get Quote" }
-            ];
+            // Mobile menu
+            const mobileMenuBtn = document.getElementById('mobile-menu-button');
+            const mobileMenu    = document.getElementById('mobile-menu');
+            mobileMenuBtn.onclick = () => mobileMenu.classList.toggle('hidden');
 
-            const grid = document.getElementById('serviceGrid');
-            if (grid) {
-                services.forEach((svc, i) => {
-                    const card = document.createElement('div');
-                    card.className = 'service-card text-center';
-                    card.setAttribute('data-aos', 'fade-up');
-                    card.setAttribute('data-aos-delay', `${i * 100}`);
-                    card.innerHTML = `
-                        <h3 class="text-2xl font-bold mb-4 text-white">${svc.title}</h3>
-                        <p class="text-gray-400 mb-8 leading-relaxed">${svc.desc}</p>
-                        <a href="contact.html" class="btn-gold">${svc.btn}</a>
-                    `;
-                    grid.appendChild(card);
-                });
+            // ── WhatsApp link builder ──────────────────────────────────────
+            const PHONE = '917845091708'; // country code + number, no +
+
+            function waLink(message) {
+                return `https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`;
             }
 
-            const mobileMenuBtn = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuBtn.onclick = () => mobileMenu.classList.toggle('hidden');
+            const weddingMsg =
+                `Hello Rada Photography! 👋\n\n` +
+                `I'm interested in your *Wedding Photography* service.\n\n` +
+                `Please could you share your packages and pricing?\n\n` +
+                `Wedding Date: \nVenue: \nNumber of Guests (approx): \nCity: \n\nThank you!`;
+
+            const commercialMsg =
+                `Hello Rada Photography! 👋\n\n` +
+                `I'm interested in your *Commercial Photography* service.\n\n` +
+                `Please could you share your packages and pricing?\n\n` +
+                `Type of shoot: \nBrand / Company: \nProject brief: \nPreferred date: \nCity: \n\nThank you!`;
+
+            document.getElementById('wedding-wa').href        = waLink(weddingMsg);
+            document.getElementById('commercial-wa').href     = waLink(commercialMsg);
+            document.getElementById('cta-wedding-wa').href    = waLink(weddingMsg);
+            document.getElementById('cta-commercial-wa').href = waLink(commercialMsg);
+
+            // open in new tab
+            ['wedding-wa','commercial-wa','cta-wedding-wa','cta-commercial-wa'].forEach(id => {
+                document.getElementById(id).target = '_blank';
+                document.getElementById(id).rel    = 'noopener noreferrer';
+            });
         });
     </script>
 </body>
