@@ -7,19 +7,13 @@
     <meta name="description" content="Twiin X is Coimbatore's first premium dual rental studio space. Book by the hour for photo shoots, reels, portraits & commercial productions. Professional lighting included." />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://radaphotography.in/twinx.html" />
-    <meta property="og:title" content="Twiin X Creative Studio Space – Coimbatore" />
-    <meta property="og:description" content="Coimbatore's first premium dual rental studio. Book Studio I or Studio II for photo shoots, reels, and brand productions." />
-    <meta property="og:type" content="website" />
-
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --navy-deep:    #060C20;
-            --navy-mid:     #060C20;
             --navy-card:    #0D1A50;
-            --navy-light:   #112260;
             --gold:         #C9A227;
             --gold-warm:    #B8860B;
             --gold-bright:  #D4AF37;
@@ -38,7 +32,6 @@
             font-family: 'DM Sans', sans-serif;
             color: var(--white);
             overflow-x: hidden;
-            /* ── SITE-WIDE BACKGROUND ── */
             background-color: var(--navy-deep);
             background-image: url('dp/bg-twinxx.jpeg');
             background-attachment: fixed;
@@ -46,39 +39,77 @@
             background-position: center center;
             background-repeat: no-repeat;
         }
-        /* Dark overlay over the fixed background */
         body::after {
             content: '';
-            position: fixed;
-            inset: 0;
-            z-index: 0;
+            position: fixed; inset: 0; z-index: 0;
             background: rgba(4, 8, 22, 0.82);
             pointer-events: none;
         }
-        /* Grain overlay */
         body::before {
             content: '';
-            position: fixed;
-            inset: 0;
-            z-index: 2;
+            position: fixed; inset: 0; z-index: 2;
             pointer-events: none;
             opacity: 0.018;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
             background-size: 200px 200px;
         }
 
-        /* All page content needs to sit above the bg overlays */
-        nav, section, footer, .modal {
-            position: relative;
-            z-index: 3;
-        }
+        nav, section, footer, .lightbox { position: relative; z-index: 3; }
 
-        /* Scrollbar */
         ::-webkit-scrollbar { width: 3px; }
         ::-webkit-scrollbar-track { background: var(--navy-deep); }
         ::-webkit-scrollbar-thumb { background: var(--gold-warm); border-radius: 2px; }
 
+        /* ════════════════════════════════
+           TEXT LOGO — matches uploaded image
+           Big high-contrast Bodoni/Cormorant word + spaced subtitle
+        ════════════════════════════════ */
+        .text-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1;
+            overflow: hidden;           /* clip for slide-in */
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .text-logo-word {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            font-style: normal;
+            color: #FFFFFF;
+            letter-spacing: -0.01em;
+            line-height: 1;
+            /* slide-in from left */
+            transform: translateX(-40px);
+            opacity: 0;
+            animation: logoSlideIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.1s forwards;
+            white-space: nowrap;
+        }
+        .text-logo-word .logo-ii {
+            /* The two dots on the i's — use Bodoni's ï character for diaeresis effect */
+            font-style: italic;
+            font-weight: 300;
+        }
+        .text-logo-sub {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.52rem;
+            font-weight: 300;
+            letter-spacing: 0.38em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.65);
+            margin-top: 2px;
+            /* slide-in slightly delayed */
+            transform: translateX(-30px);
+            opacity: 0;
+            animation: logoSlideIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.28s forwards;
+            white-space: nowrap;
+        }
 
+        @keyframes logoSlideIn {
+            to { transform: translateX(0); opacity: 1; }
+        }
 
         /* ── NAV ── */
         nav {
@@ -91,24 +122,6 @@
             max-width: 1280px; margin: 0 auto; padding: 0 2rem;
             height: 68px; display: flex; align-items: center; justify-content: space-between;
         }
-        .nav-logo {
-            height: 42px; width: auto;
-            object-fit: contain;
-            mix-blend-mode: screen;
-        }
-        .twiin-logo{
-    background-color: #060C20;
-    padding: 4px;
-    border-radius: 4px;
-    display: block;
-}
-.logo-wrap{
-    background-color: #060C20;
-    padding: 4px 8px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-}
         .nav-brand {
             font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 600;
             letter-spacing: 0.12em; color: var(--white);
@@ -139,7 +152,7 @@
             text-transform: uppercase; font-weight: 600; padding: 10px 24px;
             border-radius: 2px; background: var(--gold-grad); color: var(--navy-deep);
             text-decoration: none; transition: box-shadow .35s, transform .25s;
-            border: none; cursor: pointer;
+            border: none; cursor: pointer; display: inline-block;
         }
         .btn-book:hover { box-shadow: 0 6px 28px rgba(212,175,55,0.35); transform: translateY(-1px); }
         #tx-mobile-menu {
@@ -155,12 +168,8 @@
         /* ── HERO ── */
         .hero-section {
             min-height: 100vh; display: flex; align-items: center; justify-content: center;
-            padding: 6rem 2rem 4rem;
-            position: relative; overflow: hidden;
-            /* Slightly stronger overlay just for hero */
-            background: transparent;
+            padding: 6rem 2rem 4rem; position: relative; overflow: hidden;
         }
-        /* Grid lines */
         .hero-section::after {
             content: ''; position: absolute; inset: 0;
             background-image:
@@ -169,9 +178,7 @@
             background-size: 80px 80px;
             z-index: 1; pointer-events: none;
         }
-        .hero-corner {
-            position: absolute; width: 56px; height: 56px; opacity: 0.45; z-index: 3;
-        }
+        .hero-corner { position: absolute; width: 56px; height: 56px; opacity: 0.45; z-index: 3; }
         .hero-corner.tl { top: 88px; left: 40px; border-top: 1.5px solid var(--gold-warm); border-left: 1.5px solid var(--gold-warm); }
         .hero-corner.tr { top: 88px; right: 40px; border-top: 1.5px solid var(--gold-warm); border-right: 1.5px solid var(--gold-warm); }
         .hero-corner.bl { bottom: 40px; left: 40px; border-bottom: 1.5px solid var(--gold-warm); border-left: 1.5px solid var(--gold-warm); }
@@ -205,13 +212,9 @@
             text-transform: uppercase; color: var(--off-white); text-decoration: none;
             transition: color .3s, gap .3s; font-weight: 400;
         }
-        .hero-cta-line {
-            display: inline-block; width: 36px; height: 1px;
-            background: var(--gold-bright); transition: width .35s;
-        }
+        .hero-cta-line { display: inline-block; width: 36px; height: 1px; background: var(--gold-bright); transition: width .35s; }
         .hero-cta:hover { color: var(--gold-pale); gap: 20px; }
         .hero-cta:hover .hero-cta-line { width: 56px; }
-
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(22px); }
             to   { opacity: 1; transform: translateY(0); }
@@ -304,9 +307,7 @@
             color: var(--text-muted); font-size: .82rem; font-style: italic;
             letter-spacing: .06em; margin-bottom: 3.5rem; font-weight: 300;
         }
-        .equip-wrapper {
-            max-width: 680px; margin: 0 auto 3.5rem; position: relative;
-        }
+        .equip-wrapper { max-width: 680px; margin: 0 auto 3.5rem; position: relative; }
         .equip-wrapper img { width: 100%; filter: drop-shadow(0 24px 60px rgba(0,0,0,.7)); }
         .equip-wrapper::before {
             content: ''; position: absolute; inset: 10%;
@@ -314,9 +315,9 @@
             pointer-events: none;
         }
 
-        /* ════════════════════════════════════════
-           LIGHTBOX / SWIPE MODAL
-        ════════════════════════════════════════ */
+        /* ════════════════════════════════════════════════
+           LIGHTBOX — full screen swipeable gallery
+        ════════════════════════════════════════════════ */
         .lightbox {
             display: none;
             position: fixed; inset: 0; z-index: 200;
@@ -324,38 +325,39 @@
             backdrop-filter: blur(30px) saturate(1.2);
         }
         .lightbox.active { display: flex; flex-direction: column; animation: lbIn .3s ease; }
-        @keyframes lbIn {
-            from { opacity: 0; }
-            to   { opacity: 1; }
-        }
+        @keyframes lbIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Header bar */
         .lb-header {
             flex-shrink: 0;
             display: flex; align-items: center; justify-content: space-between;
-            padding: 1.2rem 2rem;
+            padding: 1.1rem 2rem;
             border-bottom: 1px solid rgba(212,175,55,0.12);
+            background: rgba(2,4,14,0.6);
+            backdrop-filter: blur(10px);
         }
         .lb-title {
             font-family: 'Bodoni Moda', serif; font-style: italic;
-            font-size: 1.5rem; color: var(--white); font-weight: 400;
+            font-size: 1.45rem; color: var(--white); font-weight: 400;
         }
         .lb-counter {
             font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: .35em;
-            color: var(--gold-warm); font-weight: 400;
+            color: var(--gold-warm); font-weight: 400; margin-top: 2px;
         }
         .lb-close {
-            font-size: 1.8rem; line-height: 1; background: none; border: none;
+            font-size: 1.8rem; line-height: 1; background: none;
+            border: 1px solid rgba(212,175,55,0.25); border-radius: 2px;
+            width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
             color: var(--gold-warm); cursor: pointer; font-family: 'DM Sans', sans-serif;
-            font-weight: 300; transition: color .2s, transform .3s; padding: 0;
+            font-weight: 300; transition: color .2s, border-color .2s, transform .3s; padding: 0;
         }
-        .lb-close:hover { color: var(--gold-pale); transform: rotate(90deg); }
+        .lb-close:hover { color: var(--gold-pale); border-color: var(--gold-bright); transform: rotate(90deg); }
 
-        /* Main image area */
+        /* Main stage — fills all remaining height */
         .lb-stage {
-            flex: 1; display: flex; align-items: center; justify-content: center;
+            flex: 1;
+            display: flex; align-items: center; justify-content: center;
             position: relative; overflow: hidden;
-            padding: 1.5rem 5rem;
+            padding: 1.5rem 5.5rem;
             min-height: 0;
         }
         .lb-img-wrap {
@@ -363,28 +365,29 @@
             display: flex; align-items: center; justify-content: center;
         }
         .lb-img-wrap img {
-            max-width: 100%; max-height: 100%;
+            /* BIGGER: fill more of the lightbox */
+            max-width: 94%;
+            max-height: 94%;
             width: auto; height: auto;
             object-fit: contain;
-            border: 1px solid rgba(212,175,55,0.2);
-            box-shadow: 0 32px 80px rgba(0,0,0,.8);
-            filter: brightness(.95) saturate(1.08);
+            border: 1px solid rgba(212,175,55,0.18);
+            box-shadow: 0 32px 80px rgba(0,0,0,.85);
+            filter: brightness(.96) saturate(1.08);
             display: block;
-            /* slide animation target */
-            transition: opacity .3s ease, transform .3s ease;
         }
-        .lb-img-wrap.slide-left  img { animation: slideFromRight .3s ease; }
-        .lb-img-wrap.slide-right img { animation: slideFromLeft .3s ease; }
+        /* slide animations */
+        .lb-img-wrap.slide-left  img { animation: slideFromRight .32s cubic-bezier(0.22,1,0.36,1); }
+        .lb-img-wrap.slide-right img { animation: slideFromLeft  .32s cubic-bezier(0.22,1,0.36,1); }
         @keyframes slideFromRight {
-            from { opacity: 0; transform: translateX(60px); }
-            to   { opacity: 1; transform: translateX(0); }
+            from { opacity: 0; transform: translateX(70px) scale(0.97); }
+            to   { opacity: 1; transform: translateX(0) scale(1); }
         }
         @keyframes slideFromLeft {
-            from { opacity: 0; transform: translateX(-60px); }
-            to   { opacity: 1; transform: translateX(0); }
+            from { opacity: 0; transform: translateX(-70px) scale(0.97); }
+            to   { opacity: 1; transform: translateX(0) scale(1); }
         }
 
-        /* Prev / Next arrows */
+        /* Arrows */
         .lb-arrow {
             position: absolute; top: 50%; transform: translateY(-50%);
             width: 48px; height: 48px;
@@ -396,7 +399,7 @@
         }
         .lb-arrow:hover {
             border-color: rgba(212,175,55,0.75); background: rgba(6,12,32,0.95);
-            transform: translateY(-50%) scale(1.08);
+            transform: translateY(-50%) scale(1.1);
         }
         .lb-arrow.prev { left: 1rem; }
         .lb-arrow.next { right: 1rem; }
@@ -405,29 +408,71 @@
         .lb-thumbs {
             flex-shrink: 0;
             display: flex; align-items: center; justify-content: center;
-            gap: .75rem; padding: 1rem 2rem 1.5rem;
+            gap: .65rem; padding: .85rem 2rem 1.2rem;
             border-top: 1px solid rgba(212,175,55,0.10);
-            overflow-x: auto;
-            scrollbar-width: none;
+            background: rgba(2,4,14,0.6);
+            backdrop-filter: blur(10px);
+            overflow-x: auto; scrollbar-width: none;
         }
         .lb-thumbs::-webkit-scrollbar { display: none; }
         .lb-thumb {
-            width: 64px; height: 44px; flex-shrink: 0;
-            overflow: hidden; border: 1px solid rgba(212,175,55,0.18);
-            cursor: pointer; opacity: .45; transition: opacity .25s, border-color .25s;
+            /* BIGGER thumbnails */
+            width: 80px; height: 56px; flex-shrink: 0;
+            overflow: hidden; border: 1.5px solid rgba(212,175,55,0.18);
+            cursor: pointer; opacity: .42;
+            transition: opacity .25s, border-color .25s, transform .25s;
+            border-radius: 1px;
         }
-        .lb-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .lb-thumb.active { opacity: 1; border-color: var(--gold-bright); }
-        .lb-thumb:hover { opacity: .8; }
+        .lb-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+        .lb-thumb.active { opacity: 1; border-color: var(--gold-bright); transform: scale(1.08) translateY(-2px); }
+        .lb-thumb:hover:not(.active) { opacity: .75; border-color: rgba(212,175,55,0.45); }
 
-        /* Touch / swipe hint */
         .lb-swipe-hint {
             position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%);
-            font-size: 9px; letter-spacing: .3em; color: rgba(212,175,55,0.25);
+            font-size: 9px; letter-spacing: .3em; color: rgba(212,175,55,0.22);
             text-transform: uppercase; pointer-events: none;
             display: none;
         }
         @media (hover: none) { .lb-swipe-hint { display: block; } }
+
+        /* ── CAPTION STRIP below main image ── */
+        .lb-caption {
+            flex-shrink: 0;
+            text-align: center;
+            padding: .6rem 3rem .4rem;
+            animation: captionFade .35s ease;
+        }
+        @keyframes captionFade {
+            from { opacity: 0; transform: translateY(6px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .lb-caption-title {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 1.05rem;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--white);
+            letter-spacing: .02em;
+            margin-bottom: .22rem;
+        }
+        .lb-caption-desc {
+            font-family: 'DM Sans', sans-serif;
+            font-size: .72rem;
+            font-weight: 300;
+            color: rgba(238,232,213,0.48);
+            letter-spacing: .06em;
+            line-height: 1.5;
+        }
+        /* gold dot separator between title and desc */
+        .lb-caption-sep {
+            display: inline-block;
+            width: 4px; height: 4px;
+            background: var(--gold-bright);
+            border-radius: 50%;
+            vertical-align: middle;
+            margin: 0 8px;
+            opacity: .65;
+        }
 
         /* ── RATES ── */
         #rates {
@@ -439,10 +484,8 @@
             color: var(--white); font-weight: 400; text-align: center; margin-bottom: 4.5rem;
         }
         .rate-card {
-            padding: 2.8rem 2.5rem;
-            border: 1px solid rgba(212,175,55,0.18);
-            background: rgba(10,19,60,0.35);
-            position: relative; overflow: hidden;
+            padding: 2.8rem 2.5rem; border: 1px solid rgba(212,175,55,0.18);
+            background: rgba(10,19,60,0.35); position: relative; overflow: hidden;
             transition: border-color .35s, background .35s, transform .35s, box-shadow .35s;
         }
         .rate-card::before {
@@ -529,12 +572,14 @@
             .lb-arrow { width: 36px; height: 36px; }
             .lb-arrow.prev { left: .4rem; }
             .lb-arrow.next { right: .4rem; }
+            .lb-thumb { width: 58px; height: 42px; }
+            .text-logo-word { font-size: 1.55rem; }
         }
     </style>
 </head>
 <body>
 
-<!-- ══ NAV ══ -->
+    <!-- ══ NAV ══ -->
     <nav aria-label="Twiin X navigation">
         <div class="nav-inner">
             <div style="display:flex;align-items:center;gap:1.5rem;">
@@ -543,11 +588,14 @@
                     <span class="hidden sm:inline">Rada Photography</span>
                 </a>
                 <span style="color:rgba(212,175,55,0.25);font-size:.8rem;" class="hidden sm:inline">|</span>
-                <!-- LOGO -->
-                <a href="#" class="logo-wrap">
-    <img src="dp/twinxlogo.png" alt="Twiin X Logo" class="nav-logo">
-</a>
+
+                <!-- ── TEXT LOGO — styled to match uploaded image ── -->
+                <a href="#" class="text-logo" aria-label="Twiin X Creative Space">
+                    <span class="text-logo-word">Twi<span class="logo-ii">ï</span>nx</span>
+                    <span class="text-logo-sub">Creative space</span>
+                </a>
             </div>
+
             <div class="nav-links hidden md:flex">
                 <a href="#studios" class="nav-link-tx">Studios</a>
                 <a href="#equipment" class="nav-link-tx">Equipment</a>
@@ -601,7 +649,8 @@
 
                 <div class="studio-card" onclick="openLightbox('lb-studio1', 0)" role="button" tabindex="0" aria-haspopup="dialog" aria-label="View Studio I: Signature One">
                     <div class="studio-num" aria-hidden="true">01</div>
-                    <div class="img-frame" style="aspect-ratio:16/10;margin-bottom:1.5rem;">
+                    <!-- BIGGER thumbnail — taller aspect ratio -->
+                    <div class="img-frame" style="aspect-ratio:4/3;margin-bottom:1.5rem;">
                         <img src="twinxxpic/signaturewall.png" alt="Twiin X Studio I – Signature One" loading="lazy">
                     </div>
                     <div class="studio-info">
@@ -613,7 +662,7 @@
 
                 <div class="studio-card" onclick="openLightbox('lb-studio2', 0)" role="button" tabindex="0" aria-haspopup="dialog" aria-label="View Studio II: Multiple Story">
                     <div class="studio-num" aria-hidden="true">02</div>
-                    <div class="img-frame" style="aspect-ratio:16/10;margin-bottom:1.5rem;">
+                    <div class="img-frame" style="aspect-ratio:4/3;margin-bottom:1.5rem;">
                         <img src="twinxxpic/abstractblackwall.png" alt="Twiin X Studio II – Abstract black wall" loading="lazy">
                     </div>
                     <div class="studio-info">
@@ -697,11 +746,11 @@
         </div>
     </footer>
 
-    <!-- ══════════════════════════════════════
+    <!-- ══════════════════════════════════════════════
          LIGHTBOXES
-    ══════════════════════════════════════ -->
+    ══════════════════════════════════════════════ -->
 
-    <!-- Studio I Lightbox -->
+    <!-- Studio I -->
     <div id="lb-studio1" class="lightbox" role="dialog" aria-modal="true" aria-label="Studio I Gallery">
         <div class="lb-header">
             <div>
@@ -722,10 +771,15 @@
             </button>
             <p class="lb-swipe-hint">Swipe to navigate</p>
         </div>
+        <!-- Caption -->
+        <div class="lb-caption" id="lb-studio1-caption">
+            <p class="lb-caption-title" id="lb-studio1-cap-title"></p>
+            <p class="lb-caption-desc" id="lb-studio1-cap-desc"></p>
+        </div>
         <div class="lb-thumbs" id="lb-studio1-thumbs"></div>
     </div>
 
-    <!-- Studio II Lightbox -->
+    <!-- Studio II -->
     <div id="lb-studio2" class="lightbox" role="dialog" aria-modal="true" aria-label="Studio II Gallery">
         <div class="lb-header">
             <div>
@@ -746,15 +800,20 @@
             </button>
             <p class="lb-swipe-hint">Swipe to navigate</p>
         </div>
+        <!-- Caption -->
+        <div class="lb-caption" id="lb-studio2-caption">
+            <p class="lb-caption-title" id="lb-studio2-cap-title"></p>
+            <p class="lb-caption-desc" id="lb-studio2-cap-desc"></p>
+        </div>
         <div class="lb-thumbs" id="lb-studio2-thumbs"></div>
     </div>
 
-    <!-- Gear / Props Lightbox -->
+    <!-- Gear / Props -->
     <div id="lb-gear" class="lightbox" role="dialog" aria-modal="true" aria-label="Props and Backdrops Gallery">
         <div class="lb-header">
             <div>
                 <p class="lb-title">Props &amp; Backdrops</p>
-                <p class="lb-counter" id="lb-gear-counter">1 / 7</p>
+                <p class="lb-counter" id="lb-gear-counter">1 / 8</p>
             </div>
             <button class="lb-close" onclick="closeLightbox('lb-gear')" aria-label="Close">&times;</button>
         </div>
@@ -770,43 +829,131 @@
             </button>
             <p class="lb-swipe-hint">Swipe to navigate</p>
         </div>
+        <!-- Caption -->
+        <div class="lb-caption" id="lb-gear-caption">
+            <p class="lb-caption-title" id="lb-gear-cap-title"></p>
+            <p class="lb-caption-desc" id="lb-gear-cap-desc"></p>
+        </div>
         <div class="lb-thumbs" id="lb-gear-thumbs"></div>
     </div>
 
     <script>
-        
-
         /* ── LIGHTBOX ENGINE ── */
         const GALLERIES = {
             'lb-studio1': {
                 images: [
-                    { src: 'twinxxpic/signaturewall.png', alt: 'Signature wall studio set' },
-                    { src: 'twinxxpic/wildframe.png',     alt: 'Wild frame studio set' },
-                    { src: 'twinxxpic/whitewall.png',     alt: 'White wall studio set' },
-                    { src: 'twinxxpic/vanityglow.png',    alt: 'Vanity glow studio set' },
+                    {
+                        src:   'twinxxpic/signaturewall.png',
+                        alt:   'Signature wall studio set',
+                        title: 'The Signature Wall',
+                        desc:  'A sleek white backdrop that exudes pure luxury — perfect for editorial portraits, brand campaigns, and timeless fashion shoots.'
+                    },
+                    {
+                        src:   'twinxxpic/wildframe.png',
+                        alt:   'Wild frame studio set',
+                        title: 'Wild Frame',
+                        desc:  'Bold geometric framing meets raw texture — ideal for creative reels, dramatic beauty shots, and high-contrast compositions.'
+                    },
+                    {
+                        src:   'twinxxpic/whitewall.png',
+                        alt:   'White wall studio set',
+                        title: 'Clean White Canvas',
+                        desc:  'A minimalist, distraction-free white set designed to let your subject take centre stage — versatile for any style or mood.'
+                    },
+                    {
+                        src:   'twinxxpic/vanityglow.png',
+                        alt:   'Vanity glow studio set',
+                        title: 'Vanity Glow',
+                        desc:  'Warm Hollywood-mirror lighting wraps every subject in a soft, cinematic glow — made for beauty, lifestyle, and glam content.'
+                    },
                 ],
                 current: 0
             },
             'lb-studio2': {
                 images: [
-                    { src: 'twinxxpic/abstractblackwall.png', alt: 'Abstract black wall' },
-                    { src: 'twinxxpic/chettinadwall.png',     alt: 'Chettinad themed wall' },
-                    { src: 'twinxxpic/traditionalwall.png',   alt: 'Traditional Indian wall' },
-                    { src: 'twinxxpic/copperredwall.png',     alt: 'Copper red wall' },
-                    { src: 'twinxxpic/plaincopperwall.png',   alt: 'Plain copper wall' },
+                    {
+                        src:   'twinxxpic/abstractblackwall.png',
+                        alt:   'Abstract black wall',
+                        title: 'Abstract Black',
+                        desc:  'Deep contrast and moody tones make this set the go-to for dark editorial, product launches, and high-fashion storytelling.'
+                    },
+                    {
+                        src:   'twinxxpic/chettinadwall.png',
+                        alt:   'Chettinad themed wall',
+                        title: 'Chettinad Heritage',
+                        desc:  'Authentic Chettinad-inspired textures and motifs bring cultural richness to traditional portraits, reels, and heritage campaigns.'
+                    },
+                    {
+                        src:   'twinxxpic/traditionalwall.png',
+                        alt:   'Traditional Indian wall',
+                        title: 'Traditional Roots',
+                        desc:  'Earthy, handcrafted tones celebrate the beauty of Indian heritage — perfect for classical portraits and festive content.'
+                    },
+                    {
+                        src:   'twinxxpic/copperredwall.png',
+                        alt:   'Copper red wall',
+                        title: 'Copper & Rouge',
+                        desc:  'Rich copper-red hues bring warmth and drama — a striking backdrop for bold fashion, product photography, and brand reels.'
+                    },
+                    {
+                        src:   'twinxxpic/plaincopperwall.png',
+                        alt:   'Plain copper wall',
+                        title: 'Burnished Copper',
+                        desc:  'A smooth, warm copper finish that adds depth without distraction — elegant for portraits, jewellery, and lifestyle shoots.'
+                    },
                 ],
                 current: 0
             },
             'lb-gear': {
                 images: [
-                    { src: 'twinxxpic/backdrop.png',       alt: 'Studio backdrop' },
-                    { src: 'twinxxpic/backdroscreens.png', alt: 'Backdrop screens' },
-                    { src: 'twinxxpic/gobopatters.png',    alt: 'Gobo patterns' },
-                    { src: 'twinxxpic/property1.png',      alt: 'Studio prop 1' },
-                    { src: 'twinxxpic/property2.png',      alt: 'Studio prop 2' },
-                    { src: 'twinxxpic/property3.png',      alt: 'Studio prop 3' },
-                    { src: 'twinxxpic/property5.png',      alt: 'Studio prop 5' },
-                    { src: 'twinxxpic/property9.png',      alt: 'Studio prop 9' },
+                    {
+                        src:   'twinxxpic/backdrop.png',
+                        alt:   'Studio backdrop',
+                        title: 'Seamless Backdrops',
+                        desc:  'A curated range of seamless paper and muslin backdrops in multiple tones — swap effortlessly between looks within your session.'
+                    },
+                    {
+                        src:   'twinxxpic/backdroscreens.png',
+                        alt:   'Backdrop screens',
+                        title: 'Backdrop Screens',
+                        desc:  'Portable, wrinkle-resistant backdrop screens that stand firm and fold fast — designed for quick colour transitions between shots.'
+                    },
+                    {
+                        src:   'twinxxpic/gobopatters.png',
+                        alt:   'Gobo patterns',
+                        title: 'Gobo Pattern Plates',
+                        desc:  'A versatile library of gobo inserts to project window light, blinds, foliage, and geometric shapes onto any surface or subject.'
+                    },
+                    {
+                        src:   'twinxxpic/property1.png',
+                        alt:   'Studio prop',
+                        title: 'Curated Props — I',
+                        desc:  'Handpicked statement pieces that add context, character, and visual interest to your scenes without overpowering the subject.'
+                    },
+                    {
+                        src:   'twinxxpic/property2.png',
+                        alt:   'Studio prop',
+                        title: 'Curated Props — II',
+                        desc:  'Minimal, versatile accent pieces suited for lifestyle flatlays, product compositions, and portrait storytelling.'
+                    },
+                    {
+                        src:   'twinxxpic/property3.png',
+                        alt:   'Studio prop',
+                        title: 'Curated Props — III',
+                        desc:  'Textured surfaces and tactile objects that add depth and a sense of place to commercial and creative shoots alike.'
+                    },
+                    {
+                        src:   'twinxxpic/property5.png',
+                        alt:   'Studio prop',
+                        title: 'Curated Props — IV',
+                        desc:  'Elegant accent items thoughtfully chosen to complement both dark and light studio sets across any genre of photography.'
+                    },
+                    {
+                        src:   'twinxxpic/property9.png',
+                        alt:   'Studio prop',
+                        title: 'Curated Props — V',
+                        desc:  'Finishing-touch props that bring authenticity and polish — perfect for editorial and brand content needing that extra layer of detail.'
+                    },
                 ],
                 current: 0
             }
@@ -819,7 +966,7 @@
             g.images.forEach((img, i) => {
                 const div = document.createElement('div');
                 div.className = 'lb-thumb' + (i === g.current ? ' active' : '');
-                div.onclick = () => gotoSlide(id, i, i > g.current ? 'left' : 'right');
+                div.onclick = () => gotoSlide(id, i, i > g.current ? 'slide-left' : 'slide-right');
                 const im = document.createElement('img');
                 im.src = img.src; im.alt = img.alt; im.loading = 'lazy';
                 div.appendChild(im);
@@ -830,25 +977,39 @@
         function updateSlide(id, dir) {
             const g = GALLERIES[id];
             const mainImg = document.getElementById(id + '-main');
-            const wrap = document.getElementById(id + '-img');
+            const wrap    = document.getElementById(id + '-img');
             const counter = document.getElementById(id + '-counter');
-            const item = g.images[g.current];
+            const item    = g.images[g.current];
 
-            // animate
             wrap.classList.remove('slide-left', 'slide-right');
-            void wrap.offsetWidth; // reflow
+            void wrap.offsetWidth; // force reflow for re-trigger
             if (dir) wrap.classList.add(dir);
 
             mainImg.src = item.src;
             mainImg.alt = item.alt;
             counter.textContent = (g.current + 1) + ' / ' + g.images.length;
 
-            // update thumbs
+            // ── UPDATE CAPTION ──
+            const capTitle = document.getElementById(id + '-cap-title');
+            const capDesc  = document.getElementById(id + '-cap-desc');
+            const capEl    = document.getElementById(id + '-caption');
+            if (capTitle && item.title) {
+                capTitle.textContent = item.title;
+            }
+            if (capDesc && item.desc) {
+                capDesc.textContent = item.desc;
+            }
+            // re-trigger fade animation
+            if (capEl) {
+                capEl.style.animation = 'none';
+                void capEl.offsetWidth;
+                capEl.style.animation = '';
+            }
+
             const thumbsEl = document.getElementById(id + '-thumbs');
             thumbsEl.querySelectorAll('.lb-thumb').forEach((t, i) => {
                 t.classList.toggle('active', i === g.current);
             });
-            // scroll active thumb into view
             const activeThumb = thumbsEl.querySelectorAll('.lb-thumb')[g.current];
             if (activeThumb) activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }
@@ -884,24 +1045,19 @@
             updateSlide(id, 'slide-right');
         }
 
-        // Keyboard navigation
         document.addEventListener('keydown', e => {
             const active = document.querySelector('.lightbox.active');
             if (!active) return;
             const id = active.id;
-            if (e.key === 'Escape') closeLightbox(id);
-            if (e.key === 'ArrowRight') lbNext(id);
-            if (e.key === 'ArrowLeft') lbPrev(id);
+            if (e.key === 'Escape')      closeLightbox(id);
+            if (e.key === 'ArrowRight')  lbNext(id);
+            if (e.key === 'ArrowLeft')   lbPrev(id);
         });
 
-        // Click backdrop to close
         document.querySelectorAll('.lightbox').forEach(lb => {
-            lb.addEventListener('click', e => {
-                if (e.target === lb) closeLightbox(lb.id);
-            });
+            lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(lb.id); });
         });
 
-        // Touch swipe support
         document.querySelectorAll('.lb-stage').forEach(stage => {
             let startX = 0;
             stage.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
@@ -909,15 +1065,10 @@
                 const dx = e.changedTouches[0].clientX - startX;
                 const lb = stage.closest('.lightbox');
                 if (!lb) return;
-                const id = lb.id;
-                if (Math.abs(dx) > 50) {
-                    if (dx < 0) lbNext(id);
-                    else lbPrev(id);
-                }
+                if (Math.abs(dx) > 50) dx < 0 ? lbNext(lb.id) : lbPrev(lb.id);
             }, { passive: true });
         });
 
-        // Keyboard on studio cards
         document.querySelectorAll('.studio-card[role="button"]').forEach(card => {
             card.addEventListener('keydown', e => {
                 if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
@@ -939,7 +1090,6 @@
             });
         });
 
-        /* ── MOBILE RATES GRID ── */
         if (window.innerWidth < 768) {
             const rg = document.querySelector('.rates-grid');
             if (rg) rg.style.gridTemplateColumns = '1fr';
