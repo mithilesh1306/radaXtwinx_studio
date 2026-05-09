@@ -27,19 +27,18 @@
         *, *::before, *::after { box-sizing: border-box; }
 
         body {
-            font-family: 'Jost', sans-serif;
+             font-family: var(--font-body);
             background-color: var(--dark-bg);
             color: var(--off-white);
-            opacity: 0;
-            transition: opacity 0.8s ease;
-            overflow-x: hidden;
             margin: 0;
+            overflow-x: hidden;
         }
+
         body.fade-in { opacity: 1; }
         body::-webkit-scrollbar { display: none; }
         body { -ms-overflow-style: none; scrollbar-width: none; }
 
-        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; color: #FFFFFF; }
+        h1, h2, h3 { font-family: var(--font-display); color: #FFFFFF; }
 
         /* ── LOGO TEXT ── */
         .logo-text {
@@ -47,16 +46,17 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            letter-spacing: 0.15em;
+            font-family: var(--font-body);
+            font-weight: 600;
+            letter-spacing: 0.03em;
         }
 
         /* ── HEADER ── */
-        #header {
+        #header { transition: background-color 0.3s ease; }
+        #header.solid {
             background: rgba(13,13,13,0.97);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(212,175,55,0.15);
+            border-bottom: 1px solid rgba(212,175,55,0.2);
         }
 
         /* ── NAV LINKS ── */

@@ -9,282 +9,627 @@
     <link rel="canonical" href="https://radaphotography.in/wedding.html" />
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
     <style>
-        :root { --gold: #D4AF37; --dark-bg: #0D0D0D; --off-white: #E0E0E0; }
+        :root {
+            --gold: #D4AF37;
+            --dark-bg: #0D0D0D;
+            --off-white: #E0E0E0;
+            --gap: 10px;
+            --panel-h: 580px;
+        }
+
         *, *::before, *::after { box-sizing: border-box; }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--dark-bg);
+            background: var(--dark-bg);
             color: var(--off-white);
             margin: 0;
             opacity: 0;
             transition: opacity 0.8s ease;
+            overflow-x: hidden;
         }
         body.fade-in { opacity: 1; }
-        h1, h2 { font-family: 'Playfair Display', serif; color: #fff; }
+        h1 { font-family: 'Playfair Display', serif; }
 
-        /* HEADER */
+        /* ── HEADER ── */
         #header {
-            background-color: rgba(13, 13, 13, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            background: rgba(13,13,13,0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(212,175,55,0.1);
         }
         .nav-link {
             position: relative;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
             color: #a0a0a0;
             font-weight: 500;
+            font-size: 0.875rem;
         }
         .nav-link::after {
             content: '';
             position: absolute;
-            width: 0; height: 2px; bottom: -2px; left: 50%;
+            width: 0; height: 2px;
+            bottom: -4px; left: 50%;
             transform: translateX(-50%);
-            background-color: var(--gold);
+            background: var(--gold);
             transition: width 0.3s ease;
         }
         .nav-link:hover, .nav-link.active { color: #fff; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-
-        /* Mobile menu */
         #mobile-menu { background: rgba(0,0,0,0.97); border-bottom: 1px solid rgba(212,175,55,0.15); }
 
-        /* GALLERY */
-        .portfolio-img-wrapper {
-            overflow: hidden;
-            border-radius: 8px;
-            background: #1a1a1a;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            position: relative;
-        }
-        .portfolio-img {
-            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.6s ease;
-            cursor: pointer;
-            object-fit: cover;
-            width: 100%;
-            height: 300px;
-            filter: brightness(0.7) grayscale(20%);
-            display: block;
-        }
-        @media (min-width: 640px) { .portfolio-img { height: 380px; } }
-        .portfolio-img-wrapper:hover .portfolio-img {
-            transform: scale(1.08);
-            filter: brightness(1) grayscale(0%);
-        }
-        .portfolio-img-wrapper:hover {
-            border-color: var(--gold);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.7);
-        }
-
-        /* LIGHTBOX */
-        #lightbox {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.95);
-            z-index: 200;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        #lightbox.active { display: flex; }
-        #lightbox img { max-width: 92vw; max-height: 90vh; object-fit: contain; border-radius: 4px; }
-        #lightbox-close {
-            position: absolute;
-            top: 20px; right: 24px;
+        /* ── HERO ── */
+        .hero-section { padding: 8rem 2.5rem 3rem; }
+        .tag-line {
             color: var(--gold);
-            font-size: 2.5rem;
-            cursor: pointer;
-            background: none;
-            border: none;
-            line-height: 1;
-            transition: color 0.2s, transform 0.3s;
+            font-size: 0.7rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 1rem;
         }
-        #lightbox-close:hover { color: #fff; transform: rotate(90deg); }
-
-        /* BACK LINK */
         .back-link {
             color: var(--gold);
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-size: 0.75rem;
-            transition: all 0.3s ease;
+            font-size: 0.7rem;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             margin-bottom: 1.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
         }
         .back-link:hover { color: #fff; transform: translateX(-5px); }
+        .divider { width: 60px; height: 1px; background: var(--gold); margin: 1.5rem 0; opacity: 0.5; }
 
-        /* MOBILE-only fix: ensure AOS works */
-        @media (max-width: 767px) {
-            [data-aos] { opacity: 1 !important; transform: none !important; }
+        /* ── GALLERY ── */
+        .gallery-section { padding: 0 0 6rem; }
+
+        .row-label {
+            color: var(--gold);
+            font-size: 0.65rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            font-weight: 600;
+            padding: 0 2rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .row-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, rgba(212,175,55,0.4), transparent);
+        }
+
+        /* Scroll container */
+        .scroll-outer { position: relative; }
+
+        /* Edge fade */
+        .scroll-outer::before,
+        .scroll-outer::after {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 20px;
+            width: 70px;
+            z-index: 5;
+            pointer-events: none;
+        }
+        .scroll-outer::before { left: 0; background: linear-gradient(to right, var(--dark-bg) 30%, transparent); }
+        .scroll-outer::after  { right: 0; background: linear-gradient(to left,  var(--dark-bg) 30%, transparent); }
+
+        /* Arrow buttons */
+        .arrow-btn {
+            position: absolute;
+            top: 50%; transform: translateY(-55%);
+            width: 48px; height: 48px;
+            background: rgba(8,8,8,0.9);
+            border: 1px solid rgba(212,175,55,0.45);
+            border-radius: 50%;
+            color: var(--gold);
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 20;
+            backdrop-filter: blur(8px);
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+        }
+        .arrow-btn:hover {
+            background: rgba(212,175,55,0.2);
+            border-color: var(--gold);
+            color: #fff;
+            transform: translateY(-55%) scale(1.1);
+        }
+        .arrow-btn.left  { left: 10px; }
+        .arrow-btn.right { right: 10px; }
+
+        /* The scrollable track */
+        .scroll-track {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 6px 2.5rem 22px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(212,175,55,0.2) transparent;
+            height: calc(var(--panel-h) + 28px);
+        }
+        .scroll-track::-webkit-scrollbar { height: 3px; }
+        .scroll-track::-webkit-scrollbar-track { background: transparent; }
+        .scroll-track::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.2); border-radius: 2px; }
+
+        /* ── COLLAGE PANEL ──
+           Each panel snaps into view and shows 3–4 photos in a collage.
+           The panel fills ~90vw so it looks like one "slide".
+        */
+        .collage-panel {
+            flex: 0 0 auto;
+            width: calc(100vw - 100px);
+            max-width: 1200px;
+            height: var(--panel-h);
+            scroll-snap-align: start;
+            display: grid;
+            gap: var(--gap);
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.165,0.84,0.44,1);
+        }
+        .collage-panel.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Layout A — 3 images: 1 tall left + 2 stacked right */
+        .layout-a {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+        }
+        .layout-a .cell:nth-child(1) { grid-row: 1 / 3; }  /* tall left */
+        .layout-a .cell:nth-child(2) { grid-row: 1 / 2; grid-column: 2; }
+        .layout-a .cell:nth-child(3) { grid-row: 2 / 3; grid-column: 2; }
+
+        /* Layout B — 4 images: 1 tall left + 3 right (top wide + 2 bottom) */
+        .layout-b {
+            grid-template-columns: 1.1fr 0.9fr 0.9fr;
+            grid-template-rows: 1fr 1fr;
+        }
+        .layout-b .cell:nth-child(1) { grid-row: 1 / 3; grid-column: 1; }
+        .layout-b .cell:nth-child(2) { grid-row: 1 / 2; grid-column: 2 / 4; }
+        .layout-b .cell:nth-child(3) { grid-row: 2 / 3; grid-column: 2; }
+        .layout-b .cell:nth-child(4) { grid-row: 2 / 3; grid-column: 3; }
+
+        /* Layout C — 3 images: wide top + 2 bottom */
+        .layout-c {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1.1fr 0.9fr;
+        }
+        .layout-c .cell:nth-child(1) { grid-column: 1 / 3; }
+        .layout-c .cell:nth-child(2) { grid-column: 1; }
+        .layout-c .cell:nth-child(3) { grid-column: 2; }
+
+        /* Layout D — 4 images: 2 top + 1 tall right + 1 bottom-left */
+        .layout-d {
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+        }
+        .layout-d .cell:nth-child(1) { grid-column: 1; grid-row: 1; }
+        .layout-d .cell:nth-child(2) { grid-column: 2; grid-row: 1; }
+        .layout-d .cell:nth-child(3) { grid-column: 3; grid-row: 1 / 3; }
+        .layout-d .cell:nth-child(4) { grid-column: 1 / 3; grid-row: 2; }
+
+        /* ── CELL (shared) ── */
+        .cell {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            cursor: zoom-in;
+            border: 1px solid rgba(212,175,55,0.1);
+            background: #181818;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            min-width: 0;
+            min-height: 0;
+        }
+        .cell:hover {
+            border-color: var(--gold);
+            box-shadow: 0 16px 50px rgba(0,0,0,0.85);
+            z-index: 2;
+        }
+        .cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.72) grayscale(10%);
+            transition: transform 0.8s cubic-bezier(0.165,0.84,0.44,1), filter 0.5s;
+        }
+        .cell:hover img {
+            transform: scale(1.06);
+            filter: brightness(1) grayscale(0%);
+        }
+        .hover-label {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 2.5rem 1rem 0.8rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.78));
+            color: rgba(212,175,55,0.9);
+            font-size: 0.58rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .cell:hover .hover-label { opacity: 1; }
+        .photo-badge {
+            position: absolute;
+            top: 10px; right: 10px;
+            background: rgba(0,0,0,0.6);
+            border: 1px solid rgba(212,175,55,0.3);
+            color: var(--gold);
+            font-size: 0.55rem;
+            letter-spacing: 1px;
+            padding: 2px 9px;
+            border-radius: 20px;
+            pointer-events: none;
+        }
+
+        /* Dot indicators */
+        .dot-nav {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 1.5rem;
+        }
+        .dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: rgba(212,175,55,0.25);
+            transition: background 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+        .dot.active {
+            background: var(--gold);
+            transform: scale(1.4);
+        }
+
+        /* ── LIGHTBOX ── */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.97);
+            z-index: 500;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+        }
+        #lightbox.active { display: flex; }
+        #lightbox-img {
+            width: 95vw;
+            height: 90vh;
+            max-width: 1600px;
+            object-fit: contain;
+            border-radius: 6px;
+            border: 1px solid rgba(212,175,55,0.2);
+            box-shadow: 0 30px 90px rgba(0,0,0,0.95);
+            transition: opacity 0.25s ease;
+        }
+        #lightbox-close {
+            position: fixed;
+            top: 16px; right: 22px;
+            background: none; border: none;
+            color: var(--gold); font-size: 2.2rem;
+            cursor: pointer; line-height: 1;
+            transition: color 0.2s, transform 0.3s;
+            z-index: 510;
+        }
+        #lightbox-close:hover { color: #fff; transform: rotate(90deg); }
+        .lb-side-arrow {
+            position: fixed;
+            top: 50%; transform: translateY(-50%);
+            background: rgba(10,10,10,0.75);
+            border: 1px solid rgba(212,175,55,0.35);
+            color: var(--gold);
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 510;
+            transition: background 0.2s, color 0.2s;
+        }
+        .lb-side-arrow:hover { background: rgba(212,175,55,0.2); color: #fff; }
+        #lb-prev-arrow { left: 14px; }
+        #lb-next-arrow { right: 14px; }
+        .lb-meta { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        .lb-counter { color: rgba(212,175,55,0.55); font-size: 0.68rem; letter-spacing: 3px; }
+        .lb-caption  { color: rgba(255,255,255,0.32); font-size: 0.62rem; letter-spacing: 1.5px; text-transform: uppercase; }
+
+        /* ── FOOTER ── */
+        footer {
+            padding: 3rem 1.5rem;
+            background: #050505;
+            text-align: center;
+            color: #555;
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(212,175,55,0.08);
+        }
+        footer a { color: var(--gold); transition: color 0.2s; text-decoration: none; }
+        footer a:hover { color: #fff; }
+
+        @media (max-width: 768px) {
+            :root { --panel-h: 400px; }
+            .collage-panel { width: calc(100vw - 60px); }
+            .lb-side-arrow { display: none; }
+        }
+        @media (max-width: 480px) {
+            :root { --panel-h: 320px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- HEADER -->
     <header id="header" class="fixed top-0 left-0 right-0 z-50">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="flex items-center" aria-label="Rada Photography Home">
-                <img src="dp/rada logo.jpeg" onerror="this.src='https://placehold.co/100x100/D4AF37/0D0D0D?text=R'" alt="Rada Photography Studio logo" class="h-10 mr-3 rounded-full border border-gold w-10 object-cover" width="40" height="40">
-                <span class="text-xl font-bold tracking-wider text-gold uppercase">Rada Photography</span>
+                <img src="dp/rada logo.jpeg"
+                     onerror="this.src='https://placehold.co/100x100/D4AF37/0D0D0D?text=R'"
+                     alt="Rada Photography Studio logo"
+                     class="h-10 w-10 mr-3 rounded-full object-cover border border-yellow-500">
+                <span style="color:var(--gold)" class="text-xl font-bold tracking-wider uppercase">Rada Photography</span>
             </a>
             <nav class="hidden md:flex space-x-8" aria-label="Main navigation">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="about.html" class="nav-link">About</a>
+                <a href="index.html"     class="nav-link">Home</a>
+                <a href="about.html"     class="nav-link">About</a>
                 <a href="portfolio.html" class="nav-link active">Portfolio</a>
-                <a href="services.html" class="nav-link">Services</a>
-                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="services.html"  class="nav-link">Services</a>
+                <a href="contact.html"   class="nav-link">Contact</a>
             </nav>
-            <button id="mobile-menu-button" class="md:hidden text-gold focus:outline-none" aria-label="Toggle menu" aria-expanded="false">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none" style="color:var(--gold)" aria-label="Toggle menu" aria-expanded="false">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
                 </svg>
             </button>
         </div>
         <div id="mobile-menu" class="hidden md:hidden" role="navigation" aria-label="Mobile navigation">
-            <a href="index.html" class="block text-center py-4 text-base text-gold hover:bg-white hover:bg-opacity-5 transition">Home</a>
-            <a href="about.html" class="block text-center py-4 text-base text-gold hover:bg-white hover:bg-opacity-5 transition">About</a>
-            <a href="portfolio.html" class="block text-center py-4 text-base text-gold hover:bg-white hover:bg-opacity-5 transition">Portfolio</a>
-            <a href="services.html" class="block text-center py-4 text-base text-gold hover:bg-white hover:bg-opacity-5 transition">Services</a>
-            <a href="contact.html" class="block text-center py-4 text-base text-gold hover:bg-white hover:bg-opacity-5 transition">Contact</a>
+            <a href="index.html"     class="block text-center py-4 text-sm hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold)">Home</a>
+            <a href="about.html"     class="block text-center py-4 text-sm hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold)">About</a>
+            <a href="portfolio.html" class="block text-center py-4 text-sm hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold)">Portfolio</a>
+            <a href="services.html"  class="block text-center py-4 text-sm hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold)">Services</a>
+            <a href="contact.html"   class="block text-center py-4 text-sm hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold)">Contact</a>
         </div>
     </header>
 
     <!-- LIGHTBOX -->
     <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
-        <button id="lightbox-close" aria-label="Close image viewer">&times;</button>
-        <img id="lightbox-img" src="" alt="Full size photo" />
+        <button id="lightbox-close" aria-label="Close">&#x2715;</button>
+        <button class="lb-side-arrow" id="lb-prev-arrow" aria-label="Previous">&#8592;</button>
+        <button class="lb-side-arrow" id="lb-next-arrow" aria-label="Next">&#8594;</button>
+        <img id="lightbox-img" src="" alt="" />
+        <div class="lb-meta">
+            <span class="lb-counter" id="lb-counter">1 / 12</span>
+            <span class="lb-caption"  id="lb-caption"></span>
+        </div>
     </div>
 
-    <main class="pt-36 pb-24">
-        <div class="container mx-auto px-6">
-            <div class="mb-12">
-                <a href="portfolio.html" class="back-link">
-                    <span aria-hidden="true">&larr;</span> Back to Portfolio
-                </a>
-                <h3 class="text-gold uppercase tracking-[0.4em] text-xs mb-3 font-semibold">Portfolio Collection</h3>
-                <h1 class="text-5xl md:text-7xl font-bold leading-tight">Wedding <br><span style="color:var(--gold)">Stories</span></h1>
-                <p class="text-gray-400 mt-4 text-base max-w-xl">Authentic wedding photography across Coimbatore and Tamil Nadu — every frame a memory.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid">
-                <!-- Populated by JS for easy maintenance -->
-            </div>
+    <!-- MAIN -->
+    <main>
+        <div class="hero-section">
+            <a href="portfolio.html" class="back-link">&#8592; Back to Portfolio</a>
+            <p class="tag-line">Portfolio Collection</p>
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight">
+                Wedding<br>
+                <em style="color:var(--gold); font-style:italic; font-family:'Playfair Display',serif; font-weight:400">Stories</em>
+            </h1>
+            <div class="divider"></div>
+            <p class="text-gray-400 text-sm max-w-md leading-relaxed">
+                Authentic wedding photography across Coimbatore and Tamil Nadu —
+                every frame a memory, every moment timeless.
+            </p>
         </div>
+
+        <section class="gallery-section">
+            <div class="row-label">Ceremony</div>
+            <div class="scroll-outer">
+                <button class="arrow-btn left"  id="arrow-left"  aria-label="Scroll left">&#8592;</button>
+                <div class="scroll-track" id="scroll-track"></div>
+                <button class="arrow-btn right" id="arrow-right" aria-label="Scroll right">&#8594;</button>
+            </div>
+            <div class="dot-nav" id="dot-nav"></div>
+        </section>
     </main>
 
-    <footer class="py-12 bg-[#050505] text-center text-gray-500 text-sm border-t border-gold border-opacity-10">
-        <div class="container mx-auto px-6">
-            <p>&copy; 2025 Rada Photography Studio. All Rights Reserved.</p>
-            <p class="mt-2"><a href="mailto:radaphotographyofficial@gmail.com" class="text-gold hover:text-white transition">radaphotographyofficial@gmail.com</a> | <a href="tel:+917845091708" class="text-gold hover:text-white transition">+91 87543 28542</a></p>
-        </div>
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 Rada Photography Studio. All Rights Reserved.</p>
+        <p class="mt-2">
+            <a href="mailto:radaphotographyofficial@gmail.com">radaphotographyofficial@gmail.com</a>
+            &nbsp;|&nbsp;
+            <a href="tel:+918754328542">+91 87543 28542</a>
+        </p>
     </footer>
 
     <script>
-        // ── GALLERY IMAGES ──
-        // Replace these src values with your actual wedding photos
+        /* ── ALL IMAGES ── */
         const images = [
-            { src: 'weddingphotos/1000 (1).jpg',              alt: 'Wedding ceremony in Coimbatore by Rada Photography' },
-            { src: 'weddingphotos/377 (2).jpg',               alt: 'Bride portrait at Coimbatore wedding' },
-            { src: 'weddingphotos/464 (2).jpg',               alt: 'Wedding candid moment Tamil Nadu' },
-            { src: 'weddingphotos/553 (1).jpg',               alt: 'Couple portrait by Rada Photography Coimbatore' },
-            { src: 'weddingphotos/558 (1).jpg',               alt: 'Wedding reception photography Coimbatore' },
-            { src: 'weddingphotos/DSC05140 (1).jpg',          alt: 'Traditional Tamil wedding photography' },
-            { src: 'weddingphotos/na18 (1).jpg',              alt: 'Bridal photography Coimbatore' },
-            { src: 'weddingphotos/R5 (1).jpg',                alt: 'Wedding couple portrait Tamil Nadu' },
-            { src: 'weddingphotos/TJ1 (1).jpg',               alt: 'Wedding photography by Rada Photography Studio' },
-            { src: 'weddingphotos/Untitled-1FINAL.jpg',  alt: 'Fine art wedding photography Coimbatore' },
-            { src: 'weddingphotos/7621.jpg',               alt: 'Wedding photography by Rada Photography Studio' },
-            { src: 'weddingphotos/9052.jpg',  alt: 'Fine art wedding photography Coimbatore' },
+            { src: 'weddingphotos/1000 (1).jpg',        alt: 'Wedding ceremony in Coimbatore' },
+            { src: 'weddingphotos/377 (2).jpg',          alt: 'Bride portrait — Coimbatore wedding' },
+            { src: 'weddingphotos/464 (2).jpg',          alt: 'Candid moment — Tamil Nadu' },
+            { src: 'weddingphotos/553 (1).jpg',          alt: 'Couple portrait' },
+            { src: 'weddingphotos/558 (1).jpg',          alt: 'Wedding reception photography' },
+            { src: 'weddingphotos/DSC05140 (1).jpg',     alt: 'Traditional Tamil wedding' },
+            { src: 'weddingphotos/na18 (1).jpg',         alt: 'Bridal photography' },
+            { src: 'weddingphotos/R5 (1).jpg',           alt: 'Couple portrait Tamil Nadu' },
+            { src: 'weddingphotos/TJ1 (1).jpg',          alt: 'Wedding by Rada Photography' },
+            { src: 'weddingphotos/Untitled-1FINAL.jpg',  alt: 'Fine art wedding photograph' },
+            { src: 'weddingphotos/7621.jpg',             alt: 'Wedding moment' },
+            { src: 'weddingphotos/9052.jpg',             alt: 'Artistic wedding photography' },
         ];
 
-        const grid = document.getElementById('gallery-grid');
-        const delays = [0, 100, 200, 0, 100, 200, 0, 100, 200, 0];
+        /*
+          Collage layouts — alternating patterns.
+          Each panel gets 3 or 4 images in a different grid collage.
+          Layouts cycle: A(3), B(4), C(3), D(4), A(3)...
+        */
+        const layouts = [
+            { cls: 'layout-a', count: 3 },
+            { cls: 'layout-b', count: 4 },
+            { cls: 'layout-c', count: 3 },
+            { cls: 'layout-d', count: 4 },
+        ];
 
-        images.forEach((img, i) => {
-            const wrapper = document.createElement('div');
-            wrapper.className = 'portfolio-img-wrapper';
-            wrapper.setAttribute('data-aos', 'fade-up');
-            wrapper.setAttribute('data-aos-delay', delays[i % 3]);
+        const track   = document.getElementById('scroll-track');
+        const dotNav  = document.getElementById('dot-nav');
+        const panels  = [];
+        const dots    = [];
+        let imgIndex  = 0;
+        let layoutIdx = 0;
 
-            const el = document.createElement('img');
-            el.src = img.src;
-            el.alt = img.alt;
-            el.className = 'portfolio-img';
-            el.loading = 'lazy';
-            el.width = 800;
-            el.height = 600;
-            el.style.cursor = 'zoom-in';
-            el.addEventListener('click', () => openLightbox(img.src, img.alt));
+        while (imgIndex < images.length) {
+            const layout  = layouts[layoutIdx % layouts.length];
+            const count   = Math.min(layout.count, images.length - imgIndex);
+            if (count < 2) break; // don't make a panel with 1 image
 
-            wrapper.appendChild(el);
-            grid.appendChild(wrapper);
-        });
+            const panel = document.createElement('div');
+            panel.className = `collage-panel ${layout.cls}`;
 
-        // ── LIGHTBOX ──
-        const lightbox     = document.getElementById('lightbox');
-        const lightboxImg  = document.getElementById('lightbox-img');
-        const lightboxClose = document.getElementById('lightbox-close');
+            for (let c = 0; c < count; c++) {
+                const img = images[imgIndex];
+                const gi  = imgIndex;
 
-        function openLightbox(src, alt) {
-            lightboxImg.src = src;
-            lightboxImg.alt = alt;
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+
+                const el = document.createElement('img');
+                el.src = img.src;
+                el.alt = img.alt;
+                el.loading = gi < 4 ? 'eager' : 'lazy';
+
+                const badge = document.createElement('div');
+                badge.className = 'photo-badge';
+                badge.textContent = String(gi + 1).padStart(2, '0');
+
+                const lbl = document.createElement('div');
+                lbl.className = 'hover-label';
+                lbl.textContent = img.alt;
+
+                cell.appendChild(el);
+                cell.appendChild(badge);
+                cell.appendChild(lbl);
+                cell.addEventListener('click', () => openLightbox(gi));
+                panel.appendChild(cell);
+                imgIndex++;
+            }
+
+            track.appendChild(panel);
+            panels.push(panel);
+
+            /* Dot */
+            const dot = document.createElement('div');
+            dot.className = 'dot' + (panels.length === 1 ? ' active' : '');
+            dot.addEventListener('click', () => scrollToPanel(panels.length - 1));
+            dotNav.appendChild(dot);
+            dots.push(dot);
+
+            layoutIdx++;
+        }
+
+        /* ── ARROW SCROLL ── */
+        let currentPanel = 0;
+
+        function scrollToPanel(idx) {
+            if (idx < 0 || idx >= panels.length) return;
+            currentPanel = idx;
+            panels[idx].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+            dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        }
+
+        document.getElementById('arrow-left').addEventListener('click', () =>
+            scrollToPanel(currentPanel - 1)
+        );
+        document.getElementById('arrow-right').addEventListener('click', () =>
+            scrollToPanel(currentPanel + 1)
+        );
+
+        /* Update active dot on natural scroll */
+        const trackEl = track;
+        trackEl.addEventListener('scroll', () => {
+            const panelW = panels[0] ? panels[0].offsetWidth + 20 : 1;
+            const idx = Math.round(trackEl.scrollLeft / panelW);
+            if (idx !== currentPanel) {
+                currentPanel = Math.min(idx, panels.length - 1);
+                dots.forEach((d, i) => d.classList.toggle('active', i === currentPanel));
+            }
+        }, { passive: true });
+
+        /* ── LIGHTBOX ── */
+        const lightbox  = document.getElementById('lightbox');
+        const lbImg     = document.getElementById('lightbox-img');
+        const lbCounter = document.getElementById('lb-counter');
+        const lbCaption = document.getElementById('lb-caption');
+        let current = 0;
+
+        function openLightbox(idx) {
+            current = idx;
+            lbImg.style.opacity = '0';
+            lbImg.src = images[idx].src;
+            lbImg.alt = images[idx].alt;
+            lbImg.onload = () => { lbImg.style.opacity = '1'; };
+            lbCounter.textContent = `${idx + 1} / ${images.length}`;
+            lbCaption.textContent = images[idx].alt;
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-        lightboxClose.addEventListener('click', () => {
+        function closeLightbox() {
             lightbox.classList.remove('active');
             document.body.style.overflow = '';
+        }
+
+        document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+        document.getElementById('lb-prev-arrow').addEventListener('click', e => {
+            e.stopPropagation();
+            openLightbox((current - 1 + images.length) % images.length);
         });
-        lightbox.addEventListener('click', e => {
-            if (e.target === lightbox) {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = '';
-            }
+        document.getElementById('lb-next-arrow').addEventListener('click', e => {
+            e.stopPropagation();
+            openLightbox((current + 1) % images.length);
         });
         document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = '';
-            }
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape')     closeLightbox();
+            if (e.key === 'ArrowLeft')  openLightbox((current - 1 + images.length) % images.length);
+            if (e.key === 'ArrowRight') openLightbox((current + 1) % images.length);
         });
 
-        // ── INIT ──
+        /* ── SCROLL REVEAL ── */
+        const revealObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    revealObs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px 0px -50px' });
+
+        panels.forEach(p => revealObs.observe(p));
+
+        /* ── INIT ── */
         document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.add('fade-in');
-
-            // AOS only on desktop to avoid mobile conflicts
-            if (window.innerWidth >= 768) {
-                AOS.init({ duration: 900, once: true, easing: 'ease-out-expo' });
-            } else {
-                // Mobile: simple IntersectionObserver
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0)';
-                        }
-                    });
-                }, { threshold: 0.1 });
-
-                document.querySelectorAll('.portfolio-img-wrapper').forEach(el => {
-                    el.style.opacity = '0';
-                    el.style.transform = 'translateY(24px)';
-                    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                    observer.observe(el);
-                });
-            }
-
-            // Mobile menu
             const btn  = document.getElementById('mobile-menu-button');
             const menu = document.getElementById('mobile-menu');
             btn.addEventListener('click', () => {
