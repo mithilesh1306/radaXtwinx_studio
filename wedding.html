@@ -1,277 +1,629 @@
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap');
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--gold:#D4AF37;--gap:10px;--r:12px;--max:960px}
-body{background:#0c0c0c;font-family:'Poppins',sans-serif}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wedding Photography Gallery – Rada Photography Studio, Coimbatore</title>
+    <meta name="description" content="Browse Rada Photography's wedding photo gallery. Capturing timeless wedding moments across Coimbatore and Tamil Nadu with artistic vision." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://radaphotography.in/wedding.html" />
 
-.hdr{padding:3rem 1.5rem 1.8rem;text-align:center}
-.tag{color:var(--gold);font-size:.6rem;letter-spacing:.5em;text-transform:uppercase;font-weight:600;margin-bottom:.6rem;display:block}
-.hdr h2{font-family:'Playfair Display',serif;font-size:2.6rem;color:#fff;line-height:1.15}
-.hdr h2 em{color:var(--gold);font-style:italic;font-weight:400}
-.bar{width:52px;height:1px;background:var(--gold);opacity:.5;margin:.9rem auto 0}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-.gallery{
-  max-width:var(--max);
-  margin:0 auto;
-  padding:1rem 1.5rem 4rem;
-  display:flex;
-  flex-direction:column;
-  gap:32px;
-}
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark-bg: #0D0D0D;
+            --off-white: #E0E0E0;
+            --gap: 8px;
+        }
 
-.section-label{
-  display:flex;align-items:center;gap:14px;
-  color:var(--gold);font-size:.58rem;letter-spacing:.4em;text-transform:uppercase;font-weight:600;
-  margin-bottom:-18px;
-}
-.section-label::before,.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,.3),transparent)}
+        *, *::before, *::after { box-sizing: border-box; }
 
-/* ── ROW: fixed height, flex children fill perfectly ── */
-.row{
-  width:100%;
-  display:flex;
-  gap:var(--gap);
-  opacity:0;
-  transform:translateY(40px);
-  transition:opacity .7s ease,transform .7s cubic-bezier(.16,.84,.44,1);
-}
-.row.vis{opacity:1;transform:translateY(0)}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: var(--off-white);
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            overflow-x: hidden;
+        }
+        body.fade-in { opacity: 1; }
+        h1 { font-family: 'Playfair Display', serif; }
 
-/* Portrait 9:16 col — fixed width based on row height */
-.col-p{flex:0 0 auto;display:flex;flex-direction:column}
-/* Stacked col — fills rest */
-.col-s{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--gap)}
+        /* ── HEADER ── */
+        #header {
+            background: rgba(13,13,13,0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(212,175,55,0.1);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+            color: #a0a0a0;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 2px;
+            bottom: -4px; left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: #fff; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        #mobile-menu { background: rgba(0,0,0,0.97); border-bottom: 1px solid rgba(212,175,55,0.15); }
 
-/* top = 16:9, bottom = 1:1 */
-.cell-top{flex:1.78;min-height:0;position:relative}
-.cell-bot{flex:1;min-height:0;position:relative}
-.cell-full{flex:1;min-height:0;position:relative}
+        /* ── HERO ── */
+        .hero-section { padding: 8rem 2.5rem 3rem; }
+        .tag-line {
+            color: var(--gold);
+            font-size: 0.7rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .back-link {
+            color: var(--gold);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.7rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .back-link:hover { color: #fff; transform: translateX(-5px); }
+        .divider { width: 60px; height: 1px; background: var(--gold); margin: 1.5rem 0; opacity: 0.5; }
 
-/* shared cell skin */
-.cell{
-  position:absolute;inset:0;
-  border-radius:var(--r);
-  overflow:hidden;
-  background:#1a1a1a;
-  border:1px solid rgba(255,255,255,.06);
-  cursor:zoom-in;
-  transition:border-color .35s,transform .3s;
-}
-.cell:hover{border-color:rgba(212,175,55,.6);transform:scale(1.013);z-index:4}
-.cell img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.82);transition:filter .45s,transform .55s}
-.cell:hover img{filter:brightness(1.05);transform:scale(1.06)}
-.ov{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,.55) 0%,transparent 45%);
-  opacity:0;transition:opacity .3s;
-  display:flex;align-items:flex-end;padding:.7rem .8rem;pointer-events:none;
-}
-.cell:hover .ov{opacity:1}
-.num{
-  color:var(--gold);font-size:.5rem;letter-spacing:2px;
-  border:1px solid rgba(212,175,55,.45);border-radius:20px;
-  padding:2px 8px;background:rgba(0,0,0,.55);font-family:'Poppins',sans-serif;
-}
+        /* ── GALLERY WRAPPER ── */
+        .gallery-wrapper {
+            padding: 0 1.5rem 6rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
 
-/* LIGHTBOX — faux fixed using tall wrapper */
-.lb-wrap{
-  display:none;
-  width:100%;
-  min-height:560px;
-  background:rgba(8,8,8,.98);
-  align-items:center;justify-content:center;
-  flex-direction:column;gap:14px;padding:24px 20px;
-  border-top:1px solid rgba(212,175,55,.12);
-  border-bottom:1px solid rgba(212,175,55,.12);
-}
-.lb-wrap.open{display:flex}
-#lb-img{max-width:100%;max-height:460px;object-fit:contain;border-radius:10px;border:1px solid rgba(212,175,55,.18);transition:opacity .3s}
-.lb-top{width:100%;display:flex;justify-content:flex-end;margin-bottom:-8px}
-.lb-close{background:none;border:1px solid rgba(212,175,55,.3);color:var(--gold);width:36px;height:36px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s}
-.lb-close:hover{background:rgba(212,175,55,.15);color:#fff}
-.lb-nav{display:flex;align-items:center;gap:20px;margin-top:10px}
-.lb-arr{width:46px;height:46px;border-radius:50%;background:rgba(20,20,20,.9);border:1px solid rgba(212,175,55,.35);color:var(--gold);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s}
-.lb-arr:hover{background:rgba(212,175,55,.18);color:#fff}
-.lb-meta{text-align:center}
-.lb-count{color:rgba(212,175,55,.55);font-size:.62rem;letter-spacing:3px;display:block}
-.lb-alt{color:rgba(255,255,255,.25);font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;display:block;margin-top:3px}
+        /* ── COLLAGE ROW ── each row is a grid of cells ── */
+        .collage-row {
+            width: 100%;
+            display: grid;
+            gap: var(--gap);
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.165,0.84,0.44,1);
+        }
+        .collage-row.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-@media(max-width:600px){
-  .hdr h2{font-size:1.9rem}
-  .gallery{padding:.8rem 1rem 3rem;gap:22px}
-}
-</style>
+        /*
+          Layout A — 3 cols: tall left + 2 stacked right
+          Heights: row spans are split 55/45
+        */
+        .layout-a {
+            grid-template-columns: 1.05fr 0.95fr;
+            grid-template-rows: 320px 260px;
+        }
+        .layout-a .cell:nth-child(1) { grid-column: 1; grid-row: 1 / 3; }
+        .layout-a .cell:nth-child(2) { grid-column: 2; grid-row: 1; }
+        .layout-a .cell:nth-child(3) { grid-column: 2; grid-row: 2; }
 
-<h2 class="sr-only">Wedding photography gallery — full-page centred layout with aspect ratio groups</h2>
+        /*
+          Layout B — 4 images: tall left + wide top-right + 2 bottom-right
+        */
+        .layout-b {
+            grid-template-columns: 1.1fr 1fr 1fr;
+            grid-template-rows: 300px 280px;
+        }
+        .layout-b .cell:nth-child(1) { grid-column: 1;     grid-row: 1 / 3; }
+        .layout-b .cell:nth-child(2) { grid-column: 2 / 4; grid-row: 1; }
+        .layout-b .cell:nth-child(3) { grid-column: 2;     grid-row: 2; }
+        .layout-b .cell:nth-child(4) { grid-column: 3;     grid-row: 2; }
 
-<div class="hdr">
-  <span class="tag">Portfolio Collection</span>
-  <h2>Wedding <em>Stories</em></h2>
-  <div class="bar"></div>
-</div>
+        /*
+          Layout C — 3 images: 1 wide top + 2 equal bottom
+        */
+        .layout-c {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 360px 280px;
+        }
+        .layout-c .cell:nth-child(1) { grid-column: 1 / 3; grid-row: 1; }
+        .layout-c .cell:nth-child(2) { grid-column: 1;     grid-row: 2; }
+        .layout-c .cell:nth-child(3) { grid-column: 2;     grid-row: 2; }
 
-<div class="gallery" id="gallery"></div>
+        /*
+          Layout D — 4 images: 2 top equal + 1 tall right + 1 wide bottom-left
+        */
+        .layout-d {
+            grid-template-columns: 1fr 1fr 1.1fr;
+            grid-template-rows: 260px 300px;
+        }
+        .layout-d .cell:nth-child(1) { grid-column: 1; grid-row: 1; }
+        .layout-d .cell:nth-child(2) { grid-column: 2; grid-row: 1; }
+        .layout-d .cell:nth-child(3) { grid-column: 3; grid-row: 1 / 3; }
+        .layout-d .cell:nth-child(4) { grid-column: 1 / 3; grid-row: 2; }
 
-<div class="lb-wrap" id="lb">
-  <div class="lb-top"><button class="lb-close" id="lbc" aria-label="Close">&#x2715;</button></div>
-  <img id="lb-img" src="" alt=""/>
-  <div class="lb-meta">
-    <span class="lb-count" id="lcnt">1 / 12</span>
-    <span class="lb-alt" id="lalt"></span>
-  </div>
-  <div class="lb-nav">
-    <button class="lb-arr" id="lp">&#8592;</button>
-    <button class="lb-arr" id="ln">&#8594;</button>
-  </div>
-</div>
+        /*
+          Layout E — 2 images side by side (for leftovers or variety)
+        */
+        .layout-e {
+            grid-template-columns: 0.9fr 1.1fr;
+            grid-template-rows: 420px;
+        }
+        .layout-e .cell:nth-child(1) { grid-column: 1; grid-row: 1; }
+        .layout-e .cell:nth-child(2) { grid-column: 2; grid-row: 1; }
 
-<script>
-const images=[
-  {src:'weddingphotos/1000 (1).jpg',       alt:'Wedding ceremony'},
-  {src:'weddingphotos/377 (2).jpg',         alt:'Bride portrait'},
-  {src:'weddingphotos/464 (2).jpg',         alt:'Candid moment'},
-  {src:'weddingphotos/553 (1).jpg',         alt:'Couple portrait'},
-  {src:'weddingphotos/558 (1).jpg',         alt:'Wedding reception'},
-  {src:'weddingphotos/DSC05140 (1).jpg',    alt:'Traditional Tamil wedding'},
-  {src:'weddingphotos/na18 (1).jpg',        alt:'Bridal photography'},
-  {src:'weddingphotos/R5 (1).jpg',          alt:'Couple portrait Tamil Nadu'},
-  {src:'weddingphotos/TJ1 (1).jpg',         alt:'Wedding by Rada Photography'},
-  {src:'weddingphotos/Untitled-1FINAL.jpg', alt:'Fine art wedding'},
-  {src:'weddingphotos/7621.jpg',            alt:'Wedding moment'},
-  {src:'weddingphotos/9052.jpg',            alt:'Artistic wedding photography'},
-];
+        /* ── CELL ── */
+        .cell {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            cursor: zoom-in;
+            border: 1px solid rgba(212,175,55,0.08);
+            background: #111;
+            transition: border-color 0.35s, box-shadow 0.35s;
+            min-width: 0;
+            min-height: 0;
+        }
+        .cell:hover {
+            border-color: rgba(212,175,55,0.5);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+            z-index: 2;
+        }
+        .cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.75) grayscale(8%);
+            transition: transform 0.85s cubic-bezier(0.165,0.84,0.44,1), filter 0.5s;
+        }
+        .cell:hover img {
+            transform: scale(1.05);
+            filter: brightness(1) grayscale(0%);
+        }
 
-/*
-  ROW HEIGHT = 400px
-  Pattern A (even):  [9:16 portrait LEFT 225px wide] | [16:9 top + 1:1 bottom RIGHT]
-  Pattern B (odd):   [16:9 top + 1:1 bottom LEFT]   | [9:16 portrait RIGHT 225px wide]
-  Portrait width = 400 * 9/16 = 225px exactly
-  Right col = 960 - 225 - 10(gap) - (2*24 padding) = fills flex:1
-  Top cell flex:1.78 ≈ 16:9, Bottom cell flex:1 ≈ 1:1
-*/
+        /* Gradient overlay on hover */
+        .cell::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+            border-radius: inherit;
+        }
+        .cell:hover::after { opacity: 1; }
 
-const ROW_H=400;
-const PORT_W=Math.round(ROW_H*9/16); // 225px
+        .hover-label {
+            position: absolute;
+            bottom: 12px; left: 14px;
+            color: rgba(212,175,55,0.9);
+            font-size: 0.58rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            opacity: 0;
+            transition: opacity 0.35s;
+            pointer-events: none;
+            z-index: 3;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        .cell:hover .hover-label { opacity: 1; }
 
-const labels=['Ceremony','Portraits','Candid','Moments'];
-const gallery=document.getElementById('gallery');
-let lcur=0;
+        .photo-badge {
+            position: absolute;
+            top: 10px; right: 10px;
+            background: rgba(0,0,0,0.55);
+            border: 1px solid rgba(212,175,55,0.3);
+            color: var(--gold);
+            font-size: 0.55rem;
+            letter-spacing: 1px;
+            padding: 2px 9px;
+            border-radius: 20px;
+            pointer-events: none;
+            z-index: 3;
+            font-family: 'Poppins', sans-serif;
+        }
 
-for(let i=0;i<images.length;i+=3){
-  const chunk=images.slice(i,i+3);
-  if(chunk.length<2) break;
-  const gi=Math.floor(i/3);
-  const flip=gi%2===1;
+        /* ── SECTION LABEL ── */
+        .section-label {
+            color: var(--gold);
+            font-size: 0.65rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin: 2.5rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, rgba(212,175,55,0.4), transparent);
+        }
 
-  // section label
-  const lbl=document.createElement('div');
-  lbl.className='section-label';
-  lbl.textContent=labels[gi%labels.length];
-  gallery.appendChild(lbl);
+        /* ── LIGHTBOX ── */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.97);
+            z-index: 500;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+        }
+        #lightbox.active { display: flex; }
+        #lightbox-img {
+            width: 95vw;
+            height: 88vh;
+            max-width: 1600px;
+            object-fit: contain;
+            border-radius: 6px;
+            border: 1px solid rgba(212,175,55,0.2);
+            box-shadow: 0 30px 90px rgba(0,0,0,0.95);
+            transition: opacity 0.25s ease;
+        }
+        #lightbox-close {
+            position: fixed;
+            top: 16px; right: 22px;
+            background: none; border: none;
+            color: var(--gold); font-size: 2.2rem;
+            cursor: pointer; line-height: 1;
+            transition: color 0.2s, transform 0.3s;
+            z-index: 510;
+        }
+        #lightbox-close:hover { color: #fff; transform: rotate(90deg); }
+        .lb-side-arrow {
+            position: fixed;
+            top: 50%; transform: translateY(-50%);
+            background: rgba(10,10,10,0.75);
+            border: 1px solid rgba(212,175,55,0.35);
+            color: var(--gold);
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 510;
+            transition: background 0.2s, color 0.2s;
+        }
+        .lb-side-arrow:hover { background: rgba(212,175,55,0.2); color: #fff; }
+        #lb-prev-arrow { left: 14px; }
+        #lb-next-arrow { right: 14px; }
+        .lb-meta { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        .lb-counter { color: rgba(212,175,55,0.55); font-size: 0.68rem; letter-spacing: 3px; }
+        .lb-caption  { color: rgba(255,255,255,0.32); font-size: 0.62rem; letter-spacing: 1.5px; text-transform: uppercase; }
 
-  // row
-  const row=document.createElement('div');
-  row.className='row';
-  row.style.height=ROW_H+'px';
+        /* ── FOOTER ── */
+        footer {
+            padding: 3rem 1.5rem;
+            background: #050505;
+            text-align: center;
+            color: #555;
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(212,175,55,0.08);
+        }
+        footer a { color: var(--gold); transition: color 0.2s; text-decoration: none; }
+        footer a:hover { color: #fff; }
 
-  if(!flip){
-    // A: portrait LEFT | stacked RIGHT
-    row.appendChild(makePortraitCol(chunk[0], i));
-    row.appendChild(makeStackedCol(chunk[1], chunk[2], i+1, i+2));
-  } else {
-    // B: stacked LEFT | portrait RIGHT
-    row.appendChild(makeStackedCol(chunk[0], chunk[1], i, i+1));
-    row.appendChild(makePortraitCol(chunk[2]||chunk[1], chunk[2]?i+2:i+1));
-  }
+        /* ── MOBILE ── */
+        @media (max-width: 768px) {
+            .hero-section { padding: 7rem 1.25rem 2rem; }
+            .gallery-wrapper { padding: 0 0.75rem 4rem; gap: 6px; }
 
-  gallery.appendChild(row);
-}
+            /* All layouts become simpler on mobile */
+            .layout-a, .layout-b, .layout-c, .layout-d, .layout-e {
+                grid-template-columns: 1fr 1fr !important;
+                grid-template-rows: auto !important;
+            }
+            /* Reset all cell placements */
+            .layout-a .cell, .layout-b .cell, .layout-c .cell,
+            .layout-d .cell, .layout-e .cell {
+                grid-column: auto !important;
+                grid-row: auto !important;
+            }
+            /* First cell in each row spans full width */
+            .layout-a .cell:nth-child(1),
+            .layout-b .cell:nth-child(1),
+            .layout-c .cell:nth-child(1),
+            .layout-d .cell:nth-child(1) {
+                grid-column: 1 / 3 !important;
+                height: 240px !important;
+            }
+            /* Remaining cells are equal halves */
+            .layout-a .cell:nth-child(2),
+            .layout-a .cell:nth-child(3),
+            .layout-b .cell:nth-child(2),
+            .layout-b .cell:nth-child(3),
+            .layout-b .cell:nth-child(4),
+            .layout-c .cell:nth-child(2),
+            .layout-c .cell:nth-child(3),
+            .layout-d .cell:nth-child(2),
+            .layout-d .cell:nth-child(3),
+            .layout-d .cell:nth-child(4),
+            .layout-e .cell:nth-child(1),
+            .layout-e .cell:nth-child(2) {
+                height: 160px !important;
+            }
+            /* layout-e both cells equal halves */
+            .layout-e {
+                grid-template-columns: 1fr 1fr !important;
+                grid-template-rows: 180px !important;
+            }
+            .lb-side-arrow { display: none; }
+        }
 
-function makePortraitCol(img, idx){
-  const col=document.createElement('div');
-  col.className='col-p';
-  col.style.width=PORT_W+'px';
-  col.style.height='100%';
+        @media (max-width: 480px) {
+            .layout-a .cell:nth-child(1),
+            .layout-b .cell:nth-child(1),
+            .layout-c .cell:nth-child(1),
+            .layout-d .cell:nth-child(1) { height: 200px !important; }
+            .layout-a .cell:nth-child(2), .layout-a .cell:nth-child(3),
+            .layout-b .cell:nth-child(2), .layout-b .cell:nth-child(3), .layout-b .cell:nth-child(4),
+            .layout-c .cell:nth-child(2), .layout-c .cell:nth-child(3),
+            .layout-d .cell:nth-child(2), .layout-d .cell:nth-child(3), .layout-d .cell:nth-child(4) { height: 130px !important; }
+        }
+    </style>
+</head>
+<body>
 
-  const wrap=document.createElement('div');
-  wrap.className='cell-full';
-  wrap.style.position='relative';
-  wrap.style.flex='1';
-  wrap.style.minHeight='0';
-  wrap.appendChild(makeCell(img,idx));
-  col.appendChild(wrap);
-  return col;
-}
+    <!-- HEADER -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center" aria-label="Rada Photography Home">
+                <img src="dp/rada logo.jpeg"
+                     onerror="this.src='https://placehold.co/100x100/D4AF37/0D0D0D?text=R'"
+                     alt="Rada Photography Studio logo"
+                     class="h-10 w-10 mr-3 rounded-full object-cover border border-yellow-500">
+                <span style="color:var(--gold)" class="text-xl font-bold tracking-wider uppercase">Rada Photography</span>
+            </a>
+            <nav class="hidden md:flex space-x-8" aria-label="Main navigation">
+                <a href="index.html"     class="nav-link">Home</a>
+                <a href="about.html"     class="nav-link">About</a>
+                <a href="portfolio.html" class="nav-link active">Portfolio</a>
+                <a href="services.html"  class="nav-link">Services</a>
+                <a href="contact.html"   class="nav-link">Contact</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none" style="color:var(--gold)" aria-label="Toggle menu" aria-expanded="false">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden" role="navigation" aria-label="Mobile navigation">
+            <a href="index.html"     class="block text-center py-4 text-sm hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold)">Home</a>
+            <a href="about.html"     class="block text-center py-4 text-sm hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold)">About</a>
+            <a href="portfolio.html" class="block text-center py-4 text-sm hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold)">Portfolio</a>
+            <a href="services.html"  class="block text-center py-4 text-sm hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold)">Services</a>
+            <a href="contact.html"   class="block text-center py-4 text-sm hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold)">Contact</a>
+        </div>
+    </header>
 
-function makeStackedCol(img1, img2, idx1, idx2){
-  const col=document.createElement('div');
-  col.className='col-s';
+    <!-- LIGHTBOX -->
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+        <button id="lightbox-close" aria-label="Close">&#x2715;</button>
+        <button class="lb-side-arrow" id="lb-prev-arrow" aria-label="Previous">&#8592;</button>
+        <button class="lb-side-arrow" id="lb-next-arrow" aria-label="Next">&#8594;</button>
+        <img id="lightbox-img" src="" alt="" />
+        <div class="lb-meta">
+            <span class="lb-counter" id="lb-counter">1 / 12</span>
+            <span class="lb-caption"  id="lb-caption"></span>
+        </div>
+    </div>
 
-  const top=document.createElement('div');
-  top.className='cell-top';
-  top.appendChild(makeCell(img1,idx1));
-  col.appendChild(top);
+    <!-- MAIN -->
+    <main>
+        <div class="hero-section">
+            <a href="portfolio.html" class="back-link">&#8592; Back to Portfolio</a>
+            <p class="tag-line">Portfolio Collection</p>
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight">
+                Wedding<br>
+                <em style="color:var(--gold); font-style:italic; font-family:'Playfair Display',serif; font-weight:400">Stories</em>
+            </h1>
+            <div class="divider"></div>
+            <p class="text-gray-400 text-sm max-w-md leading-relaxed">
+                Authentic wedding photography across Coimbatore and Tamil Nadu —
+                every frame a memory, every moment timeless.
+            </p>
+        </div>
 
-  if(img2){
-    const bot=document.createElement('div');
-    bot.className='cell-bot';
-    bot.appendChild(makeCell(img2,idx2));
-    col.appendChild(bot);
-  }
-  return col;
-}
+        <!-- GALLERY — vertical scroll collage -->
+        <div class="gallery-wrapper" id="gallery-wrapper">
+            <!-- rows injected by JS -->
+        </div>
+    </main>
 
-function makeCell(img, idx){
-  if(!img) return document.createElement('div');
-  const cell=document.createElement('div');
-  cell.className='cell';
-  const el=document.createElement('img');
-  el.src=img.src; el.alt=img.alt;
-  el.loading=idx<6?'eager':'lazy';
-  const ov=document.createElement('div');
-  ov.className='ov';
-  const num=document.createElement('span');
-  num.className='num';
-  num.textContent=String(idx+1).padStart(2,'0');
-  ov.appendChild(num);
-  cell.appendChild(el);
-  cell.appendChild(ov);
-  cell.addEventListener('click',()=>openLb(idx));
-  return cell;
-}
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 Rada Photography Studio. All Rights Reserved.</p>
+        <p class="mt-2">
+            <a href="mailto:radaphotographyofficial@gmail.com">radaphotographyofficial@gmail.com</a>
+            &nbsp;|&nbsp;
+            <a href="tel:+917845091708">+91 78450 91708</a>
+        </p>
+    </footer>
 
-// scroll reveal
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}
-  });
-},{threshold:0.05});
-document.querySelectorAll('.row').forEach(r=>obs.observe(r));
+    <script>
+        /* ── ALL IMAGES ── */
+        const images = [
+            { src: 'weddingphotos/1000 (1).jpg',       alt: 'Wedding ceremony in Coimbatore' },
+            { src: 'weddingphotos/377 (2).jpg',         alt: 'Bride portrait — Coimbatore wedding' },
+            { src: 'weddingphotos/464 (2).jpg',         alt: 'Candid moment — Tamil Nadu' },
+            { src: 'weddingphotos/553 (1).jpg',         alt: 'Couple portrait' },
+            { src: 'weddingphotos/558 (1).jpg',         alt: 'Wedding reception photography' },
+            { src: 'weddingphotos/DSC05140 (1).jpg',    alt: 'Traditional Tamil wedding' },
+            { src: 'weddingphotos/na18 (1).jpg',        alt: 'Bridal photography' },
+            { src: 'weddingphotos/R5 (1).jpg',          alt: 'Couple portrait Tamil Nadu' },
+            { src: 'weddingphotos/TJ1 (1).jpg',         alt: 'Wedding by Rada Photography' },
+            { src: 'weddingphotos/Untitled-1FINAL.jpg', alt: 'Fine art wedding photograph' },
+            { src: 'weddingphotos/7621.jpg',            alt: 'Wedding moment' },
+            { src: 'weddingphotos/9052.jpg',            alt: 'Artistic wedding photography' },
+            { src: 'weddingphotos/4402.jpg',            alt: 'Wedding candid' },
+            { src: 'weddingphotos/temp131.jpg',         alt: 'Wedding storytelling' },
+        ];
 
-// LIGHTBOX
-const lb=document.getElementById('lb');
-const lbImg=document.getElementById('lb-img');
-const lcnt=document.getElementById('lcnt');
-const lalt=document.getElementById('lalt');
+        /*
+          Layouts cycle. count = number of images per row.
+          Must match the CSS grid definitions exactly.
+        */
+        const layouts = [
+            { cls: 'layout-a', count: 3 },
+            { cls: 'layout-b', count: 4 },
+            { cls: 'layout-c', count: 3 },
+            { cls: 'layout-d', count: 4 },
+            { cls: 'layout-e', count: 2 },
+        ];
 
-function openLb(i){
-  lcur=i;
-  lbImg.style.opacity='0';
-  lbImg.src=images[i].src; lbImg.alt=images[i].alt;
-  lbImg.onload=()=>lbImg.style.opacity='1';
-  lcnt.textContent=`${i+1} / ${images.length}`;
-  lalt.textContent=images[i].alt;
-  lb.classList.add('open');
-  lb.scrollIntoView({behavior:'smooth',block:'nearest'});
-}
-function closeLb(){lb.classList.remove('open');}
-document.getElementById('lbc').onclick=closeLb;
-document.getElementById('lp').onclick=()=>openLb((lcur-1+images.length)%images.length);
-document.getElementById('ln').onclick=()=>openLb((lcur+1)%images.length);
-document.addEventListener('keydown',e=>{
-  if(!lb.classList.contains('open'))return;
-  if(e.key==='Escape')closeLb();
-  if(e.key==='ArrowLeft')openLb((lcur-1+images.length)%images.length);
-  if(e.key==='ArrowRight')openLb((lcur+1)%images.length);
-});
-</script>
+        const wrapper  = document.getElementById('gallery-wrapper');
+        const allCells = []; // flat array of { el, imgIndex } for lightbox
+        let imgIndex   = 0;
+        let layoutIdx  = 0;
+        const rows     = [];
+
+        while (imgIndex < images.length) {
+            const layout = layouts[layoutIdx % layouts.length];
+            const count  = Math.min(layout.count, images.length - imgIndex);
+
+            // Need at least 2 images per row; if only 1 left, add to previous row
+            if (count < 2) break;
+
+            const row = document.createElement('div');
+            row.className = `collage-row ${layout.cls}`;
+
+            for (let c = 0; c < count; c++) {
+                const img  = images[imgIndex];
+                const gi   = imgIndex;
+
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+
+                const el = document.createElement('img');
+                el.src     = img.src;
+                el.alt     = img.alt;
+                el.loading = gi < 6 ? 'eager' : 'lazy';
+
+                const badge = document.createElement('div');
+                badge.className   = 'photo-badge';
+                badge.textContent = String(gi + 1).padStart(2, '0');
+
+                const lbl = document.createElement('div');
+                lbl.className   = 'hover-label';
+                lbl.textContent = img.alt;
+
+                cell.appendChild(el);
+                cell.appendChild(badge);
+                cell.appendChild(lbl);
+
+                cell.addEventListener('click', () => openLightbox(gi));
+                row.appendChild(cell);
+                allCells.push({ el: cell, imgIndex: gi });
+                imgIndex++;
+            }
+
+            wrapper.appendChild(row);
+            rows.push(row);
+            layoutIdx++;
+        }
+
+        /* ── SCROLL REVEAL ── */
+        const revealObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    revealObs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+
+        rows.forEach((r, i) => {
+            // Stagger reveal with a small delay per row
+            setTimeout(() => revealObs.observe(r), i * 80);
+        });
+
+        /* ── LIGHTBOX ── */
+        const lightbox  = document.getElementById('lightbox');
+        const lbImg     = document.getElementById('lightbox-img');
+        const lbCounter = document.getElementById('lb-counter');
+        const lbCaption = document.getElementById('lb-caption');
+        let current = 0;
+
+        function openLightbox(idx) {
+            current = idx;
+            lbImg.style.opacity = '0';
+            lbImg.src = images[idx].src;
+            lbImg.alt = images[idx].alt;
+            lbImg.onload = () => { lbImg.style.opacity = '1'; };
+            lbCounter.textContent = `${idx + 1} / ${images.length}`;
+            lbCaption.textContent = images[idx].alt;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+        document.getElementById('lb-prev-arrow').addEventListener('click', e => {
+            e.stopPropagation();
+            openLightbox((current - 1 + images.length) % images.length);
+        });
+        document.getElementById('lb-next-arrow').addEventListener('click', e => {
+            e.stopPropagation();
+            openLightbox((current + 1) % images.length);
+        });
+        document.addEventListener('keydown', e => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape')     closeLightbox();
+            if (e.key === 'ArrowLeft')  openLightbox((current - 1 + images.length) % images.length);
+            if (e.key === 'ArrowRight') openLightbox((current + 1) % images.length);
+        });
+
+        /* ── MOBILE MENU ── */
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('fade-in');
+            const btn  = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            btn.addEventListener('click', () => {
+                const open = !menu.classList.contains('hidden');
+                menu.classList.toggle('hidden');
+                btn.setAttribute('aria-expanded', String(!open));
+            });
+            menu.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                    btn.setAttribute('aria-expanded', 'false');
+                });
+            });
+        });
+
+        // Fade in body immediately if DOM already loaded
+        if (document.readyState !== 'loading') {
+            document.body.classList.add('fade-in');
+        }
+    </script>
+</body>
+</html>
