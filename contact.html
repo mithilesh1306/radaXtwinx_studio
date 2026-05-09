@@ -12,19 +12,25 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Playfair+Display+SC:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --gold: #D4AF37;
-            --dark-bg: #0D0D0D;
-            --off-white: #E0E0E0;
+            --gold-light:      #F0D060;
+            --gold-mid:        #D4AF37;
+            --gold-dark:       #9A7B1A;
+            --gold-gradient:   linear-gradient(135deg, #F0D060 0%, #D4AF37 45%, #9A7B1A 100%);
+            --gold-gradient-h: linear-gradient(90deg,  #F0D060 0%, #D4AF37 50%, #9A7B1A 100%);
+            --dark-bg:         #0D0D0D;
+            --off-white:       #E0E0E0;
+            --font-display:   'Playfair Display', Georgia, serif;
+            --font-body:      'DM Sans', system-ui, sans-serif;
         }
 
         *, *::before, *::after { box-sizing: border-box; }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--font-body);
             background-color: var(--dark-bg);
             color: var(--off-white);
             opacity: 0;
@@ -34,102 +40,88 @@
         }
         body.fade-in { opacity: 1; }
 
-        h1, h2, h3 { font-family: 'Playfair Display', serif; color: #FFFFFF; }
+        h1, h2, h3 { font-family: var(--font-display); color: #FFFFFF; }
+
+        /* ── LOGO TEXT ── */
+        .logo-text {
+            background: var(--gold-gradient-h);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: var(--font-body);
+            font-weight: 600;
+            letter-spacing: 0.03em;
+        }
 
         /* ── HEADER ── */
-        #header {
-            background-color: rgba(13, 13, 13, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        #header { transition: background-color 0.3s ease; }
+        #header.solid {
+            background: rgba(13,13,13,0.97);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(212,175,55,0.2);
         }
+
+        /* ── NAV LINKS ── */
         .nav-link {
             position: relative;
-            transition: color 0.3s ease;
-            color: #a0a0a0;
             font-weight: 500;
+            font-family: var(--font-body);
+            color: #a0a0a0;
+            transition: color 0.3s;
+            letter-spacing: 0.07em;
+            font-size: 0.875rem;
         }
+        .nav-link:hover, .nav-link.active { color: #fff; }
         .nav-link::after {
             content: '';
             position: absolute;
-            width: 0; height: 2px; bottom: -2px; left: 50%;
+            bottom: -4px; left: 50%;
             transform: translateX(-50%);
-            background-color: var(--gold);
-            transition: width 0.3s ease;
+            width: 0; height: 1px;
+            background: var(--gold-gradient-h);
+            transition: width 0.3s;
         }
-        .nav-link:hover, .nav-link.active { color: #fff; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-
-        /* Mobile menu overlay */
-        #mobile-nav-overlay {
-            position: fixed;
-            inset: 0;
-            background: #0D0D0D;
-            z-index: 200;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-        }
-        #mobile-nav-overlay.open { transform: translateX(0); }
-        #mobile-nav-overlay a {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            color: #a0a0a0;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        #mobile-nav-overlay a:hover,
-        #mobile-nav-overlay a.active { color: var(--gold); }
-        #mobile-close-btn {
-            position: absolute;
-            top: 1.4rem; right: 1.5rem;
-            background: none;
-            border: none;
-            color: var(--gold);
-            font-size: 2rem;
-            cursor: pointer;
-            line-height: 1;
-        }
 
         /* ── FORM STYLING ── */
         .form-input {
-            background-color: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            background-color: rgba(255,255,255,0.03);
+            border: 1px solid rgba(212,175,55,0.2);
             color: #E0E0E0;
             transition: all 0.3s ease;
             width: 100%;
+            font-family: var(--font-body);
         }
         .form-input::placeholder { color: rgba(224,224,224,0.4); }
         .form-input:focus {
             outline: none;
-            border-color: var(--gold);
-            background-color: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+            border-color: var(--gold-mid);
+            background-color: rgba(255,255,255,0.05);
+            box-shadow: 0 0 10px rgba(212,175,55,0.1);
         }
 
         /* ── GOLD BUTTON ── */
         .btn-gold {
-            background-color: var(--gold);
+            background: var(--gold-gradient);
             color: var(--dark-bg);
-            font-weight: 600;
-            padding: 0.8rem 2rem;
+            font-family: var(--font-body);
+            font-weight: 700;
+            padding: 0.85rem 2rem;
             border-radius: 50px;
             transition: all 0.3s ease;
             display: inline-block;
             text-align: center;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            font-size: 0.78rem;
             border: none;
             cursor: pointer;
+            text-decoration: none;
         }
         .btn-gold:hover {
-            background-color: #fff;
+            opacity: 0.9;
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 30px rgba(212,175,55,0.35);
         }
 
         /* ── MAP WRAPPER ── */
@@ -138,135 +130,75 @@
             width: 100%;
             border-radius: 16px;
             overflow: hidden;
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            /* gold top accent line */
+            border: 1px solid rgba(212,175,55,0.15);
             box-shadow: 0 0 0 1px rgba(212,175,55,0.08), 0 20px 60px rgba(0,0,0,0.5);
         }
         .map-wrapper::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            z-index: 2;
-            pointer-events: none;
+            top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-mid), transparent);
+            z-index: 2; pointer-events: none;
         }
         .map-wrapper iframe {
-            display: block;
-            width: 100%;
-            height: 320px;
-            border: 0;
+            display: block; width: 100%; height: 320px; border: 0;
             filter: invert(90%) hue-rotate(180deg) saturate(0.7) brightness(0.85);
         }
-
-        /* Map label strip */
         .map-label {
             background: rgba(13,13,13,0.92);
             backdrop-filter: blur(8px);
             border-top: 1px solid rgba(212,175,55,0.12);
             padding: 0.9rem 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            display: flex; align-items: center; gap: 10px;
         }
-        .map-label svg { flex-shrink: 0; color: var(--gold); }
-        .map-label span {
-            font-size: 0.78rem;
-            color: rgba(224,224,224,0.65);
-            line-height: 1.4;
-            letter-spacing: 0.02em;
-        }
+        .map-label svg { flex-shrink: 0; color: var(--gold-mid); }
+        .map-label span { font-size: 0.78rem; color: rgba(224,224,224,0.65); line-height: 1.4; letter-spacing: 0.02em; }
         .map-label a {
-            font-size: 0.72rem;
-            color: var(--gold);
-            text-decoration: none;
-            margin-left: auto;
-            white-space: nowrap;
-            flex-shrink: 0;
-            transition: color 0.2s;
+            font-size: 0.72rem; color: var(--gold-mid); text-decoration: none;
+            margin-left: auto; white-space: nowrap; flex-shrink: 0; transition: color 0.2s;
         }
         .map-label a:hover { color: #fff; }
 
         /* ── CONTACT ICON ROWS ── */
-        .contact-icon-row {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
+        .contact-icon-row { display: flex; align-items: center; gap: 1rem; }
         .contact-icon-circle {
-            width: 48px; height: 48px;
-            flex-shrink: 0;
-            border-radius: 50%;
-            border: 1px solid rgba(212,175,55,0.3);
+            width: 48px; height: 48px; flex-shrink: 0;
+            border-radius: 50%; border: 1px solid rgba(212,175,55,0.3);
             display: flex; align-items: center; justify-content: center;
             transition: background 0.3s;
         }
-        .contact-icon-circle:hover { background: var(--gold); }
+        .contact-icon-circle:hover { background: var(--gold-mid); }
         .contact-icon-circle:hover svg { color: #0D0D0D !important; }
 
-        /* ── MOBILE FIXES ── */
+        /* ── SECTION LABEL ── */
+        .section-label {
+            font-family: var(--font-body); font-size: 0.72rem; font-weight: 600;
+            letter-spacing: 0.5em; text-transform: uppercase;
+            background: var(--gold-gradient-h);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        /* ── MOBILE ── */
         @media (max-width: 767px) {
-
-            /* Header: keep logo on one line */
-            #header .text-2xl {
-                font-size: 1.05rem !important;
-                letter-spacing: 0.05em !important;
-                line-height: 1;
-            }
-            #header img {
-                width: 34px !important;
-                height: 34px !important;
-                margin-right: 0.5rem !important;
-            }
-
-            /* Main: reduce top padding */
             main { padding-top: 5rem !important; padding-bottom: 3rem !important; }
-
-            /* Hero: tighter spacing */
-            .page-hero { margin-bottom: 2rem !important; }
             .page-hero h1 { font-size: clamp(2.2rem, 10vw, 3rem) !important; }
-            .page-hero p  { font-size: 0.88rem; padding: 0 4px; margin-top: 0.75rem !important; }
-
-            /* Grid: single column — contact details FIRST, form second */
-            .contact-grid {
-                grid-template-columns: 1fr !important;
-                gap: 2rem !important;
-            }
-            .contact-left  { order: 1; }   /* details + map first */
-            .contact-right { order: 2; }   /* form below */
-
-            /* Contact detail rows */
+            .contact-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+            .contact-left  { order: 1; }
+            .contact-right { order: 2; }
             .contact-icon-circle { width: 40px; height: 40px; }
-            .contact-icon-row a,
-            .contact-icon-row span { font-size: 0.88rem; }
-
-            /* WhatsApp button */
-            .wa-btn-wrap a {
-                display: block;
-                width: 100%;
-                text-align: center;
-                font-size: 0.8rem;
-            }
-
-            /* Map */
             .map-wrapper iframe { height: 220px; }
             .map-label { flex-wrap: wrap; gap: 6px; }
-            .map-label span { font-size: 0.72rem; }
-            .map-label a    { margin-left: 0; font-size: 0.7rem; }
-
-            /* Form card */
-            .contact-right { padding: 1.5rem !important; }
+            .map-label a { margin-left: 0; }
             .form-name-email { grid-template-columns: 1fr !important; }
-            .form-input { font-size: 0.88rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ══ HEADER ══ -->
+    <!-- HEADER — identical to index.html -->
     <header id="header" class="fixed top-0 left-0 right-0 z-50">
         <div class="container mx-auto px-4 sm:px-7 py-5 flex justify-between items-center">
-            <a href="contact.html" class="flex items-center" aria-label="Rada Photography Home">
+            <a href="index.html" class="flex items-center" aria-label="Rada Photography Home">
                 <img src="dp/dp2.PNG"
                      onerror="this.src='https://placehold.co/100x100/D4AF37/0D0D0D?text=R'"
                      alt="Rada Photography Studio Logo"
@@ -283,14 +215,14 @@
                 <a href="contact.html" class="nav-link active">Contact</a>
             </nav>
             <button id="mobile-menu-button" class="md:hidden focus:outline-none" aria-label="Toggle mobile menu" aria-expanded="false">
-                <svg class="w-6 h-6" style="color:var(--gold-mid);" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <svg class="w-6 h-6" style="color:var(--gold-mid);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
             </button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-97 border-b border-opacity-20" style="border-color:var(--gold-mid);" role="navigation" aria-label="Mobile navigation">
+        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-97 border-b border-opacity-20" style="border-color:var(--gold-mid);">
             <a href="index.html" class="block text-center py-4 text-lg hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold-mid);">Home</a>
-            <a href="twinx.html" class="block text-center py-4 text-lg hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold-mid);">Twinx</a>
+            <a href="twinx.html" class="block text-center py-4 text-lg hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold-mid);">Twiinx</a>
             <a href="about.html" class="block text-center py-4 text-lg hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold-mid);">About</a>
             <a href="portfolio.html" class="block text-center py-4 text-lg hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold-mid);">Portfolio</a>
             <a href="services.html" class="block text-center py-4 text-lg hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold-mid);">Services</a>
@@ -298,199 +230,145 @@
         </div>
     </header>
 
-    <!-- Mobile full-screen nav -->
-    <div id="mobile-nav-overlay" role="navigation" aria-label="Mobile navigation">
-        <button id="mobile-close-btn" aria-label="Close menu">&times;</button>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="portfolio.html">Portfolio</a>
-        <a href="services.html">Services</a>
-        <a href="contact.html" class="active">Contact</a>
-    </div>
-
-    <!-- ══ MAIN ══ -->
+    <!-- MAIN -->
     <main class="pt-24 md:pt-40 pb-20">
         <div class="container mx-auto px-6">
 
-            <!-- Page hero -->
             <div class="page-hero text-center mb-8 md:mb-16" data-aos="fade-down">
-                <h3 class="text-gold uppercase tracking-[0.4em] text-sm mb-3">Get In Touch</h3>
+                <p class="section-label mb-3">Get In Touch</p>
                 <h1 class="text-5xl md:text-7xl font-bold">Start Your Story</h1>
-                <p class="text-gray-400 mt-6 max-w-xl mx-auto">Whether it's a grand wedding or a personal portrait, let's capture the moments that matter most to you.</p>
+                <div class="w-16 h-px mx-auto mt-6 mb-6" style="background:linear-gradient(90deg,transparent,var(--gold-mid),transparent);"></div>
+                <p class="text-gray-400 mt-4 max-w-xl mx-auto" style="font-weight:300;">Whether it's a grand wedding or a personal portrait, let's capture the moments that matter most to you.</p>
             </div>
 
-            <!-- ── TWO-COLUMN GRID ── -->
             <div class="contact-grid max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-start">
 
-                <!-- LEFT: contact details + map -->
+                <!-- LEFT -->
                 <div class="contact-left space-y-8" data-aos="fade-right">
-
                     <div>
                         <h3 class="text-2xl font-bold mb-4">Contact Details</h3>
-                        <p class="text-gray-400 leading-relaxed mb-8">Ready to book a session? Reach out via WhatsApp for a quick response or fill out our detailed inquiry form.</p>
-
+                        <p class="text-gray-400 leading-relaxed mb-8" style="font-weight:300;">Ready to book a session? Reach out via WhatsApp for a quick response or fill out our detailed inquiry form.</p>
                         <div class="space-y-6">
-                            <!-- Phone -->
-                            <div class="contact-icon-row group">
-                                <div class="contact-icon-circle group">
-                                    <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                                    </svg>
+                            <div class="contact-icon-row">
+                                <div class="contact-icon-circle">
+                                    <svg class="w-5 h-5" style="color:var(--gold-mid);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                                 </div>
-                                <a href="tel:+917845091708" class="text-lg hover:text-gold transition">+91 78450 91708</a>
+                                <a href="tel:+917845091708" class="text-lg hover:text-white transition" style="color:var(--gold-mid);">+91 78450 91708</a>
                             </div>
-
-                            <!-- Email -->
-                            <div class="contact-icon-row group">
-                                <div class="contact-icon-circle group">
-                                    <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                    </svg>
+                            <div class="contact-icon-row">
+                                <div class="contact-icon-circle">
+                                    <svg class="w-5 h-5" style="color:var(--gold-mid);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                                 </div>
-                                <a href="mailto:radaphotographyofficial@gmail.com" class="text-base hover:text-gold transition break-all">radaphotographyofficial@gmail.com</a>
+                                <a href="mailto:radaphotographyofficial@gmail.com" class="text-base hover:text-white transition break-all" style="color:var(--gold-mid);">radaphotographyofficial@gmail.com</a>
                             </div>
-
-                            <!-- Location -->
-                            <div class="contact-icon-row group">
-                                <div class="contact-icon-circle group">
-                                    <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                    </svg>
+                            <div class="contact-icon-row">
+                                <div class="contact-icon-circle">
+                                    <svg class="w-5 h-5" style="color:var(--gold-mid);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                                 </div>
-                                <span class="text-base leading-snug">Coimbatore, Tamil Nadu</span>
+                                <span class="text-base">Coimbatore, Tamil Nadu</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- WhatsApp CTA -->
                     <div class="wa-btn-wrap pt-2">
-                        <a href="https://wa.me/917845091708" target="_blank" rel="noopener noreferrer" class="btn-gold w-full py-4">
+                        <a href="https://wa.me/917845091708" target="_blank" rel="noopener noreferrer" class="btn-gold w-full py-4 block text-center">
                             Quick Chat on WhatsApp
                         </a>
                     </div>
 
-                    <!-- ── MAP ── -->
                     <div data-aos="fade-up" data-aos-delay="100">
-                        <h3 class="text-xl font-bold mb-4" style="font-family:'Playfair Display',serif;">
-                            Find Us
-                        </h3>
+                        <h3 class="text-xl font-bold mb-4">Find Us</h3>
                         <div class="map-wrapper">
                             <iframe
-                                title="Rada Photography Studio location on Google Maps"
+                                title="Rada Photography Studio location"
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.504887609454!2d76.95332!3d11.00678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba858ced1234567%3A0xabcdef!2s267%2F1%2C%20Thiruvenkatasamy%20Rd%20W%2C%20R.S.%20Puram%2C%20Coimbatore%2C%20Tamil%20Nadu%20641002!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-                                loading="lazy"
-                                allowfullscreen
-                                referrerpolicy="no-referrer-when-downgrade"
-                                aria-label="Map showing Rada Photography Studio at 267/1 Thiruvenkatasamy Rd W, R.S. Puram, Coimbatore">
+                                loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade">
                             </iframe>
                             <div class="map-label">
-                                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                </svg>
+                                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                                 <span>267/1, Thiruvenkatasamy Rd W, R.S. Puram,<br>Coimbatore, Tamil Nadu 641002</span>
-                                <a href="https://maps.google.com/?q=267/1+Thiruvenkatasamy+Rd+W+RS+Puram+Coimbatore+Tamil+Nadu+641002"
-                                   target="_blank" rel="noopener noreferrer"
-                                   aria-label="Open in Google Maps">
-                                    Open Maps →
-                                </a>
+                                <a href="https://maps.google.com/?q=267/1+Thiruvenkatasamy+Rd+W+RS+Puram+Coimbatore+Tamil+Nadu+641002" target="_blank" rel="noopener noreferrer">Open Maps →</a>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                </div><!-- /LEFT -->
-
-                <!-- RIGHT: inquiry form -->
+                <!-- RIGHT -->
                 <div class="contact-right bg-white bg-opacity-5 p-8 md:p-10 rounded-2xl border border-white border-opacity-5" data-aos="fade-left">
+                    <h3 class="text-2xl font-bold mb-6">Send an Inquiry</h3>
                     <form id="inquiry-form" action="#" class="space-y-6" novalidate>
                         <div class="form-name-email grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <input type="text" name="name" placeholder="Full Name" required class="form-input rounded-lg py-4 px-5">
-                            <input type="email" name="email" placeholder="Email Address" required class="form-input rounded-lg py-4 px-5">
+                            <input type="text"  name="name"    placeholder="Full Name"      required class="form-input rounded-lg py-4 px-5">
+                            <input type="email" name="email"   placeholder="Email Address"  required class="form-input rounded-lg py-4 px-5">
                         </div>
-                        <input type="text" name="subject" placeholder="Subject" required class="form-input rounded-lg py-4 px-5">
-                        <textarea rows="5" name="message" placeholder="Your Message" required class="form-input rounded-lg py-4 px-5"></textarea>
-                        <button type="submit" class="btn-gold w-full py-4 text-base tracking-widest">Submit Inquiry</button>
+                        <input type="text"      name="subject" placeholder="Subject"         required class="form-input rounded-lg py-4 px-5">
+                        <textarea rows="5"      name="message" placeholder="Your Message"    required class="form-input rounded-lg py-4 px-5"></textarea>
+                        <button type="submit" class="btn-gold w-full py-4 text-base">Submit Inquiry</button>
                     </form>
-                </div><!-- /RIGHT -->
+                </div>
 
-            </div><!-- /GRID -->
+            </div>
         </div>
     </main>
 
-    <!-- ══ FOOTER ══ -->
-    <footer class="py-12 bg-[#050505] text-center text-gray-500 text-sm border-t border-gold border-opacity-10">
+    <footer class="py-12 text-center text-sm" style="background:#050505; color:#555; border-top:1px solid rgba(212,175,55,0.08);">
         <div class="container mx-auto px-6">
             <p>&copy; 2025 Rada Photography Studio. All Rights Reserved.</p>
-            <p class="mt-2 text-gold">Passionately captured in Tamil Nadu, India</p>
+            <p class="mt-2">Passionately captured in Tamil Nadu, India</p>
         </div>
     </footer>
 
     <script>
-        // ── MOBILE MENU ──
-        const menuBtn   = document.getElementById('mobile-menu-button');
-        const overlay   = document.getElementById('mobile-nav-overlay');
-        const closeBtn  = document.getElementById('mobile-close-btn');
-
-        menuBtn.addEventListener('click', () => {
-            overlay.classList.add('open');
-            menuBtn.setAttribute('aria-expanded', 'true');
-            document.body.style.overflow = 'hidden';
+        window.addEventListener('load', () => {
+            document.body.classList.add('fade-in');
+            AOS.init({ duration: 900, once: true, easing: 'ease-out-expo' });
         });
-        const closeMenu = () => {
-            overlay.classList.remove('open');
-            menuBtn.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
-        };
-        closeBtn.addEventListener('click', closeMenu);
-        overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
-        // ── WHATSAPP FORM SUBMIT ──
+        // Header scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => header.classList.toggle('solid', window.scrollY > 50), { passive: true });
+
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu    = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            const isOpen = !mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', String(!isOpen));
+        });
+        mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        }));
+
+        // WhatsApp form submit
         document.getElementById('inquiry-form').addEventListener('submit', function(e) {
             e.preventDefault();
-
             const name    = this.querySelector('[name="name"]').value.trim();
             const email   = this.querySelector('[name="email"]').value.trim();
             const subject = this.querySelector('[name="subject"]').value.trim();
             const message = this.querySelector('[name="message"]').value.trim();
 
-            // Validate — all fields required
             if (!name || !email || !subject || !message) {
-                // Highlight empty fields
-                [['name',name],['email',email],['subject',subject],['message',message]]
-                    .forEach(([n, v]) => {
-                        const el = this.querySelector('[name="' + n + '"]');
-                        el.style.borderColor = v ? 'rgba(212,175,55,0.2)' : '#e74c3c';
-                    });
+                [['name',name],['email',email],['subject',subject],['message',message]].forEach(([n,v]) => {
+                    const el = this.querySelector('[name="' + n + '"]');
+                    el.style.borderColor = v ? 'rgba(212,175,55,0.2)' : '#e74c3c';
+                });
                 return;
             }
+            this.querySelectorAll('.form-input').forEach(el => el.style.borderColor = 'rgba(212,175,55,0.2)');
 
-            // Reset border colours
-            this.querySelectorAll('.form-input').forEach(el => {
-                el.style.borderColor = 'rgba(212,175,55,0.2)';
-            });
-
-            // Build the WhatsApp message
             const text =
                 'Hello Rada Photography! I have an inquiry:%0A%0A' +
-                '*Name:* ' + encodeURIComponent(name)    + '%0A' +
-                '*Email:* ' + encodeURIComponent(email)   + '%0A' +
+                '*Name:* '    + encodeURIComponent(name)    + '%0A' +
+                '*Email:* '   + encodeURIComponent(email)   + '%0A' +
                 '*Subject:* ' + encodeURIComponent(subject) + '%0A' +
                 '*Message:* ' + encodeURIComponent(message);
-
-            // Open WhatsApp — same number as the rest of the site
             window.open('https://wa.me/917845091708?text=' + text, '_blank');
         });
 
-        // Reset individual field border on input
         document.querySelectorAll('#inquiry-form .form-input').forEach(el => {
-            el.addEventListener('input', function() {
-                this.style.borderColor = 'rgba(212,175,55,0.2)';
-            });
-        });
-        window.addEventListener('load', () => {
-            document.body.classList.add('fade-in');
-            AOS.init({ duration: 900, once: true, easing: 'ease-out-expo' });
+            el.addEventListener('input', function() { this.style.borderColor = 'rgba(212,175,55,0.2)'; });
         });
     </script>
 </body>

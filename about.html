@@ -9,104 +9,125 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Playfair+Display+SC:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
 
     <style>
         :root {
-            --gold: #D4AF37;
-            --dark-bg: #0D0D0D;
-            --off-white: #E0E0E0;
+            --gold-light:    #F0D060;
+            --gold-mid:      #D4AF37;
+            --gold-dark:     #9A7B1A;
+            --gold-gradient: linear-gradient(135deg, #F0D060 0%, #D4AF37 45%, #9A7B1A 100%);
+            --gold-gradient-h: linear-gradient(90deg, #F0D060 0%, #D4AF37 50%, #9A7B1A 100%);
+            --dark-bg:       #0D0D0D;
+            --off-white:     #E0E0E0;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body:    'DM Sans', system-ui, sans-serif;
         }
 
+        *, *::before, *::after { box-sizing: border-box; }
+
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--font-body);
             background-color: var(--dark-bg);
             color: var(--off-white);
             margin: 0;
             overflow-x: hidden;
         }
 
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            color: #FFFFFF;
-        }
+        h1, h2, h3 { font-family: var(--font-display); color: #FFFFFF; }
 
-        .text-gold {
-            background: var(--gold-gradient);
+        /* ── LOGO TEXT ── */
+        .logo-text {
+            background: var(--gold-gradient-h);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-family: var(--font-body);
+            font-weight: 600;
+            letter-spacing: 0.03em;
         }
-        .gold-flat { color: var(--gold-mid); }
 
-        /* HEADER MATCHING INDEX */
+        /* ── HEADER ── */
         #header { transition: background-color 0.3s ease; }
         #header.solid {
             background: rgba(13,13,13,0.97);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(212,175,55,0.2);
         }
-        
+
+        /* ── NAV LINKS ── */
         .nav-link {
             position: relative;
             font-weight: 500;
+            font-family: var(--font-body);
             color: #a0a0a0;
-            padding: 4px 0;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
+            letter-spacing: 0.07em;
+            font-size: 0.875rem;
         }
+        .nav-link:hover, .nav-link.active { color: #fff; }
         .nav-link::after {
             content: '';
             position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 50%;
+            bottom: -4px; left: 50%;
             transform: translateX(-50%);
-            background-color: var(--gold);
-            transition: width 0.3s ease;
+            width: 0; height: 1px;
+            background: var(--gold-gradient-h);
+            transition: width 0.3s;
         }
-        .nav-link:hover, .nav-link.active { color: #FFFFFF; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
 
-        /* BUTTONS MATCHING INDEX */
+        /* ── BUTTONS ── */
         .btn-outline-gold {
-            border: 2px solid var(--gold);
-            color: var(--gold);
-            padding: 0.75rem 2rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            border-radius: 50px;
+            position: relative; display: inline-flex; align-items: center; justify-content: center;
+            padding: 0.85rem 2.5rem; border-radius: 50px;
+            font-family: var(--font-body); font-weight: 600; font-size: 0.78rem;
+            letter-spacing: 0.14em; text-transform: uppercase; overflow: hidden;
+            background: linear-gradient(var(--dark-bg), var(--dark-bg)) padding-box, var(--gold-gradient) border-box;
+            border: 2px solid transparent; color: var(--gold-mid);
+            transition: color 0.35s ease; cursor: pointer; text-decoration: none;
         }
         .btn-outline-gold::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 0; height: 100%;
-            background-color: var(--gold);
-            transition: width 0.3s ease;
-            z-index: -1;
+            content: ''; position: absolute; inset: 0;
+            background: var(--gold-gradient); transform: scaleX(0); transform-origin: left;
+            transition: transform 0.35s ease; border-radius: 50px; z-index: 0;
         }
-        .btn-outline-gold:hover { color: var(--dark-bg); }
-        .btn-outline-gold:hover::before { width: 100%; }
+        .btn-outline-gold:hover { color: #0D0D0D; }
+        .btn-outline-gold:hover::before { transform: scaleX(1); }
+        .btn-outline-gold > span { position: relative; z-index: 1; }
 
-        /* IMAGE STYLE */
+        /* ── ABOUT IMAGE FRAME ── */
         .about-img-frame {
             position: relative;
             border: 1px solid rgba(212, 175, 55, 0.3);
             padding: 15px;
             transition: all 0.5s ease;
         }
-        .about-img-frame:hover {
-            border-color: var(--gold);
+        .about-img-frame:hover { border-color: var(--gold-mid); }
+
+        /* ── VISION SECTION ── */
+        .vision-section {
+            background: rgba(0,0,0,0.4);
+        }
+
+        /* ── TEXT GOLD ── */
+        .text-gold-grad {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
     </style>
 </head>
 
 <body>
+
+    <!-- ══════════════════════════════════════
+         HEADER — identical to index.html
+    ══════════════════════════════════════ -->
     <header id="header" class="fixed top-0 left-0 right-0 z-50">
         <div class="container mx-auto px-4 sm:px-7 py-5 flex justify-between items-center">
-            <a href="about.html" class="flex items-center" aria-label="Rada Photography About">
+            <a href="index.html" class="flex items-center" aria-label="Rada Photography Home">
                 <img src="dp/dp2.PNG"
                      onerror="this.src='https://placehold.co/100x100/D4AF37/0D0D0D?text=R'"
                      alt="Rada Photography Studio Logo"
@@ -128,9 +149,10 @@
                 </svg>
             </button>
         </div>
+        <!-- Mobile menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-97 border-b border-opacity-20" style="border-color:var(--gold-mid);" role="navigation" aria-label="Mobile navigation">
             <a href="index.html" class="block text-center py-4 text-lg hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold-mid);">Home</a>
-            <a href="twinx.html" class="block text-center py-4 text-lg hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold-mid);">Twinx</a>
+            <a href="twinx.html" class="block text-center py-4 text-lg hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold-mid);">Twiinx</a>
             <a href="about.html" class="block text-center py-4 text-lg hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold-mid);">About</a>
             <a href="portfolio.html" class="block text-center py-4 text-lg hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold-mid);">Portfolio</a>
             <a href="services.html" class="block text-center py-4 text-lg hover:bg-white hover:bg-opacity-5 transition" style="color:var(--gold-mid);">Services</a>
@@ -138,80 +160,96 @@
         </div>
     </header>
 
+    <!-- ══════════════════════════════════════
+         MAIN CONTENT
+    ══════════════════════════════════════ -->
     <main class="pt-32 pb-20">
+
+        <!-- ABOUT SECTION -->
         <section class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-            <div class="about-img-frame" data-gsap="fade-right">
+            <div class="about-img-frame">
                 <img src="https://images.unsplash.com/photo-1520341280432-4491ac742582?q=80&w=1887&auto=format&fit=crop" 
                      alt="Ajay Rada" class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700">
             </div>
 
             <div class="text-left">
-                <h3 class="text-lg uppercase tracking-widest text-gold mb-2">The Storyteller</h3>
-                <h1 class="text-5xl md:text-7xl font-bold mb-6">Rada Photography</h1>
-                <p class="text-gray-400 text-lg leading-relaxed mb-6">
+                <p class="text-xs uppercase tracking-[0.5em] font-semibold mb-3" style="color:var(--gold-mid); font-family:var(--font-body);">The Storyteller</p>
+                <h1 class="text-5xl md:text-7xl font-bold mb-6" style="line-height:1.05;">Rada Photography</h1>
+                <p class="text-gray-400 text-lg leading-relaxed mb-6" style="font-family:var(--font-body); font-weight:300;">
                     Photography isn't just my profession; it's my way of seeing the world. Since I first picked up a camera, I've been fascinated by the stories that a single image can tell.
                 </p>
-                <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                <p class="text-gray-400 text-lg leading-relaxed mb-8" style="font-family:var(--font-body); font-weight:300;">
                     My style is a blend of documentary and fine art. Whether it's the quiet joy of a wedding day or the vibrant energy of a product shoot, my goal is to create a visual legacy you'll cherish for a lifetime.
                 </p>
-                <a href="portfolio.html" class="btn-outline-gold inline-block font-semibold">View My Work</a>
+                <a href="portfolio.html" class="btn-outline-gold"><span>View My Work</span></a>
             </div>
         </section>
 
-        <section class="mt-32 py-20 bg-black bg-opacity-40">
+        <!-- VISION SECTION -->
+        <section class="mt-32 py-20 vision-section">
             <div class="container mx-auto px-6 text-center max-w-3xl">
-                <h2 class="text-4xl font-bold mb-8">My Vision</h2>
-                <p class="text-xl italic text-gray-300">
-                    "To capture the essence of every subject, transforming fleeting moments into timeless art that speaks when words fail."
-                </p>
+                <p class="text-xs uppercase tracking-[0.5em] font-semibold mb-6" style="color:var(--gold-mid); font-family:var(--font-body);">My Vision</p>
+                <h2 class="text-4xl font-bold mb-8" style="line-height:1.2;">
+                    <span class="italic" style="font-weight:400; color:#ccc; font-family:var(--font-display);">
+                        "To capture the essence of every subject, transforming fleeting moments into timeless art that speaks when words fail."
+                    </span>
+                </h2>
+                <div class="w-16 h-px mx-auto mt-10" style="background: linear-gradient(90deg, transparent, var(--gold-mid), transparent);"></div>
             </div>
         </section>
+
     </main>
 
-    <footer class="py-12 bg-[#050505] text-center text-gray-500 text-sm">
-        <div class="container mx-auto px-6 border-t border-gold border-opacity-10 pt-10">
-            <p>&copy; 2025 Rada Photography Studio. All Rights Reserved.</p>
-            <p class="mt-2 text-gold">Email: radaphotographyofficial@gmail.com | Phone: 7845091708</p>
+    <!-- ══════════════════════════════════════
+         FOOTER
+    ══════════════════════════════════════ -->
+    <footer class="py-12 text-center text-sm" style="background:#050505; color:#555; border-top:1px solid rgba(212,175,55,0.08);">
+        <div class="container mx-auto px-6">
+            <p style="font-family:var(--font-body);">&copy; 2025 Rada Photography Studio. All Rights Reserved.</p>
+            <p class="mt-2" style="font-family:var(--font-body);">
+                <a href="mailto:radaphotographyofficial@gmail.com" style="color:var(--gold-mid);" class="hover:text-white transition">radaphotographyofficial@gmail.com</a>
+                &nbsp;|&nbsp;
+                <a href="tel:+917845091708" style="color:var(--gold-mid);" class="hover:text-white transition">+91 78450 91708</a>
+            </p>
         </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script>
-        gsap.from(".about-img-frame", { opacity: 0, x: -50, duration: 1.2, ease: "power3.out" });
-        gsap.from("h1, p, .btn-outline-gold", { 
-            opacity: 0, 
-            y: 30, 
-            duration: 1, 
-            stagger: 0.2, 
-            ease: "power3.out",
-            delay: 0.5 
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // ── Header scroll solid ──
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('solid', window.scrollY > 50);
+            }, { passive: true });
+
+            // ── Mobile menu ──
+            const mobileMenuBtn = document.getElementById('mobile-menu-button');
+            const mobileMenu    = document.getElementById('mobile-menu');
+            mobileMenuBtn.addEventListener('click', () => {
+                const isOpen = !mobileMenu.classList.contains('hidden');
+                mobileMenu.classList.toggle('hidden');
+                mobileMenuBtn.setAttribute('aria-expanded', String(!isOpen));
+            });
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            // ── GSAP entrance animations ──
+            gsap.from(".about-img-frame", {
+                opacity: 0, x: -60, duration: 1.2, ease: "power3.out"
+            });
+            gsap.from("h1", {
+                opacity: 0, y: 40, duration: 1, ease: "power3.out", delay: 0.3
+            });
+            gsap.from("h1 ~ p, h1 ~ a", {
+                opacity: 0, y: 30, duration: 0.9, stagger: 0.15, ease: "power3.out", delay: 0.5
+            });
         });
-
-    const mobileMenuBtn = document.getElementById('mobile-menu-button');
-
-    // Create mobile menu dynamically
-    const mobileMenu = document.createElement('div');
-    mobileMenu.className = "fixed top-0 left-0 w-full h-full bg-[#0D0D0D] flex flex-col items-center justify-center space-y-6 text-xl transform translate-x-full transition-transform duration-300 md:hidden";
-    mobileMenu.innerHTML = `
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="about.html" class="nav-link">About</a>
-        <a href="portfolio.html" class="nav-link active">Portfolio</a>
-        <a href="services.html" class="nav-link">Services</a>
-        <a href="contact.html" class="nav-link">Contact</a>
-    `;
-    document.body.appendChild(mobileMenu);
-
-    let menuOpen = false;
-
-    mobileMenuBtn.addEventListener('click', () => {
-        if (!menuOpen) {
-            mobileMenu.style.transform = "translateX(0)";
-            menuOpen = true;
-        } else {
-            mobileMenu.style.transform = "translateX(100%)";
-            menuOpen = false;
-        }
-    });
     </script>
 </body>
 </html>
